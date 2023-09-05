@@ -1,11 +1,23 @@
 import { Outlet } from 'react-router-dom'
 
+import { SidebarLeft } from '../../companents/SidebarLeft'
+import { SidebarRight } from '../../companents/SidebarRight'
+
 function Public() {
     return (
         <div>
-            <h2>This is public page</h2>
+            <div>
+                <SidebarLeft />
+            </div>
+            
+            <div>
+                <Outlet />
+            </div>
 
-            <Outlet />
+            <div>
+                <SidebarRight />
+            </div>
+
         </div>
     )
 
