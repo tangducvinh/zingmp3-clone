@@ -1,5 +1,11 @@
+import { useSelector, useDispatch } from 'react-redux'
+
+
 function App() {
-  return (
+  const { test } = useSelector(state => state.app)
+  console.log(test)
+
+  return ( 
     <h1>App</h1>
   )
 }
