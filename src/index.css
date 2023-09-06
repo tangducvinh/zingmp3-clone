@@ -1,0 +1,17 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+}
+
+:root {
+    --primary-bg: #34224f;
+    --sidebar-bg: #2a213a;
+    --control-bg: #120822;
+    --purple-primary: #9b4de0; 
+    --sidebar-text: #DADADA;
+}
+
+a {
+    text-decoration: none;
+}
