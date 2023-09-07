@@ -3,9 +3,15 @@
 }
 
 .sidebarLeft {
-    width: 240px;
+    min-width: 240px;
 }
 
 .outLet {
     flex: 1;
+    background-color: var(--primary-bg);
+    padding: 0 59px;
+}
+
+.header {
+    height: 70px;
 }

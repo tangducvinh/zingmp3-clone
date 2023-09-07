@@ -5,13 +5,19 @@
 }
 
 :root {
-    --primary-bg: #34224f;
     --sidebar-bg: #2a213a;
-    --control-bg: #120822;
+    --primary-bg: #170f23;
+    --control-bg: #130c1c;
     --purple-primary: #9b4de0; 
     --sidebar-text: #DADADA;
 }
 
 a {
     text-decoration: none;
+}
+
+button {
+    outline: none;
+    background-color: transparent;
+    border: none;
 }
