@@ -10,6 +10,7 @@ function Sevice() {
         <>
             {sevices.map(item => 
                 <Tippy
+                    key={item.text}
                     content={<span className={styles.tippy}>{item.text}</span>}
                 >
                     <button className={clsx(styles.setting)}>
