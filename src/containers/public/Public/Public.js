@@ -5,6 +5,7 @@ import { SidebarLeft } from '../../../companents/SidebarLeft'
 import { Header } from '../../../companents/Header'
 import styles from './Public.module.scss'
 
+
 function Public() {
     return (
         <div className={clsx(styles.container)}>

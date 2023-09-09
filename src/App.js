@@ -1,12 +1,20 @@
 import { useSelector, useDispatch } from 'react-redux'
-import {Routes, Route} from 'react-router-dom'
+import { Routes, Route } from 'react-router-dom'
+import { useEffect } from 'react'
 
 import path from './ultis/path'
 import { Home } from './containers/public/Home'
 import { Login } from './containers/public/Login'
 import { Public } from './containers/public/Public'
+import * as actions from './store/action'
  
 function App() {
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(actions.getHome())
+  }, [])
+
   return ( 
     <div className="app">
       <Routes>

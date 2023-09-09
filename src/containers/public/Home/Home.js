@@ -1,20 +1,18 @@
-import { useEffect } from 'react'
+import clsx from 'clsx'
 
-import * as apis from '../../../apis'
+import styles from './Home.module.scss'
+import { Slider } from '../../../companents/Slider'
 
 function Home() {
-    useEffect(() => {
-        const fetchDataHome = async () => {
-            const response = await apis.getHome()
-            console.log(response)
-        }
-
-        fetchDataHome()
-    }, [])
-
     return (
-        <div>
-            <h2>This is home page</h2>
+        <div className={clsx(styles.container)}>
+            <div className={clsx(styles.slider)}>
+                <Slider />
+            </div>
+
+
+
+            
         </div>
     )
 
