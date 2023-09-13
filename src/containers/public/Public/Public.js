@@ -3,22 +3,29 @@ import clsx from 'clsx'
 
 import { SidebarLeft } from '../../../companents/SidebarLeft'
 import { Header } from '../../../companents/Header'
+import { Audio } from '../../../companents/Audio'
 import styles from './Public.module.scss'
 
 
 function Public() {
     return (
         <div className={clsx(styles.container)}>
-            <div className={clsx(styles.sidebarLeft)}>
-                <SidebarLeft />
-            </div>
-            
-            <div className={clsx(styles.outLet)}>
-                <div className={clsx(styles.header)}>
-                    <Header />
+            <div className={clsx(styles.content)}>
+                <div className={clsx(styles.sidebarLeft)}>
+                    <SidebarLeft />
                 </div>
+                
+                <div className={clsx(styles.outLet)}>
+                    <div className={clsx(styles.header)}>
+                        <Header />
+                    </div>
 
-                <Outlet />
+                    <Outlet />
+                </div>
+            </div>
+
+            <div className={clsx(styles.audio)}>
+                <Audio />
             </div>
         </div>
     )

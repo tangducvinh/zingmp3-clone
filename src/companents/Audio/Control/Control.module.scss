@@ -1,0 +1,20 @@
+.wrrap {
+    display: flex;
+}
+
+.button {
+    width: 35px;
+    height: 35px;
+    margin: 0 7px;
+}
+
+.play {
+    width: 40px;
+    height: 40px;
+    margin: 0 5px;
+    color: #fff;
+
+    &:hover {
+        color: var(--purple-primary);
+    }
+}

@@ -1,4 +1,4 @@
-.container {
+.content {
     display: flex;
 }
 
@@ -14,4 +14,11 @@
 
 .header {
     height: 70px;
+}
+
+.audio {
+    height: 90px;
+    padding: 0 20px;
+    background-color: var(--control-bg);
+    cursor: pointer;
 }

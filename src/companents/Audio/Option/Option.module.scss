@@ -1,0 +1,48 @@
+.container {
+    display: flex;
+}
+
+.option {
+    display: flex;
+}
+
+.wrrapBtn {
+    width: 30px;
+    height: 30px;
+    margin: 0 3px;
+}
+
+.row {
+    width: 40px;
+    height: 33px;
+    position: relative;
+}
+
+.row::before {
+    position: absolute;
+    content: '';
+    width: 2px;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.1);
+    left: 50%;
+}
+
+.list {
+    width: 28px;
+    height: 30px;
+    color: #fff;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 3px;
+
+    &:hover {
+        background-color:rgba(255, 255, 255, 0.2);
+    }
+}
+
+.tippy {
+    font-size: 12px;
+}

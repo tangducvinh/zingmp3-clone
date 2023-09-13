@@ -1,15 +1,21 @@
-import { RiCompassDiscoverLine } from 'react-icons/ri'
+import { RiCompassDiscoverLine, RiRepeatFill} from 'react-icons/ri'
 import { HiTrendingUp, HiOutlineArrowLeft, HiOutlineArrowRight } from 'react-icons/hi'
-import { MdLibraryMusic, MdFavoriteBorder, MdPlayCircleOutline } from 'react-icons/md'
+import { MdLibraryMusic, MdFavoriteBorder, MdPlayCircleOutline, MdMusicVideo } from 'react-icons/md'
 import { PiMusicNotesPlus } from 'react-icons/pi'
-import { BsMenuButtonWide } from 'react-icons/bs'
-import { AiOutlineStar, AiOutlineSetting } from 'react-icons/ai'
+import { BsMenuButtonWide, BsPlayCircle } from 'react-icons/bs'
+import { AiOutlineStar, AiOutlineSetting, AiOutlineHeart, AiFillHeart } from 'react-icons/ai'
 import { LuHistory } from 'react-icons/lu'
-import { BiSolidPlaylist } from 'react-icons/bi'
+import { BiSolidPlaylist, BiWindows} from 'react-icons/bi'
 import { CgAlbum } from 'react-icons/cg'
 import { FiUpload } from 'react-icons/fi'
 import { TfiSearch } from 'react-icons/tfi'
 import { GoDesktopDownload } from 'react-icons/go'
+import { SlOptions } from 'react-icons/sl'
+import { FaRandom } from 'react-icons/fa'
+import { IoPlaySkipBackSharp, IoPlaySkipForwardSharp, IoRepeatOutline } from 'react-icons/io5'
+import { PiMicrophoneStage } from 'react-icons/pi'
+import { HiOutlineSpeakerWave, HiOutlineSpeakerXMark} from 'react-icons/hi2'
+
 
 const icons = {
     RiCompassDiscoverLine,
@@ -29,6 +35,20 @@ const icons = {
     TfiSearch,
     GoDesktopDownload,
     AiOutlineSetting,
+    AiOutlineHeart,
+    AiFillHeart,
+    SlOptions,
+    IoPlaySkipBackSharp,
+    IoPlaySkipForwardSharp,
+    BsPlayCircle,
+    IoRepeatOutline,
+    FaRandom,
+    RiRepeatFill,
+    MdMusicVideo,
+    PiMicrophoneStage,
+    BiWindows,
+    HiOutlineSpeakerWave,
+    HiOutlineSpeakerXMark,
 }
 
 export default icons
