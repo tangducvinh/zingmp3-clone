@@ -1,12 +1,14 @@
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import clsx from 'clsx'
 import { useEffect } from 'react'
 
 import styles from './Slider.module.scss'
 import { handleSlider } from '../../ultis/func'
+import * as action from '../../store/action'
 
 function Slider() {
     const { banner } = useSelector(state => state.app)
+    const dispatch = useDispatch()
 
     useEffect(() => {
         const imgElements = document.getElementsByClassName(styles.wrrapImg)
@@ -43,6 +45,12 @@ function Slider() {
         }
     }, [])
 
+    function handleClickBanner(item) {
+        if (item.type === 1) {
+            dispatch(action.setCurSongId(item.encodeId))
+        }
+    }
+
     return (
         <div className={clsx(styles.container)}>
             {banner.map((item, index) => (
@@ -50,7 +58,12 @@ function Slider() {
                     key={item.encodeId}
                     className={clsx(styles.wrrapImg, `${index > 2 ? styles.unactive : styles.active}`)}
                 > 
-                    <img className={clsx(styles.img)} src={item.banner}></img>
+                    <img 
+                        className={clsx(styles.img)} 
+                        src={item.banner}
+                        onClick={() => handleClickBanner(item)}
+                    >
+                    </img>
                 </div>
             ))}
         </div>

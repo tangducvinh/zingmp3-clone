@@ -74,7 +74,10 @@
 }
 
 .divide {
-    max-height: 328px;
+    // flex: 1;
+    // height: auto;
+    max-height: 355px;
+    // overflow: hidden;
     overflow-y: scroll;
     padding-top: 15px;
 }
