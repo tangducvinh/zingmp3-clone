@@ -15,12 +15,19 @@ const {
     HiOutlineSpeakerWave,
     HiOutlineSpeakerXMark,
     BiSolidPlaylist,
+    BsPauseCircle,
+    IoShuffle,
 } = icons
 
 export const inforBtn = {
-    loveBtn: {
+    loveBtnOutline: {
         icon: <AiOutlineHeart />,
         content: 'Thêm vào thư viện',
+    },
+    loveBtnFill: {
+        icon: <AiFillHeart />,
+        content: 'Xoá khỏi thư viện',
+        color: true,
     },
     addBtn: {
         icon: <SlOptions />,
@@ -30,14 +37,15 @@ export const inforBtn = {
 
 export const controlBtn = {
     random: {
-        icon: <FaRandom size={20} />,
+        icon: <IoShuffle size={24} />,
         content: 'Bật phát ngẫu nhiên',
     },
     back: {
         icon: <IoPlaySkipBackSharp size={20} />,
     },
     play: {
-        icon: <BsPlayCircle size={40}/>,
+        iconPlay: <BsPlayCircle size={40}/>,
+        iconPause: <BsPauseCircle size={40}/>
     },
     next: {
         icon: <IoPlaySkipForwardSharp size={20} />,

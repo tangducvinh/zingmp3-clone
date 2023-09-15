@@ -1,24 +1,33 @@
 import clsx from 'clsx'
+import { useState } from 'react'
 
 import styles from './Infor.module.scss'
 import { ButtonAudio } from '../../ButtonAudio'
 import { inforBtn } from '../../../ultis/buttonAudio'
+import { IoShieldCheckmarkOutline } from 'react-icons/io5'
 
-function Infor() { 
+function Infor({ title, img, artistsNames}) { 
+
+    const [isHeart, setIsHeart] = useState(false)
+
+    function handleHeart() {
+        setIsHeart(!isHeart)
+    }
+
     return (
         <div className={clsx(styles.container)}>
             <div className={clsx(styles.wrrapImg)}>
-                <img className={clsx(styles.img)} src='https://thethaovanhoa.mediacdn.vn/thumb_w/1200/Upload/5uEz6bdJBvMUMWSN6HvH2A/files/2022/08/T8-2/dau%20co%20loi%20lam%20tb1.jpg' alt='image'></img>
+                <img className={clsx(styles.img)} src={img} alt='image'></img>
             </div>
 
             <div className={clsx(styles.infor)}>
-                <span className={clsx(styles.nameSong)}>Dẫu có lỗi lầm</span>
-                <a href='' className={clsx(styles.nameSinger)}>Reddy</a>
+                <span className={clsx(styles.nameSong)}>{title}</span>
+                <a href='' className={clsx(styles.nameSinger)}>{artistsNames}</a>
             </div>
 
-            <div className={clsx(styles.wrrapBtn)}>
+            <div className={clsx(styles.wrrapBtn)} onClick={handleHeart}>
                 <ButtonAudio
-                    item={inforBtn.loveBtn}
+                    item={isHeart ? inforBtn.loveBtnFill : inforBtn.loveBtnOutline}
                 />
             </div>
 

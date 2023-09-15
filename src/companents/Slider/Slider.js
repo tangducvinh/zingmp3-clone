@@ -48,6 +48,9 @@ function Slider() {
     function handleClickBanner(item) {
         if (item.type === 1) {
             dispatch(action.setCurSongId(item.encodeId))
+            dispatch(action.play(true))
+        } else if (item.type === 4) {
+            dispatch(action.setCurSongId(item.encodeId))
         }
     }
 

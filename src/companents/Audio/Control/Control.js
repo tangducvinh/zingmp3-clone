@@ -1,10 +1,24 @@
 import clsx from 'clsx'
+import { useState } from 'react'
 
 import styles from './Control.module.scss'
 import { ButtonAudio } from '../../ButtonAudio'
 import { controlBtn } from '../../../ultis/buttonAudio'
 
-function Control() {
+function Control({ audio }) {
+
+    const [isPlaying, setIsPlaying] = useState(false)
+
+    function handlePlayMusic() {
+        if(isPlaying) {
+            setIsPlaying(false)
+            audio.pause()
+        } else {
+            setIsPlaying(true)
+            audio.play()
+        }
+    }
+
     return (
         <div className={clsx(styles.container)}>
             <div className={clsx(styles.directional)}>
@@ -19,8 +33,8 @@ function Control() {
                             item={controlBtn.back}
                         />
                     </div>
-                    <div className={clsx(styles.play)}>
-                        {controlBtn.play.icon}
+                    <div className={clsx(styles.play)} onClick={handlePlayMusic}>
+                        {isPlaying ? controlBtn.play.iconPause : controlBtn.play.iconPlay}
                     </div>
                     <div className={clsx(styles.button)}>
                         <ButtonAudio 

@@ -11,15 +11,13 @@ function ButtonAudio({item}) {
                 <Tippy
                     content={<span className={clsx(styles.tippy)}>{item.content}</span>}
                 >
-                    <div className={clsx(styles.container)}>
+                    <div className={clsx(styles.container, {[styles.color]: item.color})}>
                         {item.icon}
-                        {/* < AiFillHeart/> */}
                     </div>
                 </Tippy> 
                 :
                 <div className={clsx(styles.container)}>
                     {item.icon}
-                    {/* < AiFillHeart/> */}
                 </div>
             }
         </>
