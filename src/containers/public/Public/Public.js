@@ -6,7 +6,6 @@ import { Header } from '../../../companents/Header'
 import { Audio } from '../../../companents/Audio'
 import styles from './Public.module.scss'
 
-
 function Public() {
     return (
         <div className={clsx(styles.container)}>

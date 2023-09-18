@@ -32,6 +32,10 @@ export const inforBtn = {
     addBtn: {
         icon: <SlOptions />,
         content: 'Xem Thêm',
+    },
+    addBtnAlbum: {
+        icon: <SlOptions />,
+        content: 'Khác',
     }
 }
 
@@ -76,4 +80,5 @@ export const option = {
         icon: <BiSolidPlaylist size={17}/>,
     }
 }
+
 

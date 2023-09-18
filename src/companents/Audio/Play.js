@@ -16,8 +16,6 @@ function Play() {
     const [sourse, setSourse] = useState(null)
     const audioEl = new Audio(sourse)
 
-    console.log(isPlaying)
-
     useEffect(() => {
         async function fetchDetailSong() {
             const [res1, res2] = await Promise.all([
@@ -40,11 +38,7 @@ function Play() {
     return (
         <div className={clsx(styles.container)}>
             <div className={clsx(styles.infor)}>
-                <Infor 
-                    title={infor.title}
-                    img={infor.thumbnail}
-                    artistsNames={infor.artistsNames}
-                />
+                <Infor item={infor}/>
             </div>
 
             <div className={clsx(styles.control)}>

@@ -1,6 +1,8 @@
 import { useSelector, useDispatch } from 'react-redux'
 import clsx from 'clsx'
 import { useEffect } from 'react'
+import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 import styles from './Slider.module.scss'
 import { handleSlider } from '../../ultis/func'
@@ -9,6 +11,7 @@ import * as action from '../../store/action'
 function Slider() {
     const { banner } = useSelector(state => state.app)
     const dispatch = useDispatch()
+    const navigate = useNavigate()
 
     useEffect(() => {
         const imgElements = document.getElementsByClassName(styles.wrrapImg)
@@ -50,7 +53,8 @@ function Slider() {
             dispatch(action.setCurSongId(item.encodeId))
             dispatch(action.play(true))
         } else if (item.type === 4) {
-            dispatch(action.setCurSongId(item.encodeId))
+            const playlistPatch = item.link.split('.')[0]
+            navigate(playlistPatch)
         }
     }
 
