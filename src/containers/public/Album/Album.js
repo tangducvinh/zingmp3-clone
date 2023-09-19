@@ -9,22 +9,18 @@ import { inforBtn } from '../../../ultis/buttonAudio'
 import { ButtonAudio } from '../../../companents/ButtonAudio'
 import { buttonAlbum } from '../../../ultis/button'
 import { Button } from '../../../companents/Button'
-import icons from '../../../ultis/icon'
-import { InforSong } from '../../../companents/InforSong'
+import { Playlist } from '../../../companents/Playlist'
 
 function Album() {
-    const { name, pid } = useParams()
-    const { LuMusic } = icons
+    const { pid } = useParams()
     const [data, setData] = useState({})
-    const [infor, setInfor] = useState({})
 
     useEffect(() => {
         async function fetchDetailPlaylist() {
             const response = await apis.getDetailtPlaylist(pid)
             
             if(response.data.err === 0) {
-                setInfor(response.data.data.song.items[0])
-                setData(response.data.data)
+                setData(response.data?.data)
             }
         }
 
@@ -72,30 +68,15 @@ function Album() {
                 <div className={clsx(styles.wrrapList)}>
                     <p className={clsx(styles.title)}>
                         <span className={clsx(styles.header)}>Lời tựa </span>
-                        <span className={clsx(styles.singerName)}>BigDaddy, Emily và 30 bản Hit V-Pop nổi bật nhất hiện nay</span>
+                        <span className={clsx(styles.singerName)}>{data.sortDescription}</span>
                     </p>
 
-                    <ul className={clsx(styles.list)}>
-                        <div className={clsx(styles.category)}>
-                            <span>BÀI HÁT</span>
-                            <span>ALBUM</span>
-                            <span>THỜI GIAN</span>
-                        </div>
-
-                        <div className={clsx(styles.content)}>
-                            <div className={clsx(styles.inforItem)}>
-                                <LuMusic />
-                                <InforSong 
-                                    item={infor}
-                                    sizeM
-                                />
-                            </div>
-
-                            <span>Mua thang six</span>
-
-                            <span>thoi gian</span>
-                        </div>
-                    </ul>
+                    <div className={clsx(styles.playlist)}>
+                        <Playlist 
+                            item={data?.song?.items}
+                            duration={data?.song?.totalDuration}
+                        />
+                    </div>
                 </div>
             </div>
 

@@ -1,0 +1,38 @@
+.container {
+    width: 100%;
+}
+
+.category {
+    color: var(--gray-text);
+    font-size: 12px;
+    display: flex;
+    justify-content: space-between;
+    font-weight: 500;
+    align-items: center;
+    padding: 10px;
+    border-bottom: solid 1px rgba(255, 255, 255, 0.05);
+    border-radius: 5px;
+}
+
+.songText {
+    display: flex;
+    align-items: center;
+    flex: 2;
+    justify-content: start;
+}
+
+.albumText {
+    flex: 1;
+    display: flex;
+    justify-content: start;
+}
+
+.timeText {
+    flex: 1;
+    display: flex;
+    justify-content: end;
+}
+
+.icon {
+    margin-right: 8px;
+}

@@ -15,6 +15,7 @@ import { FaRandom } from 'react-icons/fa'
 import { IoPlaySkipBackSharp, IoPlaySkipForwardSharp, IoRepeatOutline, IoShuffle } from 'react-icons/io5'
 import { PiMicrophoneStage } from 'react-icons/pi'
 import { HiOutlineSpeakerWave, HiOutlineSpeakerXMark} from 'react-icons/hi2'
+import { RxCaretSort } from 'react-icons/rx'
 
 
 const icons = {
@@ -53,6 +54,7 @@ const icons = {
     IoShuffle,
     BsFillPlayFill,
     LuMusic,
+    RxCaretSort,
 }
 
 export default icons

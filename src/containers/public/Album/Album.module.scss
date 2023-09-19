@@ -73,8 +73,8 @@
 }
 
 .wrrapList {
-    margin-left: 30px;
     width: 100%;
+    margin-left: 30px;
 }
 
 .header {
@@ -87,18 +87,6 @@
     font-size: 14px;
 }
 
-.category {
-    color: var(--gray-text);
-    font-size: 12px;
-    display: flex;
-    justify-content: space-between;
-}
-
-.content {
-    display: flex;
-    justify-content: space-between;
-}
-
-.inforItem {
-    display: flex;
+.playlist {
+    margin-top: 10px;
 }
