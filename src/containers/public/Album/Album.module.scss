@@ -1,10 +1,13 @@
 
 .container {
     margin-top: 20px;
+    width: 100%;
 }
 
 .album {
+    width: 100%;
     display: flex;
+    position: relative;
 }
 
 .wrrapInfor {
@@ -12,6 +15,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    position: fixed;
 
     p {
         color: #FFFFFF80;
@@ -40,10 +44,14 @@
     }
 }
 
-.title {
-    margin: 20px 0px 7px 0;
+.name {
+    margin: 20px 0 7px 0;
     font-size: 20px;
     color: #ffff;
+}
+
+.singer {
+    align-items: center;
 }
 
 .play {
@@ -74,7 +82,7 @@
 
 .wrrapList {
     width: 100%;
-    margin-left: 30px;
+    margin-left: 330px;
 }
 
 .header {
@@ -89,4 +97,8 @@
 
 .playlist {
     margin-top: 10px;
+}
+
+.artist {
+    height: 500px;
 }

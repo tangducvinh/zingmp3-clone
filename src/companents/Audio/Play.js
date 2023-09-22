@@ -10,17 +10,15 @@ import { Option } from './Option'
 import * as apis from '../../apis/music'
 
 function Play() {
-    const { curSongId, isPlaying } = useSelector(state => state.music)
-    var curSongId2 = 'Z6E7F867'
+    const { curSongId } = useSelector(state => state.music)
     const [infor, setInfor] = useState({})
     const [sourse, setSourse] = useState(null)
-    const audioEl = new Audio(sourse)
 
     useEffect(() => {
         async function fetchDetailSong() {
             const [res1, res2] = await Promise.all([
-                apis.getDetailSong(curSongId2),
-                apis.getSong(curSongId2)
+                apis.getDetailSong(curSongId),
+                apis.getSong(curSongId)
             ])
 
             if (res1.data.err === 0) {
@@ -31,9 +29,8 @@ function Play() {
                 setSourse(res2.data.data['128'])
             }
         }
-
         fetchDetailSong()
-    }, [])
+    }, [curSongId])
 
     return (
         <div className={clsx(styles.container)}>
@@ -43,7 +40,7 @@ function Play() {
 
             <div className={clsx(styles.control)}>
                 <Control 
-                    audio={audioEl}
+                    sourse={sourse}
                 />
             </div>
 

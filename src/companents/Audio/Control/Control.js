@@ -1,21 +1,32 @@
 import clsx from 'clsx'
-import { useState } from 'react'
+import { useEffect, useRef } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { memo } from 'react'
 
 import styles from './Control.module.scss'
 import { ButtonAudio } from '../../ButtonAudio'
 import { controlBtn } from '../../../ultis/buttonAudio'
+import * as action from '../../../store/action'
 
-function Control({ audio }) {
+function Control({ sourse }) {
+    const dispatch = useDispatch()
+    const { isPlaying } = useSelector(state => state.play)
+    const audioEl = useRef(new Audio())
 
-    const [isPlaying, setIsPlaying] = useState(false)
+    useEffect(() => {
+        audioEl.current.pause()
+        audioEl.current.src = sourse
+        audioEl.current.load()
+        if (isPlaying) audioEl.current.play()
+    }, [sourse])
 
     function handlePlayMusic() {
-        if(isPlaying) {
-            setIsPlaying(false)
-            audio.pause()
+        if (isPlaying) {
+            audioEl.current.pause()
+            dispatch(action.play(false))
         } else {
-            setIsPlaying(true)
-            audio.play()
+            audioEl.current.play()
+            dispatch(action.play(true))
         }
     }
 
@@ -52,4 +63,4 @@ function Control({ audio }) {
     )
 }
 
-export default Control
+export default memo(Control)

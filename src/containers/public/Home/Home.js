@@ -8,11 +8,7 @@ function Home() {
         <div className={clsx(styles.container)}>
             <div className={clsx(styles.slider)}>
                 <Slider />
-            </div>
-
-
-
-            
+            </div>     
         </div>
     )
 

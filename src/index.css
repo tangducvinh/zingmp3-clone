@@ -22,3 +22,17 @@ button {
     background-color: transparent;
     border: none;
 }
+
+::-webkit-scrollbar {
+    width: 7px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.4);
+    border-radius: 10px;
+} 
+
+body::-webkit-scrollbar-track {
+    background-color: var(--primary-bg);
+}
+

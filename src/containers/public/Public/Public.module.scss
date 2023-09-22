@@ -1,26 +1,43 @@
 .container {
     display: flex;
     flex-direction: column;
+}
+
+.wrrapContent {
+    display: flex;
+    margin-bottom: 89px;
     position: relative;
     width: 100%;
 }
 
-.content {
-    display: flex;
-}
-
 .sidebarLeft {
-    min-width: 240px;
+    min-width: 237px;
+    position: fixed;
+    left: 0;
+    height: 100%;
 }
 
-.outLet {
+.content {
     flex: 1;
-    background-color: var(--primary-bg);
     padding: 0 59px;
+    background-color: var(--primary-bg);
+    margin-left: 237px;
+    position: relative;
 }
 
 .header {
     height: 70px;
+    position: fixed;
+    top: 0;
+    right: 59px;
+    left: 296px;
+    z-index: 10;
+}
+
+.outlet {
+    margin-top: 94px;
+    width: 100%;
+
 }
 
 .audio {

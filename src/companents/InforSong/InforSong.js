@@ -10,8 +10,8 @@ function InforSong({ sizeL, sizeM, item }) {
             </div>
 
             <div className={clsx(styles.infor)}>
-                <span className={clsx(styles.nameSong)}>{item?.title}</span>
-                <a href='' className={clsx(styles.nameSinger)}>{item?.artistsNames}</a>
+                <p className={clsx(styles.nameSong)}>{item?.title}</p>
+                <a href='#' className={clsx(styles.nameSinger)}>{item?.artistsNames}</a>
             </div>
         </div>
     )

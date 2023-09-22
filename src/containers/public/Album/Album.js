@@ -27,8 +27,6 @@ function Album() {
         fetchDetailPlaylist(pid)
     }, [pid])
 
-    console.log(data)
-
     return (
         <div className={clsx(styles.container)}>
             <div className={clsx(styles.album)}>
@@ -37,15 +35,15 @@ function Album() {
                         <img className={clsx(styles.imgAlbum)} src={data.thumbnailM}></img>
                     </div>
 
-                    <h3 className={clsx(styles.title)}>{data.title}</h3>
+                    <h3 className={clsx(styles.name)}>{data.title}</h3>
 
                     <p>
                         <span>Cập nhật: </span>
                         <span>{moment.unix(data.contentLastUpdate).format("DD/MM/YYYY")}</span>
                     </p>
 
-                    <p className={clsx(styles.singer)}>
-                        <span>{data.artistsNames}</span>
+                    <p>
+                        <span className={clsx(styles.singer)}>{data.artistsNames}</span>
                     </p>
 
                     <p> {`${Math.round(data.like / 1000)}K người yêu thích`}</p>
@@ -75,11 +73,15 @@ function Album() {
                         <Playlist 
                             item={data?.song?.items}
                             duration={data?.song?.totalDuration}
+                            total={data?.song?.total}
                         />
                     </div>
                 </div>
             </div>
 
+            <div className={clsx(styles.artist)}>
+                nghe si
+            </div>
         </div>
     )
 }

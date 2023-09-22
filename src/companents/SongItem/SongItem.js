@@ -8,7 +8,6 @@ import icons from '../../ultis/icon'
 
 function SongItem({item}) {
     const { LuMusic } = icons
-    console.log(item)
     return (
         <div className={clsx(styles.container)}>
             <div className={clsx(styles.inforItem)}>
