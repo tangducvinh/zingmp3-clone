@@ -19,10 +19,11 @@ function App() {
   return ( 
     <div className="app">
       <Routes>
-        <Route path={path.PUBLIC} element={ <Public />}>
-          <Route path={path.PLAYLIST_TITLE_PID} element={ <Album />}/>
-          <Route path={path.HOME} element={ <Home />}/>
-          <Route path={path.LOGIN} element={ <Login />}/>
+        <Route path={path.PUBLIC} element={ <Public /> }>
+          <Route path={path.PLAYLIST_TITLE_PID} element={ <Album /> }/>
+          <Route path={path.ALBUM_TITLE_ID} element={ <Album /> }/>
+          <Route path={path.HOME} element={ <Home /> }/>
+          <Route path={path.LOGIN} element={ <Login /> }/>
         </Route>
 
       </Routes>

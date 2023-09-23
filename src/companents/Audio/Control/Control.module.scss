@@ -1,4 +1,10 @@
-.wrrap {
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.directional {
     display: flex;
 }
 
@@ -18,3 +24,48 @@
         color: var(--purple-primary);
     }
 }
+
+.progressBar {
+    margin-top: 7px;
+    display: flex;
+    align-items: center;
+}
+
+.totalDuration {
+    width: 485px;
+    background-color: #5A5560;
+    height: 2.5px;
+    position: relative;
+    border-radius: 10px;
+
+    &:hover {
+        height: 6px;
+    }
+
+    &:hover .currentDuration {
+        height: 6px;
+    }
+}
+
+.currentDuration {
+    width: 0;
+    background-color: #ffff;
+    height: 2.5px;
+    position: absolute;
+    border-radius: 10px;
+}
+
+.totalTimeCurrent {
+    color: var(--gray-text);
+    font-size: 12px;
+    padding-right: 5px;
+    font-weight: 500;
+}
+
+.totalTime {
+    color: #ffff;
+    font-size: 12px;
+    padding-left: 7px;
+    font-weight: 500;
+}
+

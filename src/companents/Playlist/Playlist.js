@@ -12,8 +12,8 @@ function Playlist({ item, duration, total }) {
     const { RxCaretSort, BsDot } = icons
     const dispatch = useDispatch()
 
-    function handleChosseSong(sid) {
-        dispatch(action.setCurSongId(sid))
+    function handleChosseSong(item) {
+        dispatch(action.setCurSongId(item.encodeId))
         dispatch(action.play(true))
     }
 
@@ -32,7 +32,7 @@ function Playlist({ item, duration, total }) {
                 {item?.map(item => (
                     <div 
                         className={clsx(styles.songItem)}
-                        onClick={() => handleChosseSong(item.encodeId)}
+                        onClick={() => handleChosseSong(item)}
                         key={item?.encodeId}
                     >
                         <SongItem item={item} />

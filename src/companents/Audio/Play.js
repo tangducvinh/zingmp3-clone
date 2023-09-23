@@ -1,5 +1,5 @@
 import clsx from 'clsx'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { useEffect, useState } from 'react'
 import React from 'react'
 
@@ -22,11 +22,15 @@ function Play() {
             ])
 
             if (res1.data.err === 0) {
-                setInfor(res1.data.data)
+                if(res2.data.err === 0) {
+                    setInfor(res1.data.data)
+                }
             }
 
             if (res2.data.err === 0) {
                 setSourse(res2.data.data['128'])
+            } else {
+                console.log('bai hat chi danh cho vip')
             }
         }
         fetchDetailSong()
