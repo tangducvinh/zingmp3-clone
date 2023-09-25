@@ -1,9 +1,10 @@
 import actionTypes from './actionTypes'
 
-export function setCurSongId(sid) {
+export function setCurSongId(sid, index) {
     return {
         type: actionTypes.SET_CUR_SONG_ID,
         sid,
+        index,
     }
 }
 
