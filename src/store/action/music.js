@@ -14,3 +14,10 @@ export function play(flag) {
         flag,
     }
 }
+
+export function random(flag) {
+    return {
+        type: actionTypes.RANDOM,
+        flag,
+    }
+}

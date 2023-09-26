@@ -15,6 +15,7 @@ function Playlist({ item, duration, total }) {
     function handleChosseSong(item, index) {
         dispatch(action.setCurSongId(item.encodeId, index))
         dispatch(action.play(true))
+        dispatch(action.random(false))
     }
 
     return (

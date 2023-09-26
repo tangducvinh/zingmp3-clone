@@ -45,6 +45,7 @@ function Play() {
             <div className={clsx(styles.control)}>
                 <Control 
                     sourse={sourse}
+                    duration={infor.duration}
                 />
             </div>
 

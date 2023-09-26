@@ -11,22 +11,30 @@ import * as action from '../../../store/action'
 import moment from 'moment'
 import * as apis from '../../../apis'
 
-function Control({ sourse }) {
+function Control({ sourse, duration }) {
     const { pid } = useParams()
     const dispatch = useDispatch()
-    const { isPlaying } = useSelector(state => state.play)
+    const { isPlaying, isRandom } = useSelector(state => state.play)
     var { indexSong } = useSelector(state => state.music)
     const interval = useRef()
     const audioEl = useRef(new Audio())
     const currentDurationEl = useRef()
     const totalDurationEl = useRef()
+    const btnRandomElement = useRef()
+    const btnPreviousElement = useRef()
+    const btnNextElement = useRef()
     const currentTimeEl = useRef()
 
+    // handle play song
     useEffect(() => {
         audioEl.current.pause()
         audioEl.current.src = sourse
         audioEl.current.load()
-        if(isPlaying) audioEl.current.play()
+        const set = setTimeout(() => {
+            if(isPlaying) audioEl.current.play()
+        }, 500)
+
+        return () => clearTimeout(set)
     }, [sourse])
 
     function handlePlayMusic() {
@@ -51,6 +59,7 @@ function Control({ sourse }) {
         }
     }, [isPlaying])
 
+    // handle progresbar
     function handleClickProgressbar(e) {
         const totalDurationRect = totalDurationEl.current.getBoundingClientRect()
         const percent = (e.clientX - totalDurationRect.left) / totalDurationRect.width * 100
@@ -63,21 +72,31 @@ function Control({ sourse }) {
     useEffect(() => {
         async function getDataPlaylist() {
             const response = await apis.getDetailtPlaylist(pid)
-            setDataPlayList(response.data.data.song)
+            setDataPlayList(response?.data?.data?.song)
+        }
+
+        if(pid === undefined) {
+            btnPreviousElement.current.style.opacity = '0.5'
+            btnNextElement.current.style.opacity = '0.5'
+        } else {
+            btnPreviousElement.current.style.opacity = '1'
+            btnNextElement.current.style.opacity = '1'
+            dispatch(action.random(true))
         }
 
         getDataPlaylist()
-    }, [])
+    }, [pid])
 
-    const btnRandomElement = useRef()
-    const [ isRandom, setRandom ] = useState(false)
-    function randomStatus() {
-        setRandom(prev => !prev)
-        if (isRandom) btnRandomElement.current.style.opacity = '1'
-        else btnRandomElement.current.style.opacity = '0.5'
+    // handle random song
+    useEffect(() => {
+        if(isRandom === false) btnRandomElement.current.style.opacity = '0.5'  
+        else btnRandomElement.current.style.opacity = '1'
+    }, [isRandom])
+
+    function handleRandomStatus() {
+        if (isRandom) dispatch(action.random(false))
+        else dispatch(action.random(true))
     }
-
-    console.log(isRandom)
 
     function handleRandomSong() {
         let random = Math.round(Math.random() * (dataPlaylist.total - 1))
@@ -87,21 +106,36 @@ function Control({ sourse }) {
         return random
     }
 
+    //handle previous song
+    useEffect(() => {
+        if(indexSong === 0) btnPreviousElement.current.style.opacity = '0.5'  
+        else btnPreviousElement.current.style.opacity = '1'
+    }, [indexSong])
+
     function handlePreviousSong() {
-        if(indexSong !== 0 && isRandom === false) indexSong--;
-        if(isRandom) indexSong = handleRandomSong()
-        const songId = dataPlaylist.items[indexSong].encodeId
+        if(isRandom) {
+            indexSong = handleRandomSong()
+        } else if (indexSong !== 0){
+            indexSong--;
+        }
+
+        const songId = dataPlaylist?.items[indexSong]?.encodeId
+
         dispatch(action.setCurSongId(songId, indexSong))
         dispatch(action.play(true))
     }
 
+    //hanlde next song
     function handleNextSong() {
-        if (indexSong === dataPlaylist.total - 2) {
+        if (indexSong === dataPlaylist?.total - 2) {
             indexSong = 0
+        } else if(isRandom) {
+            indexSong = handleRandomSong()
         } else {
             indexSong++
         }
-        const songId = dataPlaylist.items[indexSong].encodeId
+
+        const songId = dataPlaylist?.items[indexSong]?.encodeId
         dispatch(action.setCurSongId(songId, indexSong))
         dispatch(action.play(true))
     }
@@ -111,7 +145,7 @@ function Control({ sourse }) {
             <div className={clsx(styles.directional)}>
                 <div 
                     className={clsx(styles.button)}
-                    onClick={randomStatus}
+                    onClick={handleRandomStatus}
                     ref={btnRandomElement}
                 >
                     <ButtonAudio 
@@ -121,6 +155,7 @@ function Control({ sourse }) {
                 <div 
                     className={clsx(styles.button)}
                     onClick={handlePreviousSong}
+                    ref={btnPreviousElement}
                 >
                     <ButtonAudio 
                         item={controlBtn.back}
@@ -131,6 +166,7 @@ function Control({ sourse }) {
                 </div>
                 <div 
                     className={clsx(styles.button)}
+                    ref={btnNextElement}
                     onClick={handleNextSong}
                 >
                     <ButtonAudio 
@@ -157,7 +193,9 @@ function Control({ sourse }) {
                     >
                     </div>
                 </div>
-                <span className={clsx(styles.totalTime)}>{moment(Math.round(audioEl.current.duration) * 1000).format('mm:ss')}</span>
+                <span className={clsx(styles.totalTime)}>
+                    {moment(Math.round(duration) * 1000).format('mm:ss')}
+                </span>
             </div>
         </div>
     )
