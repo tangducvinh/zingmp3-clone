@@ -1,0 +1,69 @@
+.container {
+
+
+    h1 {
+        color: #fff;
+        font-size: 20px;
+        margin-bottom: 20px;
+    }
+}
+
+.option {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 16px;
+}
+
+.wrapBtn {
+    display: flex;
+    gap: 15px;
+}
+
+.btnAll,
+.btnVn,
+.btnOther {
+    width: 93px;
+    height: 24px;
+    border-radius: 50px;
+    border: solid rgba(255, 255, 255, 0.1) 1px;
+    cursor: pointer;
+}
+
+.linkAll {
+    color: var(--gray-text);
+    font-size: 12px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+
+    &:hover {
+        color: var(--purple-primary);
+        cursor: pointer;
+    }
+}
+
+
+.content {
+    display: flex;
+    gap: 28px;
+}
+
+.wrapInforSong {
+    width: 33.3333%;
+}
+
+.inforSong {
+    padding: 10px;
+    width: 100%;
+    border-radius: 4px;
+    cursor: pointer;
+
+    &:hover {
+        background-color: #2F2739;
+    }
+}
+
+.active {
+    background-color: var(--purple-primary);
+}

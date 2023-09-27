@@ -8,6 +8,7 @@ import { Login } from './containers/public/Login'
 import { Public } from './containers/public/Public'
 import { Album } from './containers/public/Album'  
 import * as actions from './store/action'
+import { NewRelease } from './containers/public/NewRelease'
  
 function App() {
   const dispatch = useDispatch()
@@ -20,6 +21,7 @@ function App() {
     <div className="app">
       <Routes>
         <Route path={path.PUBLIC} element={ <Public /> }>
+          <Route path={path.NEW_RELEASE} element={ <NewRelease />} />
           <Route path={path.PLAYLIST_TITLE_PID} element={ <Album /> }/>
           <Route path={path.ALBUM_TITLE_ID} element={ <Album /> }/>
           <Route path={path.HOME} element={ <Home /> }/>

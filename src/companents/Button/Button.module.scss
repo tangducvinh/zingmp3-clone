@@ -5,12 +5,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: var(--purple-primary);
-    border-radius: 50px;
-
-    &:hover {
-        background-color: #8B45CA;
-    }
+    background-color: transparent;
 }
 
 .icon {
