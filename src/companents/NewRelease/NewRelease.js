@@ -16,11 +16,12 @@ function NewRelease() {
     const btnAllElement = useRef()
     const btnVnElement = useRef()
     const btnOtherElement = useRef()
-    const [ data, setData ] = useState(newRelease.items?.all)
+    const [ data, setData ] = useState([])
 
     useEffect(() => {
         btnAllElement.current.classList.add(styles.active)
-    }, [])
+        setData(newRelease?.items?.all)
+    }, [newRelease])
 
     function handleChooseSong(item, index) {
         dispatch(actions.setCurSongId(item.encodeId, index))

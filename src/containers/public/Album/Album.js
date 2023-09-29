@@ -78,10 +78,6 @@ function Album() {
                     </div>
                 </div>
             </div>
-
-            <div className={clsx(styles.artist)}>
-                nghe si
-            </div>
         </div>
     )
 }

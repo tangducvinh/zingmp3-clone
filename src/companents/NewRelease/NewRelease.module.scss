@@ -1,5 +1,5 @@
 .container {
-
+    width: 100%;
 
     h1 {
         color: #fff;
@@ -43,10 +43,10 @@
     }
 }
 
-
 .content {
     display: flex;
     gap: 28px;
+    width: 100%;
 }
 
 .wrapInforSong {
@@ -54,10 +54,9 @@
 }
 
 .inforSong {
-    padding: 10px;
-    width: 100%;
     border-radius: 4px;
     cursor: pointer;
+    padding: 10px;
 
     &:hover {
         background-color: #2F2739;
