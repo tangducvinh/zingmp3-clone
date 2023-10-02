@@ -14,7 +14,7 @@ import * as apis from '../../../apis'
 function Control({ sourse, duration }) {
     const { pid } = useParams()
     const dispatch = useDispatch()
-    const { isPlaying, isRandom } = useSelector(state => state.play)
+    const { isPlaying, isRandom , isVip } = useSelector(state => state.play)
     var { indexSong } = useSelector(state => state.music)
     const interval = useRef()
     const audioEl = useRef(new Audio())
@@ -23,7 +23,11 @@ function Control({ sourse, duration }) {
     const btnRandomElement = useRef()
     const btnPreviousElement = useRef()
     const btnNextElement = useRef()
+    const btnRepeatElement = useRef()
     const currentTimeEl = useRef()
+    const repeatMode = ['off', 'on', 'one']
+    const [isRepeat, setIsRepeat] = useState(repeatMode[0])
+    const [repeatIcon, setRepeatIcon] = useState(controlBtn.repeat)
 
     // handle play song
     useEffect(() => {
@@ -108,7 +112,7 @@ function Control({ sourse, duration }) {
 
     //handle previous song
     useEffect(() => {
-        if(indexSong === 0) btnPreviousElement.current.style.opacity = '0.5'  
+        if(indexSong === 0 || pid === undefined) btnPreviousElement.current.style.opacity = '0.5'  
         else btnPreviousElement.current.style.opacity = '1'
     }, [indexSong])
 
@@ -129,16 +133,58 @@ function Control({ sourse, duration }) {
     function handleNextSong() {
         if (indexSong === dataPlaylist?.total - 2) {
             indexSong = 0
+        } else if (isRepeat === repeatMode[2]) {
+            return
         } else if(isRandom) {
             indexSong = handleRandomSong()
         } else {
             indexSong++
         }
 
+        if(isVip) indexSong++
+ 
         const songId = dataPlaylist?.items[indexSong]?.encodeId
         dispatch(action.setCurSongId(songId, indexSong))
         dispatch(action.play(true))
     }
+
+    // handle btn repeat
+    useEffect(() => {
+        if(isRepeat === repeatMode[0]) {
+            btnRepeatElement.current.style.opacity = '0.5'
+            setRepeatIcon(controlBtn.repeat)
+        } else if (isRepeat === repeatMode[1]) {
+            btnRepeatElement.current.style.opacity = '1'
+            setRepeatIcon(controlBtn.repeatOn)
+        } else {
+            setRepeatIcon(controlBtn.repeatOnly)
+        }
+    }, [isRepeat])
+
+    function handleRepeatSong() {
+        if(isRepeat === repeatMode[0]) {
+            setIsRepeat(repeatMode[1])
+        } else if (isRepeat === repeatMode[1]) {
+            setIsRepeat(repeatMode[2])
+        } else {
+            setIsRepeat(repeatMode[0])
+        }
+        dispatch(action.random(false))
+    }
+
+    // handle ended song
+    useEffect(() => {
+        function handleEndSong() {
+            if(pid) handleNextSong()
+            if(isRepeat === repeatMode[2]) audioEl.current.play()
+        }
+
+        audioEl.current.addEventListener('ended', handleEndSong)
+
+        return () => {
+            audioEl.current.removeEventListener('ended', handleEndSong)
+        }
+    })
 
     return (
         <div className={clsx(styles.container)}>
@@ -148,9 +194,11 @@ function Control({ sourse, duration }) {
                     onClick={handleRandomStatus}
                     ref={btnRandomElement}
                 >
-                    <ButtonAudio 
-                        item={controlBtn.random}
-                    />
+                    {isRandom ? 
+                        <ButtonAudio item={controlBtn.randomOn}/> 
+                    : 
+                        <ButtonAudio item={controlBtn.random}/>
+                    }
                 </div>
                 <div 
                     className={clsx(styles.button)}
@@ -173,9 +221,13 @@ function Control({ sourse, duration }) {
                         item={controlBtn.next}
                     />
                 </div>
-                <div className={clsx(styles.button)}>
+                <div 
+                    className={clsx(styles.button)}
+                    ref={btnRepeatElement}
+                    onClick={handleRepeatSong}
+                >
                     <ButtonAudio 
-                        item={controlBtn.repeat}
+                        item={repeatIcon}
                     />
                 </div>
             </div>

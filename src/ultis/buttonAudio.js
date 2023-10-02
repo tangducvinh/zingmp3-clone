@@ -17,6 +17,7 @@ const {
     BiSolidPlaylist,
     BsPauseCircle,
     IoShuffle,
+    TbRepeatOnce,
 } = icons
 
 export const inforBtn = {
@@ -44,6 +45,10 @@ export const controlBtn = {
         icon: <IoShuffle size={24} />,
         content: 'Bật phát ngẫu nhiên',
     },
+    randomOn: {
+        icon: <IoShuffle size={24} />,
+        content: 'Tắt phát ngẫu nhiên',
+    },
     back: {
         icon: <IoPlaySkipBackSharp size={20} />,
     },
@@ -57,6 +62,14 @@ export const controlBtn = {
     repeat: {
         icon: <RiRepeatFill size={20} />,
         content: 'Bật phát lại tất cả',
+    },
+    repeatOn: {
+        icon: <RiRepeatFill size={20} />,
+        content: 'Bật phát lại một bài'
+    },
+    repeatOnly: {
+        icon: <TbRepeatOnce size={24} />,
+        content: 'Tắt phát lại'
     }
 }
 

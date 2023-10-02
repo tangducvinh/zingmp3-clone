@@ -3,6 +3,7 @@ import actionTypes from '../action/actionTypes'
 const initState = {
     isPlaying: false,
     isRandom: false,
+    isVip: false,
 }
 
 function playReducer(state = initState, action) {
@@ -16,6 +17,11 @@ function playReducer(state = initState, action) {
             return {
                 ...state,
                 isRandom: action.flag,
+            }
+        case actionTypes.CHECKVIP:
+            return {
+                ...state,
+                isVip: action.flag,
             }
         default:
             return state

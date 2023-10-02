@@ -16,7 +16,7 @@ import { IoPlaySkipBackSharp, IoPlaySkipForwardSharp, IoRepeatOutline, IoShuffle
 import { PiMicrophoneStage } from 'react-icons/pi'
 import { HiOutlineSpeakerWave, HiOutlineSpeakerXMark} from 'react-icons/hi2'
 import { RxCaretSort } from 'react-icons/rx'
-
+import { TbRepeatOnce } from 'react-icons/tb'
 
 const icons = {
     RiCompassDiscoverLine,
@@ -57,6 +57,7 @@ const icons = {
     RxCaretSort,
     BsDot,
     HiOutlineChevronRight,
+    TbRepeatOnce,
 }
 
 export default icons

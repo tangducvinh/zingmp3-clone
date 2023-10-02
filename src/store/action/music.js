@@ -21,3 +21,17 @@ export function random(flag) {
         flag,
     }
 }
+
+export function repeat(flag) {
+    return {
+        type: actionTypes.REPEAT,
+        flag,
+    }
+}
+
+export function checkVip(flag) {
+    return {
+        type: actionTypes.CHECKVIP,
+        flag,
+    }
+}

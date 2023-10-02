@@ -8,11 +8,13 @@ import { Infor } from './Infor'
 import { Control } from './Control'
 import { Option } from './Option'
 import * as apis from '../../apis/music'
+import * as actions from '../../store/action'
 
 function Play() {
     const { curSongId } = useSelector(state => state.music)
     const [infor, setInfor] = useState({})
     const [sourse, setSourse] = useState(null)
+    const dispatch = useDispatch()
 
     useEffect(() => {
         async function fetchDetailSong() {
@@ -30,7 +32,7 @@ function Play() {
             if (res2.data.err === 0) {
                 setSourse(res2.data.data['128'])
             } else {
-                console.log('bai hat chi danh cho vip')
+                dispatch(actions.checkVip(true))
             }
         }
         fetchDetailSong()

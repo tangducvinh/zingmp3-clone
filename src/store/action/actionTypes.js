@@ -4,6 +4,7 @@ const actionTypes = {
     SET_CUR_SONG_ID: "SET_CUR_SONG_ID",
     PLAY: "PLAY",
     RANDOM: "RANDOM",
+    CHECKVIP: "CHECKVIP",
 }
 
 export default actionTypes
