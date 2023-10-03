@@ -35,3 +35,17 @@ export function checkVip(flag) {
         flag,
     }
 }
+
+export function load(flag) {
+    return {
+        type: actionTypes.LOAD,
+        flag,
+    }
+}
+
+export function sidebarRight(flag) {
+    return {
+        type: actionTypes.STATUS_SIDEBAR_RIGHT,
+        flag,
+    }
+}

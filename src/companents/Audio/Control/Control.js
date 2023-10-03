@@ -7,17 +7,17 @@ import { useParams } from 'react-router-dom'
 import styles from './Control.module.scss'
 import { ButtonAudio } from '../../ButtonAudio'
 import { controlBtn } from '../../../ultis/buttonAudio'
+import { Rotating } from '../../Spinner'
 import * as action from '../../../store/action'
 import moment from 'moment'
 import * as apis from '../../../apis'
 
-function Control({ sourse, duration }) {
+function Control({ sourse, duration, audioEl }) {
     const { pid } = useParams()
     const dispatch = useDispatch()
-    const { isPlaying, isRandom , isVip } = useSelector(state => state.play)
+    const { isPlaying, isRandom , isVip, isLoad, setAudio } = useSelector(state => state.play)
     var { indexSong } = useSelector(state => state.music)
     const interval = useRef()
-    const audioEl = useRef(new Audio())
     const currentDurationEl = useRef()
     const totalDurationEl = useRef()
     const btnRandomElement = useRef()
@@ -53,12 +53,14 @@ function Control({ sourse, duration }) {
 
     useEffect(() => {
         if(isPlaying) {
+            audioEl.current.play()
             interval.current = setInterval(() => {
                 let percent = (audioEl.current.currentTime / audioEl.current.duration) * 100
                 currentDurationEl.current.style.width = `${percent}%`
                 currentTimeEl.current.innerText = moment(Math.round(audioEl.current.currentTime) * 1000).format('mm:ss')
             }, 200)
         } else {
+            audioEl.current.pause()
             interval.current && clearInterval(interval.current)
         }
     }, [isPlaying])
@@ -205,12 +207,16 @@ function Control({ sourse, duration }) {
                     onClick={handlePreviousSong}
                     ref={btnPreviousElement}
                 >
-                    <ButtonAudio 
+                    <ButtonAudio
                         item={controlBtn.back}
                     />
                 </div>
                 <div className={clsx(styles.play)} onClick={handlePlayMusic}>
-                    {isPlaying ? controlBtn.play.iconPause : controlBtn.play.iconPlay}
+                    {isLoad ? 
+                        <span className={clsx(styles.rotating)}><Rotating /></span> : 
+                        isPlaying ? 
+                            controlBtn.play.iconPause : controlBtn.play.iconPlay
+                    }
                 </div>
                 <div 
                     className={clsx(styles.button)}

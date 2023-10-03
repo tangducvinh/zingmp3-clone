@@ -1,6 +1,6 @@
 import clsx from 'clsx'
 import { useSelector, useDispatch } from 'react-redux'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import React from 'react'
 
 import styles from './Play.module.scss'
@@ -14,10 +14,12 @@ function Play() {
     const { curSongId } = useSelector(state => state.music)
     const [infor, setInfor] = useState({})
     const [sourse, setSourse] = useState(null)
+    const audioEl = useRef(new Audio())
     const dispatch = useDispatch()
 
     useEffect(() => {
         async function fetchDetailSong() {
+            dispatch(actions.load(true))
             const [res1, res2] = await Promise.all([
                 apis.getDetailSong(curSongId),
                 apis.getSong(curSongId)
@@ -31,9 +33,12 @@ function Play() {
 
             if (res2.data.err === 0) {
                 setSourse(res2.data.data['128'])
+                dispatch(actions.load(false))
             } else {
                 dispatch(actions.checkVip(true))
+                dispatch(actions.load(false))
             }
+
         }
         fetchDetailSong()
     }, [curSongId])
@@ -48,11 +53,12 @@ function Play() {
                 <Control 
                     sourse={sourse}
                     duration={infor.duration}
+                    audioEl={audioEl}
                 />
             </div>
 
             <div className={clsx(styles.option)}>
-                <Option />
+                <Option audioEl={audioEl}/>
             </div>
         </div> 
     )

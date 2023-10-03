@@ -23,7 +23,6 @@ const appReducer = (state = initState, action) => {
                 thirdTheme: action.homeData.find(item => item.sectionId === 'hEditorTheme3') || null,
                 fourthTheme: action.homeData.find(item => item.sectionId === 'hEditorTheme4') || null,
                 artistTheme: action.homeData.find(item => item.sectionId === 'hArtistTheme') || null,
-
             }
         default:
             return state

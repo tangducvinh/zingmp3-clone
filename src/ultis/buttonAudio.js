@@ -75,19 +75,21 @@ export const controlBtn = {
 
 export const option = {
     mv: {
-        icon: <MdMusicVideo size={20} />,
+        icon: <MdMusicVideo size={18} />,
     },
     lyric: {
-        icon: <PiMicrophoneStage size={16}/>,
+        icon: <PiMicrophoneStage size={17}/>,
         content: 'Xem lời bài hát'
     },
     windown: {
-        icon: <BiWindows size={16}/>,
+        icon: <BiWindows size={18}/>,
         content: 'Chế độ cửa sổ',
     },
     speaker: {
-        icon: <HiOutlineSpeakerWave size={16}/>
-        // HiOutlineSpeakerXMark
+        icon: <HiOutlineSpeakerWave size={19}/>
+    },
+    noSpeaker: {
+        icon: <HiOutlineSpeakerXMark size={19}/>
     },
     list: {
         icon: <BiSolidPlaylist size={17}/>,

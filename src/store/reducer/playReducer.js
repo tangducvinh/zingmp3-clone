@@ -1,9 +1,12 @@
+import { TbRulerMeasure } from 'react-icons/tb'
 import actionTypes from '../action/actionTypes'
 
 const initState = {
     isPlaying: false,
     isRandom: false,
     isVip: false,
+    isLoad: false,
+    sidebarRight: false,
 }
 
 function playReducer(state = initState, action) {
@@ -22,6 +25,16 @@ function playReducer(state = initState, action) {
             return {
                 ...state,
                 isVip: action.flag,
+            }
+        case actionTypes.LOAD:
+            return {
+                ...state,
+                isLoad: action.flag,
+            }
+        case actionTypes.STATUS_SIDEBAR_RIGHT:
+            return {
+                ...state,
+                sidebarRight: action.flag,
             }
         default:
             return state

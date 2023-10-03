@@ -5,6 +5,8 @@ const actionTypes = {
     PLAY: "PLAY",
     RANDOM: "RANDOM",
     CHECKVIP: "CHECKVIP",
+    LOAD: 'LOAD',
+    STATUS_SIDEBAR_RIGHT: "STATUS_SIDEBAR_RIGHT",
 }
 
 export default actionTypes

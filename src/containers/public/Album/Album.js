@@ -2,6 +2,7 @@ import clsx from 'clsx'
 import { useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import moment from 'moment'
+import { useSelector, useDispatch } from 'react-redux'
 
 import styles from './Album.module.scss'
 import * as apis from '../../../apis'
@@ -10,10 +11,16 @@ import { ButtonAudio } from '../../../companents/ButtonAudio'
 import { buttonAlbum } from '../../../ultis/button'
 import { Button } from '../../../companents/Button'
 import { Playlist } from '../../../companents/Playlist'
+import { AudioSpinner } from '../../../companents/Spinner'
+import icons from '../../../ultis/icon'
+import * as actions from '../../../store/action'
 
 function Album() {
     const { pid } = useParams()
     const [data, setData] = useState({})
+    const { BsPlayCircle } = icons
+    const { isPlaying } = useSelector(state => state.play)
+    const dispatch = useDispatch()
 
     useEffect(() => {
         async function fetchDetailPlaylist() {
@@ -27,12 +34,28 @@ function Album() {
         fetchDetailPlaylist(pid)
     }, [pid])
 
+    function handlePlaySong() {
+       dispatch(actions.play(!isPlaying))
+    }
+
     return (
         <div className={clsx(styles.container)}>
             <div className={clsx(styles.album)}>
                 <div className={clsx(styles.wrrapInfor)}>
-                    <div className={clsx(styles.wrrapImg)}>
+                    <div 
+                        className={clsx(styles.wrrapImg)}
+                        onClick={handlePlaySong}
+                    >
                         <img className={clsx(styles.imgAlbum)} src={data.thumbnailM}></img>
+
+                        {isPlaying ? 
+                            <span className={clsx(styles.audioSpinner)}>
+                                <AudioSpinner />
+                            </span> : 
+                            <span className={clsx(styles.playIcon)}>
+                                <BsPlayCircle size={45}/>
+                            </span>
+                        }
                     </div>
 
                     <h3 className={clsx(styles.name)}>{data.title}</h3>
@@ -48,8 +71,11 @@ function Album() {
 
                     <p> {`${Math.round(data.like / 1000)}K người yêu thích`}</p>
 
-                    <div className={clsx(styles.play)}>
-                        <Button item={buttonAlbum.play}/>
+                    <div 
+                        className={clsx(styles.play)}
+                        onClick={handlePlaySong}
+                    >
+                        {isPlaying ? <Button item={buttonAlbum.pause}/> : <Button item={buttonAlbum.play}/>}
                     </div>
 
                     <div className={clsx(styles.wrrapOption)}>
