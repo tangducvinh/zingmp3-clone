@@ -15,7 +15,7 @@ import * as apis from '../../../apis'
 function Control({ sourse, duration, audioEl }) {
     const { pid } = useParams()
     const dispatch = useDispatch()
-    const { isPlaying, isRandom , isVip, isLoad, setAudio } = useSelector(state => state.play)
+    const { isPlaying, isRandom , isVip, isLoad} = useSelector(state => state.play)
     var { indexSong } = useSelector(state => state.music)
     const interval = useRef()
     const currentDurationEl = useRef()
@@ -53,7 +53,7 @@ function Control({ sourse, duration, audioEl }) {
 
     useEffect(() => {
         if(isPlaying) {
-            audioEl.current.play()
+            audioEl?.current.play()
             interval.current = setInterval(() => {
                 let percent = (audioEl.current.currentTime / audioEl.current.duration) * 100
                 currentDurationEl.current.style.width = `${percent}%`
@@ -142,13 +142,18 @@ function Control({ sourse, duration, audioEl }) {
         } else {
             indexSong++
         }
-
-        if(isVip) indexSong++
  
         const songId = dataPlaylist?.items[indexSong]?.encodeId
         dispatch(action.setCurSongId(songId, indexSong))
         dispatch(action.play(true))
     }
+
+    useEffect(() => {
+        if(isVip) {
+            dispatch(action.checkVip(false))
+            handleNextSong()
+        }
+    }, [isVip])
 
     // handle btn repeat
     useEffect(() => {

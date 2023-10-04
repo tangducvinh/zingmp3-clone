@@ -33,11 +33,11 @@ function Slider() {
             
             list.forEach((item, index) => {
                 if (index === 0) {
-                    imgElements[item].classList.add(styles.orderFirst, styles.slideLeft2)
+                    imgElements[item]?.classList.add(styles.orderFirst, styles.slideLeft2)
                 } else if (index === 1) {
-                    imgElements[item].classList.add(styles.orderBetween, styles.slideLeft)
+                    imgElements[item]?.classList.add(styles.orderBetween, styles.slideLeft)
                 } else {
-                    imgElements[item].classList.add(styles.orderLast, styles.slideRight)
+                    imgElements[item]?.classList.add(styles.orderLast, styles.slideRight)
                 }
             })
         }, 5000)

@@ -12,20 +12,24 @@ import { buttonAlbum } from '../../../ultis/button'
 import { Button } from '../../../companents/Button'
 import { Playlist } from '../../../companents/Playlist'
 import { AudioSpinner } from '../../../companents/Spinner'
+import { Mutating } from '../../../companents/Spinner'
 import icons from '../../../ultis/icon'
 import * as actions from '../../../store/action'
 
 function Album() {
     const { pid } = useParams()
     const [data, setData] = useState({})
+    const [ loadingData, setLoadingData ] = useState(false)
     const { BsPlayCircle } = icons
     const { isPlaying } = useSelector(state => state.play)
     const dispatch = useDispatch()
 
     useEffect(() => {
         async function fetchDetailPlaylist() {
+            setLoadingData(true)
             const response = await apis.getDetailtPlaylist(pid)
-            
+            setLoadingData(false)
+
             if(response.data.err === 0) {
                 setData(response.data?.data)
             }
@@ -40,6 +44,12 @@ function Album() {
 
     return (
         <div className={clsx(styles.container)}>
+            {loadingData && 
+                <div className="backgroundLoading">
+                    <Mutating />
+                </div>
+            }
+
             <div className={clsx(styles.album)}>
                 <div className={clsx(styles.wrrapInfor)}>
                     <div 

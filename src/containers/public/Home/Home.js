@@ -7,13 +7,7 @@ import { ItemTheme } from '../../../companents/ItemTheme'
 import { useSelector } from 'react-redux'
 
 function Home() {
-    const { 
-        firstTheme,
-        secondTheme,
-        thirdTheme,
-        fourthTheme,
-        artistTheme,
-    } = useSelector(state => state.app)
+    const { theme } = useSelector(state => state.app)
 
     return (
         <div className={clsx(styles.container)}>
@@ -25,7 +19,16 @@ function Home() {
                 <NewRelease />
             </div>    
 
-            <div className={clsx(styles.theme)}>
+            {theme?.map((item, index) => 
+                <div 
+                    className={clsx(styles.theme)}
+                    key={item.sectionId}
+                >
+                    <ItemTheme data={item}/>
+                </div>
+            )}
+
+            {/* <div className={clsx(styles.theme)}>
                 <ItemTheme data={firstTheme}/>
             </div>
 
@@ -43,7 +46,7 @@ function Home() {
 
             <div className={clsx(styles.theme)}>
                 <ItemTheme data={artistTheme}/>
-            </div>
+            </div> */}
         </div>
     )
 

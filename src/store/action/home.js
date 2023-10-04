@@ -1,6 +1,7 @@
 import actionTypes from './actionTypes'
 import * as apis from '../../apis/home'
 
+
 export function getHome() {
     return async (dispatch) => {
         try {

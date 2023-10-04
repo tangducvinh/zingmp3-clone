@@ -33,8 +33,10 @@ function Play() {
 
             if (res2.data.err === 0) {
                 setSourse(res2.data.data['128'])
+                dispatch(actions.checkVip(false))
                 dispatch(actions.load(false))
             } else {
+                console.log('baivip')
                 dispatch(actions.checkVip(true))
                 dispatch(actions.load(false))
             }

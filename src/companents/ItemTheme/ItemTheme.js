@@ -17,9 +17,9 @@ function ItemTheme({ data }) {
     return (
         <div className={clsx(styles.container)}>
             <div className={clsx(styles.wrapTitle)}>
-                <h1 className={clsx(styles.title)}>{data.title}</h1>
+                <h1 className={clsx(styles.title)}>{data?.title}</h1>
 
-                {data.link ? 
+                {data?.link ? 
                     <Link 
                         className={clsx(styles.link)}
                         to={data.link}
@@ -30,23 +30,25 @@ function ItemTheme({ data }) {
             </div>
 
             <div className={clsx(styles.content)}>
-                {data?.items?.map((item, index) => (
-                    index < 5 ?
-                        <div 
+                {data?.items?.filter((item, index) => index < 5).map(item => (
+                    <div 
                         className={clsx(styles.wrapItem)}
                         key={item.encodeId}
                     >
                         <div 
                             className={clsx(styles.wrapImg)}
-                            onClick={() => handleChooseAlbum(item.link)}
+                            onClick={() => handleChooseAlbum(item?.link)}
                         >
-                            <img className={clsx(styles.img)} src={item.thumbnail} alt='image'></img>
+                            <img className={clsx(styles.img)} src={item.thumbnailM} alt='image'></img>
                         </div>
 
                         <span className={clsx(styles.description)}>
-                            {item.sortDescription.length > 50 ? `${item.sortDescription.slice(0, 50)} ...` : item.sortDescription}
+                            {item.sortDescription === '' ? 
+                                item.title : 
+                                item.sortDescription?.length > 50 ? `${item.sortDescription.slice(0, 50)} ...` : item.sortDescription
+                            }
                         </span>
-                    </div> : ""
+                    </div> 
                 ))}
             </div>
         </div>
