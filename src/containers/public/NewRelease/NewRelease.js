@@ -6,7 +6,7 @@ import styles from './NewRelease.module.scss'
 function NewRelease() {
     return (
         <div className={clsx(styles.container)}>
-            New Release
+            <h1>New Release</h1>
         </div>
     )
 }

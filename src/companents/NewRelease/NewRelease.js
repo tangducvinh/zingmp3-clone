@@ -1,16 +1,14 @@
 import clsx from 'clsx'
 import { useSelector, useDispatch } from 'react-redux'
-import { useState, useRef, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { useState, useEffect } from 'react'
 
 import styles from './NewRelease.module.scss'
 import { Button } from '../Button'
-import icons from '../../ultis/icon'
 import { InforSong } from '../InforSong'
 import * as actions from '../../store/action'
+import { LinkAll } from '../LinkAll'
 
 function NewRelease() {
-    const { HiOutlineChevronRight } = icons
     const { newRelease } = useSelector(state => state.app)
     const dispatch = useDispatch()
     const [ data, setData ] = useState([])
@@ -57,13 +55,7 @@ function NewRelease() {
                     </div>
                 </div>
 
-                <Link
-                    className={clsx(styles.linkAll)}
-                    to={newRelease.link}
-                >
-                    <span>TẤT CẢ</span>
-                    <span><HiOutlineChevronRight size={20}/></span>
-                </Link>
+                <LinkAll path={newRelease.link}></LinkAll>
             </div>
 
             <div className={clsx(styles.content)}>
@@ -95,7 +87,7 @@ function NewRelease() {
                     )}
                 </div>
 
-                <div className={clsx(styles.wrapInforSong)}>
+                <div className={clsx(styles.wrapInforSong, styles.hidden)}>
                     {data?.map((item, index) => 
                         ((index > 7 && index <= 11) &&
                             <div 

@@ -1,0 +1,149 @@
+.container {
+    width: 100%;
+    overflow-x: hidden;
+}
+
+.wrapTitle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.title {
+    font-size: 20px;
+    color: #fff;
+}
+
+.content {
+    display: flex;
+    gap: 28px;
+    align-items: center;
+}
+
+.wrapItem {
+    width: 33.3333%;
+    display: flex;
+    gap: 10px;
+    padding: 12px;
+    border-radius: 5px;
+    background-color: #2F2739;
+    cursor: pointer;
+}
+
+.wrapEmpty {
+    width: 33.3333%;
+    border-radius: 5px;
+    background-color: #2F2739;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.textEmpty {
+    color: var(--purplr-primary);
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.wrapImg {
+    width: 120px;
+    height: 120px;
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover .playIcon {
+        display: block;
+    }
+}
+
+.img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+
+    &:hover {
+        transform: scale(1.05);
+    }
+}
+
+.playIcon {
+    position: absolute;
+    color: #ffff;
+    display: none;
+}
+
+.audioSpinner {
+    position: absolute;
+    color: #ffff;
+    border-radius: 50%;
+    border: solid #ffff 2px;
+    padding: 5px;
+}
+
+.wrapInforSong {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex: auto;
+}
+
+.inforSong {
+    line-height: 1.5;
+}
+
+.nameSong {
+    font-size: 14px;
+    color: #fff;
+}
+
+.nameArtist {
+    color: var(--gray-text);
+    font-size: 12px;
+}
+
+.wrapRank {
+    display: flex;
+    justify-content: space-between;
+}
+
+.rank {
+    font-size: 45px;
+    color: var(--gray-text);
+    line-height: 40px;
+}
+
+.releaseDay {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--gray-text);
+    line-height: 30px;
+    display: flex;
+    align-items: end;
+}
+
+.unActive {
+    display: none;
+}
+
+.slideLeft {
+	-webkit-animation: slide-left 0.25s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	animation: slide-left 0.25s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+
+@keyframes slide-left {
+    0% {
+        -webkit-transform: translateX(300px);
+        transform: translateX(300px);
+    }
+    100% {
+        -webkit-transform: translateX(0);
+        transform: translateX(0);
+    }
+}

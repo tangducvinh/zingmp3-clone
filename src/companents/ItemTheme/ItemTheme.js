@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 
 import styles from './Item.module.scss'
 import icons from '../../ultis/icon'
+import { LinkAll } from '../LinkAll'
 
 function ItemTheme({ data }) {
     const { HiOutlineChevronRight } = icons
@@ -19,14 +20,7 @@ function ItemTheme({ data }) {
             <div className={clsx(styles.wrapTitle)}>
                 <h1 className={clsx(styles.title)}>{data?.title}</h1>
 
-                {data?.link ? 
-                    <Link 
-                        className={clsx(styles.link)}
-                        to={data.link}
-                    >
-                        <span>TẤT CẢ</span>
-                        <span><HiOutlineChevronRight size={16} /></span>
-                    </Link> : ''}
+                {data?.link && <LinkAll path={data.link} />}
             </div>
 
             <div className={clsx(styles.content)}>

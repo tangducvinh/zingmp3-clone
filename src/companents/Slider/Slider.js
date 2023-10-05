@@ -21,9 +21,9 @@ function Slider() {
 
             for (var i = 0; i <= imgElements.length - 1; i++) {
                 if (list.some(item => item === i)) {
-                    imgElements[i].style.cssText = 'display: block'
+                    imgElements[i].classList.remove(styles.unactive)
                 } else {
-                    imgElements[i].style.cssText = 'display: none'
+                    imgElements[i].classList.add(styles.unactive)
                 }
 
                 imgElements[i].classList.remove(styles.orderBetween, styles.slideLeft)
@@ -62,7 +62,7 @@ function Slider() {
             {banner.map((item, index) => (
                 <div
                     key={item.encodeId}
-                    className={clsx(styles.wrrapImg, `${index > 2 ? styles.unactive : styles.active}`)}
+                    className={clsx(styles.wrrapImg, {[styles.unactive]: index > 2})}
                 > 
                     <img 
                         className={clsx(styles.img)} 

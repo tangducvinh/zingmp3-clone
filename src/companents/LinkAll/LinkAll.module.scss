@@ -1,0 +1,13 @@
+.container {
+    color: var(--gray-text);
+    font-size: 12px;
+    display: flex;
+    font-weight: 500;
+    align-items: center;
+    gap: 5px;
+
+    &:hover {
+        color: var(--purple-primary);
+        cursor: pointer;
+    }
+}

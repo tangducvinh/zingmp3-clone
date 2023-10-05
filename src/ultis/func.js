@@ -13,6 +13,20 @@ export function handleSlider(array, size) {
     return array
 }
 
+export function handleSliderRank(array) {
+    if (array[0] !== 6) {
+        for (var i = 0; i <= 2; i++) {
+            array[i] += 3;
+        }
+    } else {
+        for(var i = 0; i <= 2; i++) {
+            array[i] = i;
+        }
+    }
+
+    return array
+}
+
 
 
 

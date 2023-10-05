@@ -29,20 +29,6 @@
     cursor: pointer;
 }
 
-.linkAll {
-    color: var(--gray-text);
-    font-size: 12px;
-    font-weight: 500;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-
-    &:hover {
-        color: var(--purple-primary);
-        cursor: pointer;
-    }
-}
-
 .content {
     display: flex;
     gap: 28px;
@@ -65,4 +51,14 @@
 
 .active {
     background-color: var(--purple-primary);
+}
+
+@media screen and (max-width: 1224px) {
+    .hidden {
+        display: none;
+    }
+
+    .wrapInforSong {
+        width: 50%;
+    }
 }

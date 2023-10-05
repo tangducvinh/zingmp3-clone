@@ -1,13 +1,21 @@
 import clsx from 'clsx'
+import { useNavigate } from 'react-router-dom'
 
 import styles from './Home.module.scss'
 import { Slider } from '../../../companents/Slider'
 import { NewRelease } from '../../../companents/NewRelease'
 import { ItemTheme } from '../../../companents/ItemTheme'
+import { SongRank } from '../../../companents/SongRank'
 import { useSelector } from 'react-redux'
 
 function Home() {
-    const { theme } = useSelector(state => state.app)
+    const { theme, weekChart } = useSelector(state => state.app)
+    const navigate = useNavigate()
+
+    function handleChoseChart(link) {
+        const path = link.split('.')[0]
+        navigate(path)
+    }
 
     return (
         <div className={clsx(styles.container)}>
@@ -19,7 +27,25 @@ function Home() {
                 <NewRelease />
             </div>    
 
-            {theme?.map((item, index) => 
+            <div className={clsx(styles.weekChart)}>
+                {weekChart.map(item => (
+                    <div 
+                        className={clsx(styles.wrapImgWeekChart)}
+                        key={item.link}
+                    >
+                        <img 
+                            className={clsx(styles.imgWeekChart)} src={item.cover}
+                            onClick={() => handleChoseChart(item.link)}
+                        ></img>
+                    </div>
+                ))}
+            </div>
+
+            <div className={clsx(styles.songRank)}>
+                <SongRank />
+            </div>
+
+            {theme?.map(item => 
                 <div 
                     className={clsx(styles.theme)}
                     key={item.sectionId}
@@ -27,26 +53,6 @@ function Home() {
                     <ItemTheme data={item}/>
                 </div>
             )}
-
-            {/* <div className={clsx(styles.theme)}>
-                <ItemTheme data={firstTheme}/>
-            </div>
-
-            <div className={clsx(styles.theme)}>
-                <ItemTheme data={secondTheme}/>
-            </div>
-
-            <div className={clsx(styles.theme)}>
-                <ItemTheme data={thirdTheme}/>
-            </div>
-
-            <div className={clsx(styles.theme)}>
-                <ItemTheme data={fourthTheme}/>
-            </div>
-
-            <div className={clsx(styles.theme)}>
-                <ItemTheme data={artistTheme}/>
-            </div> */}
         </div>
     )
 
