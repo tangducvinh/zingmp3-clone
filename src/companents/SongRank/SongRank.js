@@ -1,15 +1,13 @@
 import clsx from 'clsx'
 import { useSelector, useDispatch } from 'react-redux'
 import { useEffect } from 'react'
-import { Link } from 'react-router-dom'
-import moment from 'moment'
 
 import styles from './SongRank.module.scss'
 import { LinkAll } from '../LinkAll'
 import icons from '../../ultis/icon'
 import * as actions from '../../store/action'
 import { AudioSpinner } from '../Spinner'
-import { handleSliderRank, handleSlider } from '../../ultis/func'
+import { handleSliderRank } from '../../ultis/func'
 
 function SongRank() {
     const { BsPlayCircle } = icons

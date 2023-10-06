@@ -1,52 +1,83 @@
 import clsx from 'clsx'
-import { Link } from 'react-router-dom'
+import { memo, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
 
-import styles from './Item.module.scss'
+import styles from './ItemTheme.module.scss'
 import icons from '../../ultis/icon'
-import { LinkAll } from '../LinkAll'
+import { ButtonAudio } from '../ButtonAudio'
+import { inforBtn } from '../../ultis/buttonAudio'
+import * as actions from '../../store/action'
 
-function ItemTheme({ data }) {
-    const { HiOutlineChevronRight } = icons
+function ItemTheme({ item }) {
+    const { BsPlayCircle } = icons
     const navigate = useNavigate()
+    const imgElement = useRef()
+    const dispatch = useDispatch()
 
     function handleChooseAlbum(link) {
         const path = link.split('.')[0]
-        navigate(path)
+        navigate(path, {state: {playAlbum: false}})
+    }
+
+    function handleHover() {
+        imgElement.current.classList.remove('scaleOutCenter')
+        imgElement.current.classList.add('scaleInCenter')
+    }
+
+    function handleLeave() {
+        imgElement.current.classList.remove('scaleInCenter')
+        imgElement.current.classList.add('scaleOutCenter')
+    }
+
+    function handleChosePlay(e, link) {
+        e.stopPropagation()
+        const path = link.split('.')[0]
+        navigate(path, {state: {playAlbum: true}})
     }
 
     return (
         <div className={clsx(styles.container)}>
-            <div className={clsx(styles.wrapTitle)}>
-                <h1 className={clsx(styles.title)}>{data?.title}</h1>
+            <div 
+                onMouseEnter={handleHover}
+                onMouseLeave={handleLeave}
+                className={clsx(styles.wrapImg)}
+                onClick={() => handleChooseAlbum(item?.link)}
+            >
+                <img 
+                    className={clsx(styles.img)} 
+                    ref={imgElement}
+                    src={item.thumbnailM} 
+                    alt='image'
+                >
+                </img>
 
-                {data?.link && <LinkAll path={data.link} />}
-            </div>
+                <div className={clsx(styles.option)}>
+                    <span className={clsx(styles.btnLove)}> 
+                        <ButtonAudio item={inforBtn.loveBtnOutline}/>
+                    </span>
 
-            <div className={clsx(styles.content)}>
-                {data?.items?.filter((item, index) => index < 5).map(item => (
-                    <div 
-                        className={clsx(styles.wrapItem)}
-                        key={item.encodeId}
+                    <span 
+                        className={clsx(styles.btnPlay)}
+                        onClick={(e) => handleChosePlay(e, item.link)}
                     >
-                        <div 
-                            className={clsx(styles.wrapImg)}
-                            onClick={() => handleChooseAlbum(item?.link)}
-                        >
-                            <img className={clsx(styles.img)} src={item.thumbnailM} alt='image'></img>
-                        </div>
+                        <BsPlayCircle />
+                    </span>
 
-                        <span className={clsx(styles.description)}>
-                            {item.sortDescription === '' ? 
-                                item.title : 
-                                item.sortDescription?.length > 50 ? `${item.sortDescription.slice(0, 50)} ...` : item.sortDescription
-                            }
-                        </span>
-                    </div> 
-                ))}
+                    <span className={clsx(styles.btnMore)}>
+                        <ButtonAudio item={inforBtn.addBtnAlbum} />
+                    </span>
+                </div>
             </div>
-        </div>
+
+            <span className={clsx(styles.description)}>
+                {item.sortDescription === '' ? 
+                    item.title : 
+                    item.sortDescription?.length > 50 ? `${item.sortDescription.slice(0, 50)} ...` : item.sortDescription
+                }
+            </span>
+        </div> 
     )
 }
 
-export default ItemTheme
+export default memo(ItemTheme)

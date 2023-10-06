@@ -34,11 +34,8 @@ function Control({ sourse, duration, audioEl }) {
         audioEl.current.pause()
         audioEl.current.src = sourse
         audioEl.current.load()
-        const set = setTimeout(() => {
-            if(isPlaying) audioEl.current.play()
-        }, 500)
+        if(isPlaying) audioEl.current.play()
 
-        return () => clearTimeout(set)
     }, [sourse])
 
     function handlePlayMusic() {

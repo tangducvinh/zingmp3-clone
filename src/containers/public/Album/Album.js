@@ -1,5 +1,5 @@
 import clsx from 'clsx'
-import { useParams } from 'react-router-dom'
+import { useParams, useLocation } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import moment from 'moment'
 import { useSelector, useDispatch } from 'react-redux'
@@ -23,6 +23,7 @@ function Album() {
     const { BsPlayCircle } = icons
     const { isPlaying } = useSelector(state => state.play)
     const dispatch = useDispatch()
+    const location = useLocation()
 
     useEffect(() => {
         async function fetchDetailPlaylist() {
@@ -37,6 +38,20 @@ function Album() {
 
         fetchDetailPlaylist(pid)
     }, [pid])
+
+    useEffect(() => {
+        if(location.state.playAlbum) {
+            const idSong = data?.song?.items[0].encodeId
+            if(idSong) {
+                dispatch(actions.setCurSongId(idSong, 0))
+                var set = setTimeout(() => {
+                    dispatch(actions.play(true))
+                }, 500)
+            }
+        }
+
+        return () => clearTimeout(set)
+    }, [data])
 
     function handlePlaySong() {
        dispatch(actions.play(!isPlaying))

@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import styles from './Home.module.scss'
 import { Slider } from '../../../companents/Slider'
 import { NewRelease } from '../../../companents/NewRelease'
-import { ItemTheme } from '../../../companents/ItemTheme'
+import { Theme } from '../../../companents/Theme'
 import { SongRank } from '../../../companents/SongRank'
 import { useSelector } from 'react-redux'
 
@@ -50,7 +50,7 @@ function Home() {
                     className={clsx(styles.theme)}
                     key={item.sectionId}
                 >
-                    <ItemTheme data={item}/>
+                    <Theme data={item}/>
                 </div>
             )}
         </div>

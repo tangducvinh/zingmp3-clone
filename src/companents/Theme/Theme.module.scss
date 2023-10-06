@@ -1,0 +1,26 @@
+
+.container {
+    width: 100%;
+}
+
+.wrapTitle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.title {
+    font-size: 20px;
+    color: #fff;
+}
+
+.content {
+    display: flex;
+    gap: 26px;
+    width: 100%;
+}
+
+.wrapItem {
+    width: 20%;
+}
