@@ -7,6 +7,7 @@ const initState = {
     theme: [],
     weekChart: [],
     rankSong: {},
+    songChart: {},
 }
 
 const appReducer = (state = initState, action) => {
@@ -19,6 +20,7 @@ const appReducer = (state = initState, action) => {
                 theme: action.homeData.filter(item => item.sectionType === 'playlist'),
                 weekChart: action.homeData.find(item => item.sectionType === 'weekChart').items || null,
                 rankSong: action.homeData.find(item => item.sectionType === 'newReleaseChart') || null,
+                songChart: action.homeData.find(item => item.sectionId === "hZC") || null,
             }
         default:
             return state

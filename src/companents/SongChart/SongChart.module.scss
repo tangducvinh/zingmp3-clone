@@ -1,0 +1,68 @@
+.container {
+    padding: 15px;
+    background-color: var(--zingchart-bg);
+    border-radius: 8px;
+}
+
+.wrapTitle {
+    margin-bottom: 20px;
+}
+
+.zingchartLink {
+    font-size: 28px;
+    color: #fff;
+    font-weight: 500;
+}
+
+.playIcon {
+    margin-left: 12px;
+    color: #fff;
+    font-size: 22px;
+}
+
+.content {
+    display: flex;
+}
+
+.wrapInforSong {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 10px 0 10px;
+}
+
+.inforSong {
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #4D2868;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.orderIndex {
+    font-size: 35px;
+    margin-right: 20px;
+    margin-left: 10px;
+    font-weight: 500;
+    color: var(--gray-text);
+}
+
+.btnMore {
+    margin-top: 10px;
+    border-radius: 50px;
+    border: solid #ffff 1px;
+    width: 118px;
+    height: 32px;
+    
+    &:hover {
+        background-color: #583172;
+        cursor: pointer;
+    }
+}
+
+.wrapChart {
+    flex: 1.5;
+}

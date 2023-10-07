@@ -1,1 +1,1 @@
-export { default as ItemTheme } from './ItemTheme'
+export { default as ItemTheme } from './ItemTheme.js'

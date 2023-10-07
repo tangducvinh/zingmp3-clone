@@ -1,19 +1,16 @@
 import clsx from 'clsx'
 import { memo, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
 
 import styles from './ItemTheme.module.scss'
 import icons from '../../ultis/icon'
 import { ButtonAudio } from '../ButtonAudio'
 import { inforBtn } from '../../ultis/buttonAudio'
-import * as actions from '../../store/action'
 
 function ItemTheme({ item }) {
     const { BsPlayCircle } = icons
     const navigate = useNavigate()
     const imgElement = useRef()
-    const dispatch = useDispatch()
 
     function handleChooseAlbum(link) {
         const path = link.split('.')[0]

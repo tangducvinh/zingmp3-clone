@@ -7,9 +7,10 @@ import { NewRelease } from '../../../companents/NewRelease'
 import { Theme } from '../../../companents/Theme'
 import { SongRank } from '../../../companents/SongRank'
 import { useSelector } from 'react-redux'
+import { SongChart } from '../../../companents/SongChart'
 
 function Home() {
-    const { theme, weekChart } = useSelector(state => state.app)
+    const { theme, weekChart, songChart } = useSelector(state => state.app)
     const navigate = useNavigate()
 
     function handleChoseChart(link) {
@@ -43,6 +44,10 @@ function Home() {
 
             <div className={clsx(styles.songRank)}>
                 <SongRank />
+            </div>
+
+            <div className={clsx(styles.songChart)}>
+                <SongChart data={songChart}/>
             </div>
 
             {theme?.map(item => 

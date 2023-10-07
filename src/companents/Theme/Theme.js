@@ -20,7 +20,7 @@ function Theme({ data }) {
                         className={clsx(styles.wrapItem)}
                         key={item.encodeId}
                     > 
-                        <ItemTheme item={item}/>
+                        <ItemTheme item={item}></ItemTheme>
                     </div>
                 ))}
             </div>
