@@ -40,7 +40,7 @@ function Album() {
     }, [pid])
 
     useEffect(() => {
-        if(location.state.playAlbum) {
+        if(location.state?.playAlbum) {
             const idSong = data?.song?.items[0].encodeId
             if(idSong) {
                 dispatch(actions.setCurSongId(idSong, 0))

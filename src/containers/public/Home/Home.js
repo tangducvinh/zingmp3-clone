@@ -10,7 +10,7 @@ import { useSelector } from 'react-redux'
 import { SongChart } from '../../../companents/SongChart'
 
 function Home() {
-    const { theme, weekChart, songChart } = useSelector(state => state.app)
+    const { theme, weekChart } = useSelector(state => state.app)
     const navigate = useNavigate()
 
     function handleChoseChart(link) {
@@ -47,7 +47,7 @@ function Home() {
             </div>
 
             <div className={clsx(styles.songChart)}>
-                <SongChart data={songChart}/>
+                <SongChart />
             </div>
 
             {theme?.map(item => 
