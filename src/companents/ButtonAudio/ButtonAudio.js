@@ -1,6 +1,6 @@
 import clsx from 'clsx'
 import Tippy from '@tippyjs/react'
-import 'tippy.js/dist/tippy.css';
+import 'tippy.js/dist/tippy.css'
 
 import styles from './ButtonAudio.module.scss'
 

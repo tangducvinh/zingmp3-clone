@@ -67,7 +67,7 @@ function NewRelease() {
                                 className={clsx(styles.inforSong)}
                                 onClick={() => handleChooseSong(item, index)}
                             >
-                                <InforSong sizeL item={item} time></InforSong>
+                                <InforSong sizeL item={item} time play></InforSong>
                             </div>
                         )
                     )}
@@ -81,7 +81,7 @@ function NewRelease() {
                                 className={clsx(styles.inforSong)}
                                 onClick={() => handleChooseSong(item, index)}
                             >
-                                <InforSong sizeL item={item} time></InforSong>
+                                <InforSong sizeL item={item} time play></InforSong>
                             </div>
                         )
                     )}
@@ -95,7 +95,7 @@ function NewRelease() {
                                 className={clsx(styles.inforSong)}
                                 onClick={() => handleChooseSong(item, index)}
                             >
-                                <InforSong sizeL item={item} time></InforSong>
+                                <InforSong sizeL item={item} time play></InforSong>
                             </div>
                         )
                     )}

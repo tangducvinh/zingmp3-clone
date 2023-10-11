@@ -22,7 +22,7 @@ export const menuSidebar = [
         icon: <RiCompassDiscoverLine size={25}/>
     },
     {
-        path: 'zingchart',
+        path: 'zing-chart',
         text: '#zingchart',
         icon: <HiTrendingUp size={24}/>,
         play: <MdPlayCircleOutline size={20}/>,

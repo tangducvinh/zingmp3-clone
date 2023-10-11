@@ -77,5 +77,32 @@
 
 .wrapChart {
     flex: 1.5;
+    position: relative;
+}
+
+.toolTip {
+    background-color: #765989;
+    padding: 5px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+}
+
+.tooltipPercent {
+    font-size: 16px;
+    font-weight: 500;
+    color: #ffff;
+}
+
+.textShadowNo1 {
+    text-shadow: 1px 1px 0 #5189D7, -1px 1px 0 #5189D7, -1px -1px 0 #5189D7, 1px -1px 0 #5189D7;
+}
+
+.textShadowNo2 {
+    text-shadow: 1px 1px 0 #55D3BC, -1px 1px 0 #55D3BC, -1px -1px 0 #55D3BC, 1px -1px 0 #55D3BC;
+}
+
+.textShadowNo3 {
+    text-shadow: 1px 1px 0 #C7525E, -1px 1px 0 #C7525E, -1px -1px 0 #C7525E, 1px -1px 0 #C7525E;
 }
 

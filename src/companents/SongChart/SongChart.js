@@ -2,12 +2,14 @@ import clsx from 'clsx'
 import { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
+import chart from 'chart.js/auto'
+import { Line } from 'react-chartjs-2'
+import _ from 'lodash'
 
 import styles from './SongChart.module.scss'
 import icons from '../../ultis/icon'
 import { InforSong } from '../InforSong'
 import { Button } from '../Button'
-import { Line } from 'react-chartjs-2'
 import  * as actions from '../../store/action'
  
 function SongChart() {
@@ -15,6 +17,7 @@ function SongChart() {
     const { BsPlayCircleFill } = icons
     const [ data, setData ] = useState()
     const dispatch = useDispatch()
+    const [ tooltipState, setToolTipState ] = useState({display: 'none', top: 0, left: 0, encodeId: null})
 
     const options = {
         responsive: true,
@@ -33,6 +36,35 @@ function SongChart() {
         }, 
         plugins: {
             legend: false,
+            tooltip: {
+                enabled: false,
+                external: ({tooltip}) => {
+                    if (tooltip.opacity === 0) {
+                        if (tooltipState.display !== 'none') setToolTipState(prev => ({...prev, display: 'none'}))
+                        return
+                    }
+                    
+                    const counterArray = []
+                    for (let i = 0; i <= 2; i++) {
+                        counterArray.push({
+                            data: songChart.chart.items[Object.keys(songChart.chart.items)[i]].filter(item => item.hour % 2 === 0).map(item => item.counter),
+                            songId: Object.keys(songChart.chart.items)[i]
+                        })
+                    }
+
+                    const currentCounter = tooltip.body[0].lines[0].replace(',', '')
+                    const encodeId = counterArray.find(item => (item.data.some(item => item == currentCounter)) == true).songId
+                    
+                    const newTooltipData = {
+                        display: 'flex',
+                        left: tooltip.caretX,
+                        top: tooltip.caretY,
+                        encodeId,
+                    }
+
+                    if (!_.isEqual(tooltipState, newTooltipData)) setToolTipState(newTooltipData)
+                },
+            }
         },
         hover: {
             mode: 'dataset',
@@ -56,7 +88,11 @@ function SongChart() {
             })
         }
 
-        setData({labels, datasets})
+        const set = setTimeout(() => {
+            setData({labels, datasets})
+        }, 500);
+
+        return () => clearTimeout(set)
     }, [songChart.chart]) 
 
     function handlePlaySong(item, index) {
@@ -81,8 +117,17 @@ function SongChart() {
                             key={item.encodeId}
                             onClick={() => handlePlaySong(item, index)}
                         >
-                            <span className={clsx(styles.orderIndex)}>{index + 1}</span>
-                            <InforSong item={item} sizeL />
+                            <span 
+                                className={clsx(styles.orderIndex, {
+                                    [styles.textShadowNo1]: index === 0,
+                                    [styles.textShadowNo2]: index === 1,
+                                    [styles.textShadowNo3]: index === 2,
+
+                                })}
+                            >
+                                {index + 1}
+                            </span>
+                            <InforSong item={item} sizeL play/>
                             <span className={clsx(styles.percent)}>{`${Math.round(item.score / songChart?.chart.totalScore * 100)}%`}</span>
                         </div>
                     ))}
@@ -96,7 +141,15 @@ function SongChart() {
                 </div>
 
                 <div className={clsx(styles.wrapChart)}>
-                    {data && <Line data={data} options={options}/>}
+                    {data && <Line data={data} options={options} />}
+                    <div 
+                        className={clsx(styles.toolTip)} 
+                        style={{top: tooltipState.top, left: tooltipState.left, display: tooltipState.display, position: 'absolute'}}
+                    >
+                        <InforSong item={songChart?.items?.find(item => item.encodeId === tooltipState.encodeId)} sizeM/>
+                        <span className={clsx(styles.tooltipPercent)}>
+                            {`${Math.round(songChart?.items?.find(item => item.encodeId === tooltipState.encodeId)?.score / songChart?.chart?.totalScore * 100)}%`}</span>
+                    </div>
                 </div>
             </div>
         </div>

@@ -3,6 +3,10 @@
     display: flex;
     justify-content: start;
     align-items: center;
+
+    &:hover .iconPlay {
+        display: block;
+    }
 }
 
 .sizeM {
@@ -17,6 +21,10 @@
 
 .wrrapImg {
     margin-right: 10px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .img {
@@ -26,9 +34,21 @@
     border-radius: 5px;
 }
 
+.iconPlay {
+    position: absolute;
+    display: none;
+    color: #fff;
+    font-size: 25px;
+}
+
 .infor {
     margin-right: 20px;
     line-height: 1.5;
+}
+
+.inforM {
+    margin-right: 20px;
+    line-height: 1.1;
 }
 
 .nameSong {

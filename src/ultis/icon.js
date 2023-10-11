@@ -1,5 +1,5 @@
 import { RiCompassDiscoverLine, RiRepeatFill} from 'react-icons/ri'
-import { HiTrendingUp, HiOutlineArrowLeft, HiOutlineArrowRight, HiOutlineChevronRight } from 'react-icons/hi'
+import { HiTrendingUp, HiOutlineArrowLeft, HiOutlineArrowRight, HiOutlineChevronRight} from 'react-icons/hi'
 import { MdLibraryMusic, MdFavoriteBorder, MdPlayCircleOutline, MdMusicVideo } from 'react-icons/md'
 import { PiMusicNotesPlus } from 'react-icons/pi'
 import { BsMenuButtonWide, BsPlayCircle, BsPauseCircle, BsFillPlayFill, BsDot, BsFillPauseFill, BsPlayCircleFill } from 'react-icons/bs'
@@ -16,7 +16,8 @@ import { IoPlaySkipBackSharp, IoPlaySkipForwardSharp, IoRepeatOutline, IoShuffle
 import { PiMicrophoneStage } from 'react-icons/pi'
 import { HiOutlineSpeakerWave, HiOutlineSpeakerXMark} from 'react-icons/hi2'
 import { RxCaretSort } from 'react-icons/rx'
-import { TbRepeatOnce } from 'react-icons/tb'
+import { TbRepeatOnce, TbPlayerPlayFilled } from 'react-icons/tb'
+
 
 const icons = {
     RiCompassDiscoverLine,
@@ -60,6 +61,7 @@ const icons = {
     TbRepeatOnce,
     BsFillPauseFill,
     BsPlayCircleFill,
+    TbPlayerPlayFilled,
 }
 
 export default icons
