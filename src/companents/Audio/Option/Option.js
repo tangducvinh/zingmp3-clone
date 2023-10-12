@@ -77,7 +77,7 @@ function Option({ audioEl }) {
                     content={<span className={clsx(styles.tippy)}>Danh sách phát</span>}
                 >
                     <div 
-                        className={clsx(styles.list)}
+                        className={clsx(styles.list, {[styles.sidebarActive]: sidebarRight === true})}
                         onClick={handleStatusSidebarRight}
                     >
                         {option.list.icon}

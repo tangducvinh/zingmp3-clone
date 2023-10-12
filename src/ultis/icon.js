@@ -17,6 +17,7 @@ import { PiMicrophoneStage } from 'react-icons/pi'
 import { HiOutlineSpeakerWave, HiOutlineSpeakerXMark} from 'react-icons/hi2'
 import { RxCaretSort } from 'react-icons/rx'
 import { TbRepeatOnce, TbPlayerPlayFilled } from 'react-icons/tb'
+import { IoMdTime } from 'react-icons/io'
 
 
 const icons = {
@@ -62,6 +63,7 @@ const icons = {
     BsFillPauseFill,
     BsPlayCircleFill,
     TbPlayerPlayFilled,
+    IoMdTime,
 }
 
 export default icons

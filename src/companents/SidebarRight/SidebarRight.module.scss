@@ -1,4 +1,75 @@
 .container {
     width: 100%;
     right: 100%;
+    background-color: var(--sidebar-right-bg);
+    padding: 20px 10px;
+}
+
+.wrapTitle {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.wrapOptions {
+    display: flex;
+    align-items: center;
+    background-color: #2A2139;
+    padding: 3px;
+    border-radius: 20px;
+}
+
+.btnOption {
+    width: 119px;
+    height: 28px;
+    border-radius: 20px;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.active {
+    background-color: #6A6474;
+    color: #fff;
+}
+
+.btnTimer,
+.btnAdd {
+    width: 32px;
+    height: 32px;
+    background-color: #271E36;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.playListTitle {
+    padding: 15px 8px;
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+.nextText {
+    color: #ffff;
+    font-weight: 600;
+}
+
+.fromText {
+    color: var(--gray-text);
+}
+
+.sourseText {
+    color: var(--purple-primary);
+}
+
+.playListContent {
+    overflow-y: scroll;
+    height: 80vh;
+}
+
+.wrapInforSong {
+    padding: 6px 8px;
+    border-radius: 5px;
+
+    &:hover {
+        background-color: #40384D;
+    }
 }

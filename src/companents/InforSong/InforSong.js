@@ -7,7 +7,7 @@ import icons from '../../ultis/icon'
 
 import styles from './InforSong.module.scss'
 
-function InforSong({ sizeL, sizeM, item, time, play }) {
+function InforSong({ sizeL, sizeM, item, time, play, sizeSM }) {
     const { TbPlayerPlayFilled } = icons
 
     return (
@@ -18,12 +18,12 @@ function InforSong({ sizeL, sizeM, item, time, play }) {
                 {play && <span className={styles.iconPlay}><TbPlayerPlayFilled /></span>}
             </div>
 
-            <div className={clsx(styles.infor, {[styles.inforM]: sizeM})}>
-                {sizeM ? 
+            <div className={clsx(styles.infor, {[styles.inforSM]: sizeSM})}>
+                {sizeSM ? 
                     <p className={clsx(styles.nameSong)}>{item?.title?.length < 15 ? item?.title : `${item?.title?.slice(0, 15)}...`}</p> : 
                     <p className={clsx(styles.nameSong)}>{item?.title?.length < 30 ? item?.title : `${item?.title?.slice(0, 30)}...`}</p>
                 }
-                {sizeM ? 
+                {sizeSM ? 
                     <a href='#' className={clsx(styles.nameSinger)}>{item?.artistsNames.length < 15 ? item?.artistsNames : `${item?.artistsNames.slice(0, 15)}...`}</a> : 
                     <a href='#' className={clsx(styles.nameSinger)}>{item?.artistsNames}</a>
                 }
