@@ -1,6 +1,7 @@
 import clsx from 'clsx'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { useParams } from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux'
 
 import styles from './SidebarRight.module.scss'
 import { Button } from '../Button'
@@ -12,20 +13,31 @@ import { InforSong } from '../InforSong'
 function SidebarRight() {
     const { IoMdTime, SlOptions } = icons
     const [ isActive, setIsActive ] = useState(1)
-    const { pid } = useParams()
     const [ playlistData, setPlaylistData ] = useState()
+    const { sidebarRight, isPlaying, isChangePlaylist } = useSelector(state => state.play)
+    const { curSongId, curPlaylistId } = useSelector(state => state.music)
+    const [ curSongData, setCurSongData ]  = useState()
 
     useEffect(() => {
         async function fecthPlaylist() {
-            const response = await apis.getDetailtPlaylist(pid)
+            const response = await apis.getDetailtPlaylist(curPlaylistId)
             setPlaylistData(response?.data?.data)
         }
 
-        fecthPlaylist()
-    }, [pid])
+        if (isChangePlaylist) fecthPlaylist()
+    }, [curPlaylistId, isChangePlaylist])
+
+    useEffect(() => {
+        async function fecthDetailSong() {
+            const response = await apis.getDetailSong(curSongId)
+            setCurSongData(response?.data?.data)
+        }
+
+        fecthDetailSong()
+    }, [curSongId]) 
 
     return (
-        <div className={clsx(styles.container)}>
+        <div className={clsx(styles.container, {[styles.slideLeft]: sidebarRight === true , [styles.slideRight]: sidebarRight === false})}>
             <div className={clsx(styles.wrapTitle)}>
                 <div className={clsx(styles.wrapOptions)}>
                     <span 
@@ -52,6 +64,15 @@ function SidebarRight() {
             </div>
 
             <div className={clsx(styles.wrapPlaylist)}>
+                <div className={clsx(styles.wrapInforSong, styles.activeCurSong)}> 
+                    <InforSong 
+                        item={curSongData} 
+                        sizeM 
+                        play 
+                        playing={isPlaying}
+                    />
+                </div>
+
                 <div className={clsx(styles.playListTitle)}>
                     <span className={clsx(styles.nextText)}>Tiếp theo</span>
                     <p className={clsx(styles.wrapSourseText)}>
@@ -71,6 +92,7 @@ function SidebarRight() {
                     ))}
                 </div>
             </div>
+
         </div>
     )
 }

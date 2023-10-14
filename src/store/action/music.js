@@ -49,3 +49,17 @@ export function sidebarRight(flag) {
         flag,
     }
 }
+
+export function setCurPlaylistId(pid) {
+    return {
+        type: actionTypes.SET_CUR_PLAYLIST_ID,
+        pid,
+    }
+}
+
+export function setChangePlaylist(flag) {
+    return {
+        type: actionTypes.SET_CHANGE_PLAYLIST,
+        flag,
+    }
+}

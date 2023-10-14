@@ -7,6 +7,8 @@ const actionTypes = {
     CHECKVIP: "CHECKVIP",
     LOAD: 'LOAD',
     STATUS_SIDEBAR_RIGHT: "STATUS_SIDEBAR_RIGHT",
+    SET_CUR_PLAYLIST_ID: "SET_CUR_PLAYLIST_ID",
+    SET_CHANGE_PLAYLIST: "SET_CHANGE_PLAYLIST",
 }
 
 export default actionTypes

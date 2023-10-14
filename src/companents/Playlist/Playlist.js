@@ -16,6 +16,7 @@ function Playlist({ item, duration, total }) {
         dispatch(action.setCurSongId(item.encodeId, index))
         dispatch(action.play(true))
         dispatch(action.random(false))
+        dispatch(action.setChangePlaylist(true))
     }
 
     return (

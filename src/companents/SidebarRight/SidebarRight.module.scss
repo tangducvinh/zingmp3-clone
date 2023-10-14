@@ -1,8 +1,8 @@
 .container {
-    width: 100%;
     right: 100%;
     background-color: var(--sidebar-right-bg);
-    padding: 20px 10px;
+    padding: 20px 0 20px 10px;
+    height: 83vh;
 }
 
 .wrapTitle {
@@ -41,6 +41,11 @@
     cursor: pointer;
 }
 
+.wrapPlaylist {
+    overflow-y: scroll;
+    height: 100%;
+}
+
 .playListTitle {
     padding: 15px 8px;
     font-size: 15px;
@@ -60,16 +65,52 @@
     color: var(--purple-primary);
 }
 
-.playListContent {
-    overflow-y: scroll;
-    height: 80vh;
-}
-
 .wrapInforSong {
     padding: 6px 8px;
     border-radius: 5px;
 
     &:hover {
         background-color: #40384D;
+    }
+}
+
+.slideLeft {
+	-webkit-animation: slide-left 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	animation: slide-left 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+
+@keyframes slide-left {
+    0% {
+        -webkit-transform: translateX(300px);
+        transform: translateX(300px);
+    }
+    100% {
+        -webkit-transform: translateX(0);
+        transform: translateX(0);
+    }
+}
+
+.slideRight {
+	-webkit-animation: slide-right 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	animation: slide-right 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+
+@keyframes slide-right {
+    0% {
+        -webkit-transform: translateX(0px);
+        transform: translateX(0px);
+    }
+    100% {
+        -webkit-transform: translateX(300px);
+        transform: translateX(300px);
+    }
+}
+
+.activeCurSong {
+    background-color: var(--purple-primary);
+    margin-top: 20px;
+
+    &:hover {
+        background-color: var(--purple-primary);
     }
 }

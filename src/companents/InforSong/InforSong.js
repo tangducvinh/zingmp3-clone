@@ -1,13 +1,12 @@
 import clsx from 'clsx'
 import moment from 'moment'
 import 'moment/locale/vi'
-import Tippy from '@tippyjs/react'
-import 'tippy.js/dist/tippy.css';
 import icons from '../../ultis/icon'
 
 import styles from './InforSong.module.scss'
+import { AudioSpinner } from '../Spinner'
 
-function InforSong({ sizeL, sizeM, item, time, play, sizeSM }) {
+function InforSong({ sizeL, sizeM, item, time, play, sizeSM, playing }) {
     const { TbPlayerPlayFilled } = icons
 
     return (
@@ -16,6 +15,7 @@ function InforSong({ sizeL, sizeM, item, time, play, sizeSM }) {
                 <img className={clsx(styles.img)} src={item?.thumbnail} alt='image'></img>
 
                 {play && <span className={styles.iconPlay}><TbPlayerPlayFilled /></span>}
+                {playing && <span className={styles.audioSpinner}><AudioSpinner /></span>}
             </div>
 
             <div className={clsx(styles.infor, {[styles.inforSM]: sizeSM})}>

@@ -35,8 +35,9 @@ function Album() {
                 setData(response.data?.data)
             }
         }
-
         fetchDetailPlaylist(pid)
+        dispatch(actions.setCurPlaylistId(pid))
+        dispatch(actions.setChangePlaylist(false))
     }, [pid])
 
     useEffect(() => {

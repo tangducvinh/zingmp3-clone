@@ -7,6 +7,7 @@ const initState = {
     isVip: false,
     isLoad: false,
     sidebarRight: false,
+    isChangePlaylist: false,
 }
 
 function playReducer(state = initState, action) {
@@ -36,6 +37,11 @@ function playReducer(state = initState, action) {
                 ...state,
                 sidebarRight: action.flag,
             }
+        case actionTypes.SET_CHANGE_PLAYLIST:
+                return {
+                    ...state,
+                    isChangePlaylist: action.flag,
+                }
         default:
             return state
     }
