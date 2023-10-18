@@ -63,3 +63,10 @@ export function setChangePlaylist(flag) {
         flag,
     }
 }
+
+export function setRecentPlaylist(data) {
+    return {
+        type: actionTypes.SET_RECENT_PLAYLIST,
+        data,
+    }
+}

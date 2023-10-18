@@ -1,14 +1,14 @@
 .container {
     right: 100%;
     background-color: var(--sidebar-right-bg);
-    padding: 20px 0 20px 10px;
-    height: 83vh;
+    height: 100vh;
 }
 
 .wrapTitle {
     display: flex;
     align-items: center;
     gap: 8px;
+    padding: 20px 8px;
 }
 
 .wrapOptions {
@@ -44,6 +44,7 @@
 .wrapPlaylist {
     overflow-y: scroll;
     height: 100%;
+    padding: 0px 0px 0px 8px;
 }
 
 .playListTitle {
@@ -108,9 +109,16 @@
 
 .activeCurSong {
     background-color: var(--purple-primary);
-    margin-top: 20px;
 
     &:hover {
         background-color: var(--purple-primary);
     }
+}
+
+.wrapRecent {
+    height: 100%;
+}
+
+.bottomBox {
+    height: 90px;
 }

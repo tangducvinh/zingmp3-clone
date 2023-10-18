@@ -1,4 +1,3 @@
-import { TbRulerMeasure } from 'react-icons/tb'
 import actionTypes from '../action/actionTypes'
 
 const initState = {
@@ -7,7 +6,7 @@ const initState = {
     isVip: false,
     isLoad: false,
     sidebarRight: false,
-    isChangePlaylist: false,
+    isChangePlaylist: true,
 }
 
 function playReducer(state = initState, action) {

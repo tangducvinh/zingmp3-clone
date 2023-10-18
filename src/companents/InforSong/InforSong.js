@@ -21,11 +21,11 @@ function InforSong({ sizeL, sizeM, item, time, play, sizeSM, playing }) {
             <div className={clsx(styles.infor, {[styles.inforSM]: sizeSM})}>
                 {sizeSM ? 
                     <p className={clsx(styles.nameSong)}>{item?.title?.length < 15 ? item?.title : `${item?.title?.slice(0, 15)}...`}</p> : 
-                    <p className={clsx(styles.nameSong)}>{item?.title?.length < 30 ? item?.title : `${item?.title?.slice(0, 30)}...`}</p>
+                    <p className={clsx(styles.nameSong)}>{item?.title?.length < 25 ? item?.title : `${item?.title?.slice(0, 25)}...`}</p>
                 }
                 {sizeSM ? 
-                    <a href='#' className={clsx(styles.nameSinger)}>{item?.artistsNames.length < 15 ? item?.artistsNames : `${item?.artistsNames.slice(0, 15)}...`}</a> : 
-                    <a href='#' className={clsx(styles.nameSinger)}>{item?.artistsNames}</a>
+                    <a href='#' className={clsx(styles.nameSinger)}>{item?.artistsNames?.length < 15 ? item?.artistsNames : `${item?.artistsNames?.slice(0, 15)}...`}</a> : 
+                    <a href='#' className={clsx(styles.nameSinger)}>{item?.artistsNames?.length < 30 ? item?.artistsNames : `${item?.artistsNames?.slice(0, 30)}...`}</a>
                 }
                 {time && <p className={clsx(styles.timeDisplay)}>{moment(item.releaseDate * 1000).fromNow()}</p>}
             </div>

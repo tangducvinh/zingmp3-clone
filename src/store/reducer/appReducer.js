@@ -1,4 +1,3 @@
-
 import actionTypes from '../action/actionTypes'
 
 const initState = {

@@ -1,6 +1,5 @@
 import clsx from 'clsx'
 import { useState, useEffect, useRef } from 'react'
-import { useParams } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 
 import styles from './SidebarRight.module.scss'
@@ -9,14 +8,16 @@ import { ButtonAudio } from '../ButtonAudio'
 import icons from '../../ultis/icon'
 import * as apis from '../../apis'
 import { InforSong } from '../InforSong'
+import * as actions from '../../store/action'
 
 function SidebarRight() {
     const { IoMdTime, SlOptions } = icons
     const [ isActive, setIsActive ] = useState(1)
     const [ playlistData, setPlaylistData ] = useState()
-    const { sidebarRight, isPlaying, isChangePlaylist } = useSelector(state => state.play)
-    const { curSongId, curPlaylistId } = useSelector(state => state.music)
+    const { curSongId, curPlaylistId, recentPlaylist } = useSelector(state => state.music)
+    const { isPlaying, sidebarRight, isChangePlaylist} = useSelector(state => state.play)
     const [ curSongData, setCurSongData ]  = useState()
+    const dispatch = useDispatch()
 
     useEffect(() => {
         async function fecthPlaylist() {
@@ -24,17 +25,24 @@ function SidebarRight() {
             setPlaylistData(response?.data?.data)
         }
 
-        if (isChangePlaylist) fecthPlaylist()
-    }, [curPlaylistId, isChangePlaylist])
+        if (isChangePlaylist && curPlaylistId) fecthPlaylist()
+
+    }, [isChangePlaylist, curPlaylistId])
 
     useEffect(() => {
         async function fecthDetailSong() {
             const response = await apis.getDetailSong(curSongId)
             setCurSongData(response?.data?.data)
+            setIsActive(1)
         }
 
         fecthDetailSong()
     }, [curSongId]) 
+
+    function handleChoseSong(item, index) {
+        dispatch(actions.setCurSongId(item.encodeId, index))
+        dispatch(actions.play(true))
+    }
 
     return (
         <div className={clsx(styles.container, {[styles.slideLeft]: sidebarRight === true , [styles.slideRight]: sidebarRight === false})}>
@@ -63,36 +71,56 @@ function SidebarRight() {
                 </div>
             </div>
 
-            <div className={clsx(styles.wrapPlaylist)}>
-                <div className={clsx(styles.wrapInforSong, styles.activeCurSong)}> 
-                    <InforSong 
-                        item={curSongData} 
-                        sizeM 
-                        play 
-                        playing={isPlaying}
-                    />
-                </div>
+            {isActive === 1 && 
+                <div className={clsx(styles.wrapPlaylist)}>
+                    <div className={clsx(styles.wrapInforSong, styles.activeCurSong)}> 
+                        <InforSong 
+                            item={curSongData} 
+                            sizeM 
+                            play 
+                            playing={isPlaying}
+                        />
+                    </div>
 
-                <div className={clsx(styles.playListTitle)}>
-                    <span className={clsx(styles.nextText)}>Tiếp theo</span>
-                    <p className={clsx(styles.wrapSourseText)}>
-                        <span className={clsx(styles.fromText)}>Từ playlist </span>
-                        <span className={clsx(styles.sourseText)}>{playlistData?.title}</span>
-                    </p>
-                </div>
+                    <div className={clsx(styles.playListTitle)}>
+                        <span className={clsx(styles.nextText)}>Tiếp theo</span>
+                        <p className={clsx(styles.wrapSourseText)}>
+                            <span className={clsx(styles.fromText)}>Từ playlist </span>
+                            <span className={clsx(styles.sourseText)}>{playlistData?.title}</span>
+                        </p>
+                    </div>
 
-                <div className={clsx(styles.playListContent)}>
-                    {playlistData?.song?.items?.map(item => (
-                        <div 
-                            className={clsx(styles.wrapInforSong)}
-                            key={item.encodeId}
-                        > 
-                            <InforSong item={item} sizeM play />
-                        </div>
-                    ))}
-                </div>
-            </div>
+                    <div className={clsx(styles.playListContent)}>
+                        {playlistData?.song?.items?.map((item, index) => (
+                            <div 
+                                className={clsx(styles.wrapInforSong)}
+                                key={item.encodeId}
+                                onClick={() => handleChoseSong(item, index)}
+                            > 
+                                <InforSong item={item} sizeM play/>
+                            </div>
+                        ))}
+                    </div>
+                </div>   
+            }
 
+            {isActive === 2 && 
+                <div className={clsx(styles.wrapPlaylist)}>
+                    <div className={clsx(styles.playListContent)}>
+                        {recentPlaylist?.map((item, index) => (
+                            <div 
+                                className={clsx(styles.wrapInforSong)}
+                                key={item.encodeId}
+                                onClick={() => handleChoseSong(item, index)}
+                            > 
+                                <InforSong item={item} sizeM play/>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            }
+
+            <div className={clsx(styles.bottomBox)}></div>
         </div>
     )
 }

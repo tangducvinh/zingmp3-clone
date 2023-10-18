@@ -1,6 +1,6 @@
 import clsx from 'clsx'
 import { memo } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import moment from 'moment'
 
 import styles from './Playlist.module.scss'
@@ -17,6 +17,7 @@ function Playlist({ item, duration, total }) {
         dispatch(action.play(true))
         dispatch(action.random(false))
         dispatch(action.setChangePlaylist(true))
+        dispatch(action.setRecentPlaylist(item))
     }
 
     return (
