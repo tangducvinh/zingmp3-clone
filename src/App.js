@@ -10,7 +10,13 @@ import { Album } from './containers/public/Album'
 import * as actions from './store/action'
 import { NewRelease } from './containers/public/NewRelease'
 import { WeekChart } from './containers/public/WeekChart'
- 
+import { Search } from './containers/public/Search'
+import { SearchAll } from './companents/SearchAll'
+import { SearchSong } from './companents/SearchSong'
+import { SearchPlaylist } from './companents/SearchPlaylist'
+import { SearchArtist } from './companents/SearchArtist'
+import { SearchMV } from './companents/SearchMV'
+
 function App() {
   const dispatch = useDispatch()
 
@@ -28,8 +34,14 @@ function App() {
           <Route path={path.ALBUM_TITLE_ID} element={ <Album /> }/>
           <Route path={path.HOME} element={ <Home /> }/>
           <Route path={path.LOGIN} element={ <Login /> }/>
+          <Route path={path.SEARCH} element={ <Search />}>
+            <Route path={path.ALL} element={ <SearchAll />}/>
+            <Route path={path.SONG} element={ <SearchSong />}/>
+            <Route path={path.PLAYLIST_ALBUM} element={ <SearchPlaylist />}/>
+            <Route path={path.ARTIST} element={ <SearchArtist />}/>
+            <Route path={path.VIDEO} element={ <SearchMV />}/>
+          </Route>
         </Route>
-
       </Routes>
     </div>
   )

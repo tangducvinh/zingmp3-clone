@@ -7,6 +7,14 @@ const path = {
     ALBUM_TITLE_ID: 'album/:title/:pid',
     NEW_RELEASE: 'new-release/song',
     WEEKCHART: 'zing-chart-tuan/:contry/:id',
+
+    // search
+    SEARCH: 'search/',
+    ALL: 'all',
+    SONG: 'song',
+    PLAYLIST_ALBUM: 'playlist-album',
+    ARTIST: 'artist',
+    VIDEO: 'video'
 }
 
 export default path

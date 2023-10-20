@@ -1,12 +1,23 @@
 import clsx from 'clsx'
+import { useState, useEffect } from 'react'
 
 import styles from './Header.module.scss'
 import icons from '../../ultis/icon'
 import { Sevice } from './Sevice'
+import * as apis from '../../apis'
 
 const { HiOutlineArrowLeft, HiOutlineArrowRight, TfiSearch } = icons
 
 function Header() {
+    const [ keyword, setKeyword ] = useState('')
+
+    async function handleSearch(e) {
+        if (e.keyCode === 13) {
+            const response = await apis.search(keyword)
+            console.log(response)
+        }
+    }
+
     return (
         <div className={clsx(styles.container)}>
             <div className={clsx(styles.search)}>
@@ -18,10 +29,17 @@ function Header() {
                     <HiOutlineArrowRight size={21}/>
                 </button>
 
-                <form className={clsx(styles.formSeach)}>
+                <div className={clsx(styles.formSeach)}>
                     <i className={clsx(styles.iconSearch)}><TfiSearch size={20} /></i>
-                    <input className={clsx(styles.inputSearch)} placeholder='Tìm kiếm bài hát, nghệ sĩ, lời bài hát...'></input>
-                </form>
+                    <input 
+                        className={clsx(styles.inputSearch)} 
+                        placeholder='Tìm kiếm bài hát, nghệ sĩ, lời bài hát...'
+                        value={keyword}
+                        onChange={(e) => setKeyword(e.target.value)}
+                        onKeyUp={handleSearch}
+                    >
+                    </input>
+                </div>
             </div>
 
             <div className={clsx(styles.user)}>

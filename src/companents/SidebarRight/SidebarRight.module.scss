@@ -2,6 +2,8 @@
     right: 100%;
     background-color: var(--sidebar-right-bg);
     height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 .wrapTitle {
@@ -43,8 +45,8 @@
 
 .wrapPlaylist {
     overflow-y: scroll;
-    height: 100%;
     padding: 0px 0px 0px 8px;
+    flex: 1;
 }
 
 .playListTitle {
@@ -119,6 +121,6 @@
     height: 100%;
 }
 
-.bottomBox {
+.wrapBottom {
     height: 90px;
 }

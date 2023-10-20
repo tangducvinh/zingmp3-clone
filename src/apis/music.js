@@ -44,3 +44,18 @@ export function getDetailtPlaylist(sid) {
         }
     })
 }
+
+export function search(value) {
+    return new Promise(async (resolve, reject) => {
+        try {
+            const response = await axios ({
+                url: '/search',
+                methodl: 'get',
+                params: {keyword: value}
+            })
+            resolve(response)
+        } catch(error) {
+            reject(error)
+        }
+    })
+}

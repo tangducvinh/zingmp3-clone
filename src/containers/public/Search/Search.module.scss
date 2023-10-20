@@ -1,0 +1,37 @@
+
+
+.wrapOption {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #5555;
+}
+
+.title {
+    color: #fff;
+    font-size: 24px;
+    padding-right: 20px;
+    border-right: 1px solid #5555;
+}
+
+.wrapLink {
+    display: flex;
+    gap: 30px;
+    padding: 0 20px;
+}
+
+.link {
+    color: var(--gray-text);
+    padding: 15px 0;
+    font-size: 16px;
+}
+
+.isActive {
+    color: #ffff;
+    padding: 15px 0;
+    font-size: 16px;
+    border-bottom: 2px solid var(--purple-primary);
+}
+
+.footer {
+    height: 200px;
+}

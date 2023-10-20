@@ -35,7 +35,7 @@
 }
 
 .outlet {
-    margin-top: 94px;
+    margin-top: 70px;
     width: 100%;
 }
 
@@ -43,6 +43,10 @@
     position: fixed;
     right: 0;
     z-index: 7;
+}
+
+.wrapBottom {
+    height: 90px;
 }
 
 .audio {

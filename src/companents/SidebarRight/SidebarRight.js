@@ -42,6 +42,7 @@ function SidebarRight() {
     function handleChoseSong(item, index) {
         dispatch(actions.setCurSongId(item.encodeId, index))
         dispatch(actions.play(true))
+        dispatch(actions.setRecentPlaylist(item))
     }
 
     return (
@@ -120,7 +121,8 @@ function SidebarRight() {
                 </div>
             }
 
-            <div className={clsx(styles.bottomBox)}></div>
+            <div className={clsx(styles.wrapBottom)}></div>
+
         </div>
     )
 }
