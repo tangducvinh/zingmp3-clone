@@ -1,20 +1,23 @@
 import clsx from 'clsx'
 import { useState, useEffect } from 'react'
+import { useDispatch } from 'react-redux'
 
 import styles from './Header.module.scss'
 import icons from '../../ultis/icon'
 import { Sevice } from './Sevice'
 import * as apis from '../../apis'
+import * as actions from '../../store/action'
 
 const { HiOutlineArrowLeft, HiOutlineArrowRight, TfiSearch } = icons
 
 function Header() {
     const [ keyword, setKeyword ] = useState('')
+    const dispatch = useDispatch()
 
     async function handleSearch(e) {
         if (e.keyCode === 13) {
             const response = await apis.search(keyword)
-            console.log(response)
+            dispatch(actions.setDataSearch(response))
         }
     }
 

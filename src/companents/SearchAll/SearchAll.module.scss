@@ -1,0 +1,47 @@
+
+.songs {
+    margin-top: 40px;
+}
+
+.wrapSongs {
+    display: flex;
+    gap: 30px;
+}
+
+.wrapItemSong {
+    width: 50%;
+}
+
+.playlist {
+    margin-top: 40px;
+}
+
+.wrapTitle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.titleName {
+    font-size: 20px;
+    color: #ffff;
+}
+
+.wrapItem {
+    display: flex;
+    gap: 30px;
+}
+
+.artists {
+    margin-top: 40px;
+}
+
+.wrapArtists {
+    display: flex;
+    gap: 30px;
+}
+
+.wrapArtist {
+    width: 20%;
+}

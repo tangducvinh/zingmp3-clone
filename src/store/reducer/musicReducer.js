@@ -5,6 +5,7 @@ const initState = {
     indexSong: null,
     curPlaylistId: null,
     recentPlaylist: [],
+    dataSearch: null,
 }
 
 const musicReducer = (state = initState, action) => {
@@ -34,6 +35,11 @@ const musicReducer = (state = initState, action) => {
             return {
                 ...state,
                 recentPlaylist: songPlaylist
+            }
+        case actionTypes.SET_DATA_SEARCH:
+            return {
+                ...state,
+                dataSearch: action.data,
             }
         default: 
             return state

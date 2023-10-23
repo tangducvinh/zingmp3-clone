@@ -38,7 +38,7 @@ function Playlist({ item, duration, total }) {
                         onClick={() => handleChosseSong(item, index)}
                         key={item?.encodeId}
                     >
-                        <SongItem item={item} />
+                        <SongItem item={item} icon/>
                     </div>
                 ))}
             </div>

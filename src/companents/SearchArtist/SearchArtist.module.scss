@@ -1,0 +1,19 @@
+.container {
+    margin-top: 40px;
+}
+
+.titleName {
+    color: #ffff;
+    font-size: 20px;
+}
+
+.wrapArtists {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-top: 10px;
+}
+
+.wrapItem {
+    width: 17.9%;
+}

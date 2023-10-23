@@ -49,10 +49,8 @@ function Search() {
                 </div>
             </div>
 
-
-            <div className={clsx(styles.footer)}></div>
-
             <Outlet />
+            
         </div>
     )
 }

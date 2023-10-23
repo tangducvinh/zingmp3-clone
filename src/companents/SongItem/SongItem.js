@@ -6,12 +6,12 @@ import moment from 'moment'
 import { InforSong } from '../InforSong'
 import icons from '../../ultis/icon'
 
-function SongItem({item}) {
+function SongItem({item, icon}) {
     const { LuMusic } = icons
     return (
         <div className={clsx(styles.container)}>
             <div className={clsx(styles.inforItem)}>
-                <span className={clsx(styles.icon)}><LuMusic size={16}/></span>
+                {icon && <span className={clsx(styles.icon)}><LuMusic size={16}/></span>}
                 <InforSong 
                     item={item}
                     sizeM

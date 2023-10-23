@@ -70,3 +70,10 @@ export function setRecentPlaylist(data) {
         data,
     }
 }
+
+export function setDataSearch(data) {
+    return {
+        type: actionTypes.SET_DATA_SEARCH,
+        data,
+    }
+}

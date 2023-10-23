@@ -1,0 +1,20 @@
+.container {
+    margin-top: 40px;
+    width: 100%;
+}
+
+.titleName {
+    color: #fff;
+    font-size: 20px;
+}
+
+.wrapPlaylist {
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.wrapItem {
+    width: 17.94%;
+}

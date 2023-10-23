@@ -14,7 +14,9 @@ const path = {
     SONG: 'song',
     PLAYLIST_ALBUM: 'playlist-album',
     ARTIST: 'artist',
-    VIDEO: 'video'
+    VIDEO: 'video',
+
+    // artist
 }
 
 export default path

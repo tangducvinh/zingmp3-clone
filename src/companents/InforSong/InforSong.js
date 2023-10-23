@@ -25,7 +25,7 @@ function InforSong({ sizeL, sizeM, item, time, play, sizeSM, playing }) {
                 }
                 {sizeSM ? 
                     <a href='#' className={clsx(styles.nameSinger)}>{item?.artistsNames?.length < 15 ? item?.artistsNames : `${item?.artistsNames?.slice(0, 15)}...`}</a> : 
-                    <a href='#' className={clsx(styles.nameSinger)}>{item?.artistsNames?.length < 30 ? item?.artistsNames : `${item?.artistsNames?.slice(0, 30)}...`}</a>
+                    <a href='#' className={clsx(styles.nameSinger)}>{item?.artistsNames?.length < 25 ? item?.artistsNames : `${item?.artistsNames?.slice(0, 25)}...`}</a>
                 }
                 {time && <p className={clsx(styles.timeDisplay)}>{moment(item.releaseDate * 1000).fromNow()}</p>}
             </div>

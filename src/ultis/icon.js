@@ -10,7 +10,7 @@ import { CgAlbum } from 'react-icons/cg'
 import { FiUpload } from 'react-icons/fi'
 import { TfiSearch } from 'react-icons/tfi'
 import { GoDesktopDownload } from 'react-icons/go'
-import { SlOptions } from 'react-icons/sl'
+import { SlOptions, SlUserFollow } from 'react-icons/sl'
 import { FaRandom } from 'react-icons/fa'
 import { IoPlaySkipBackSharp, IoPlaySkipForwardSharp, IoRepeatOutline, IoShuffle } from 'react-icons/io5'
 import { PiMicrophoneStage } from 'react-icons/pi'
@@ -64,6 +64,7 @@ const icons = {
     BsPlayCircleFill,
     TbPlayerPlayFilled,
     IoMdTime,
+    SlUserFollow,
 }
 
 export default icons
