@@ -1,0 +1,1 @@
+export { default as InforArtist } from './InforArtist'

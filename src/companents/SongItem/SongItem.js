@@ -18,12 +18,12 @@ function SongItem({item, icon}) {
                 />
             </div>
 
-            <a href='' className={clsx(styles.name)}>
+            <a href='' className={clsx(styles.name)}> 
                 {item?.album?.title.length > 30 ? 
-                `${item?.album?.title.slice(0, 30)}...` :
-                item?.album?.title}
-            </a>
-
+                `${item?.album?.title.slice(0, 30)}...` : 
+                item?.album?.title} 
+            </a> 
+                
             <span className={clsx(styles.duration)}>{moment(item.duration * 1000).format('mm:ss')}</span>
         </div>
     )

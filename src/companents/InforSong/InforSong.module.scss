@@ -19,6 +19,11 @@
     height: 64px;
 }
 
+.sizeXL {
+    width: 84px;
+    height: 84px;
+}
+
 .wrrapImg {
     margin-right: 10px;
     position: relative;
@@ -55,7 +60,13 @@
     line-height: 1.1;
 }
 
+.songText {
+    font-size: 13px;
+    color: var(--gray-text);
+}
+
 .nameSong {
+    margin-top: 5px;
     font-size: 15px;
     color: #ffff;
 }

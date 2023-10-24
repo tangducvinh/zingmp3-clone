@@ -6,12 +6,12 @@ import icons from '../../ultis/icon'
 import styles from './InforSong.module.scss'
 import { AudioSpinner } from '../Spinner'
 
-function InforSong({ sizeL, sizeM, item, time, play, sizeSM, playing }) {
+function InforSong({ sizeL, sizeM, item, time, play, sizeSM, playing, song, sizeXL, playlist }) {
     const { TbPlayerPlayFilled } = icons
 
     return (
         <div className={styles.container}>
-            <div className={clsx(styles.wrrapImg, {[styles.sizeL]: sizeL, [styles.sizeM]: sizeM})}>
+            <div className={clsx(styles.wrrapImg, {[styles.sizeL]: sizeL, [styles.sizeM]: sizeM, [styles.sizeXL]: sizeXL})}>
                 <img className={clsx(styles.img)} src={item?.thumbnail} alt='image'></img>
 
                 {play && <span className={styles.iconPlay}><TbPlayerPlayFilled /></span>}
@@ -19,6 +19,9 @@ function InforSong({ sizeL, sizeM, item, time, play, sizeSM, playing }) {
             </div>
 
             <div className={clsx(styles.infor, {[styles.inforSM]: sizeSM})}>
+                {song && <span className={clsx(styles.songText)}>Bài hát</span>}
+                {playlist && <span className={clsx(styles.songText)}>Playlist</span>}
+
                 {sizeSM ? 
                     <p className={clsx(styles.nameSong)}>{item?.title?.length < 15 ? item?.title : `${item?.title?.slice(0, 15)}...`}</p> : 
                     <p className={clsx(styles.nameSong)}>{item?.title?.length < 25 ? item?.title : `${item?.title?.slice(0, 25)}...`}</p>

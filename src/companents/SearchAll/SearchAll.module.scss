@@ -1,4 +1,19 @@
 
+.top {
+    margin-top: 40px;
+}
+
+.wrapInfor {
+    max-width: 33.3333%;
+    padding: 10px;
+    background-color: #231B2E;
+    border-radius: 5px;
+
+    &:hover {
+        background-color: #2F2739;
+    }
+}
+
 .songs {
     margin-top: 40px;
 }

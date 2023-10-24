@@ -23,6 +23,11 @@
     color: var(--gray-text);
     padding: 15px 0;
     font-size: 16px;
+    transition: color 0.2s ease;
+
+    &:hover {
+        color: #ffff;
+    }
 }
 
 .isActive {

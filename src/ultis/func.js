@@ -27,6 +27,12 @@ export function handleSliderRank(array) {
     return array
 }
 
+export function handleNumber(number) {
+    if (number < 1000) return `${number} quan tâm`
+    else if (number < 1000000) return `${Math.round(number * 10 / 1000) / 10}K quan tâm`
+    else return `${Math.round(number * 10 / 1000000) / 10}M quan tâm`
+}
+
 
 
 
