@@ -6,7 +6,7 @@ import icons from '../../ultis/icon'
 import styles from './InforSong.module.scss'
 import { AudioSpinner } from '../Spinner'
 
-function InforSong({ sizeL, sizeM, item, time, play, sizeSM, playing, song, sizeXL, playlist }) {
+function InforSong({ sizeL, sizeM, item, time, play, sizeSM, playing, song, sizeXL, playlist, nameSizeS}) {
     const { TbPlayerPlayFilled } = icons
 
     return (
@@ -24,11 +24,13 @@ function InforSong({ sizeL, sizeM, item, time, play, sizeSM, playing, song, size
 
                 {sizeSM ? 
                     <p className={clsx(styles.nameSong)}>{item?.title?.length < 15 ? item?.title : `${item?.title?.slice(0, 15)}...`}</p> : 
+                nameSizeS ? <p className={clsx(styles.nameSong, styles.nameSongSizeS)}>{item?.title?.length < 20 ? item?.title : `${item?.title?.slice(0, 20)}...`}</p> :
                     <p className={clsx(styles.nameSong)}>{item?.title?.length < 25 ? item?.title : `${item?.title?.slice(0, 25)}...`}</p>
                 }
+
                 {sizeSM ? 
                     <a href='#' className={clsx(styles.nameSinger)}>{item?.artistsNames?.length < 15 ? item?.artistsNames : `${item?.artistsNames?.slice(0, 15)}...`}</a> : 
-                    <a href='#' className={clsx(styles.nameSinger)}>{item?.artistsNames?.length < 25 ? item?.artistsNames : `${item?.artistsNames?.slice(0, 25)}...`}</a>
+                    <a href='#' className={clsx(styles.nameSinger)}>{item?.artistsNames?.length < 20 ? item?.artistsNames : `${item?.artistsNames?.slice(0, 20)}...`}</a>
                 }
                 {time && <p className={clsx(styles.timeDisplay)}>{moment(item.releaseDate * 1000).fromNow()}</p>}
             </div>

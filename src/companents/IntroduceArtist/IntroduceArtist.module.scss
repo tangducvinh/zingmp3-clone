@@ -1,0 +1,61 @@
+.container {
+    background-image: linear-gradient(to right, #2F244F, #2C1B45);
+    position: absolute;
+    width: 100%;
+    left: -59px;
+    padding: 100px 59px 24px 59px;
+}
+
+.wrapIntroduce {
+    display: flex;
+    align-items: center;
+    gap: 35px;
+}
+
+.img {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.wrapTop {
+    display: flex;
+    align-items: center;
+}
+
+.artistName {
+    font-size: 60px;
+    color: #ffff;
+}
+
+.wrapIcon {
+    margin-left: 20px;
+    width: 50px;
+    height: 50px;
+    background-color: var(--purple-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.wrapBottom {
+    margin-top: 16px;
+    display: flex;
+    align-items: center;
+}
+
+.care {
+    color: #ffff;
+    font-size: 14px;
+}
+
+.careBtn {
+    margin-left: 24px;
+    width: 134px;
+    height: 28px;
+    border: solid 1px #cccc;
+    border-radius: 20px;
+    cursor: pointer;
+}

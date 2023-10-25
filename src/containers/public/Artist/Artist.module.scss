@@ -1,0 +1,98 @@
+.container {
+
+}
+
+.introduce {
+    position: relative;
+}
+
+.wrapSection {
+    display: flex;
+    align-items: center;
+    padding-top: 300px;
+    gap: 20px;
+}
+
+.newReleaseText {
+    font-size: 20px;
+    color: #fff;
+    margin-bottom: 20px;
+}
+
+.newRelease {
+    flex: 1;
+}
+
+.songs {
+    flex: 2;
+}
+
+.wrapTitleSongs {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.titleSongsText {
+    color: #ffff;
+    font-size: 20px;
+}
+
+.wrapPlaylists {
+    margin-top: 40px;
+}
+
+.artists {
+    margin-top: 40px;
+}
+
+.wrapAboutArtist {
+    margin-top: 40px;
+}
+
+.aboutArtist {
+    display: flex;
+    gap: 30px;
+    padding-bottom: 30px;
+}
+
+.artistImg {
+    object-fit: cover;
+    border-radius: 10px;
+    width: 40%;
+    height: 302px;
+}
+
+.content {
+    width: 40%;
+}
+
+.description {
+    color: var(--gray-text);
+    font-size: 14px;
+}
+
+.statistic {
+    margin-top: 48px;
+    display: flex;
+    gap: 40px;
+    align-items: center;
+}
+
+.inforAdd {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.number {
+    font-size: 20px;
+    color: #ffff;
+    font-weight: 500;
+}
+
+.text {
+    font-size: 14px;
+    color: var(--gray-text);
+}

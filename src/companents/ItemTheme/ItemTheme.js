@@ -7,7 +7,7 @@ import icons from '../../ultis/icon'
 import { ButtonAudio } from '../ButtonAudio'
 import { inforBtn } from '../../ultis/buttonAudio'
 
-function ItemTheme({ item }) {
+function ItemTheme({ item, sizeS }) {
     const { BsPlayCircle } = icons
     const navigate = useNavigate()
     const imgElement = useRef()
@@ -38,7 +38,7 @@ function ItemTheme({ item }) {
             <div 
                 onMouseEnter={handleHover}
                 onMouseLeave={handleLeave}
-                className={clsx(styles.wrapImg)}
+                className={clsx(styles.wrapImg, {[styles.wrapImgSizeS]: sizeS})}
                 onClick={() => handleChooseAlbum(item?.link)}
             >
                 <img 
@@ -49,7 +49,7 @@ function ItemTheme({ item }) {
                 >
                 </img>
 
-                <div className={clsx(styles.option)}>
+                <div className={clsx(styles.option, {[styles.optionSizeS]: sizeS})}>
                     <span className={clsx(styles.btnLove)}> 
                         <ButtonAudio item={inforBtn.loveBtnOutline}/>
                     </span>
@@ -67,12 +67,14 @@ function ItemTheme({ item }) {
                 </div>
             </div>
 
-            <span className={clsx(styles.description)}>
-                {item.sortDescription === '' ? 
-                    item.title : 
-                    item.sortDescription?.length > 50 ? `${item.sortDescription.slice(0, 50)} ...` : item.sortDescription
-                }
-            </span>
+            {!sizeS && 
+                <span className={clsx(styles.description)}>
+                    {item.sortDescription === '' ? 
+                        item.title : 
+                        item.sortDescription?.length > 50 ? `${item.sortDescription.slice(0, 50)} ...` : item.sortDescription
+                    }
+                </span>
+            }
         </div> 
     )
 }

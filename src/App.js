@@ -16,6 +16,7 @@ import { SearchSong } from './companents/SearchSong'
 import { SearchPlaylist } from './companents/SearchPlaylist'
 import { SearchArtist } from './companents/SearchArtist'
 import { SearchMV } from './companents/SearchMV'
+import { Artist } from './containers/public/Artist'
 
 function App() {
   const dispatch = useDispatch()
@@ -28,6 +29,7 @@ function App() {
     <div className="app">
       <Routes>
         <Route path={path.PUBLIC} element={ <Public /> }>
+          <Route path={path.PROFILE_ARTIST} element={ <Artist /> }/>
           <Route path={path.WEEKCHART} element={ <WeekChart /> } />
           <Route path={path.NEW_RELEASE} element={ <NewRelease />} />
           <Route path={path.PLAYLIST_TITLE_PID} element={ <Album /> }/>

@@ -5,29 +5,31 @@ import { useNavigate } from 'react-router-dom'
 import styles from './SearchAll.module.scss'
 import { ItemTheme } from '../ItemTheme'
 import { LinkAll } from '../LinkAll'
-import { SongItem } from '../SongItem'
 import * as actions from '../../store/action'
 import { ItemArtist } from '../ItemArtist'
 import path from '../../ultis/path'
 import { InforSong } from '../InforSong'
 import { InforArtist } from '../InforArtist'
+import { Songs } from '../Songs'
+import { Artists } from '../Artists'
 
 function SearchAll() {
-    const { dataSearch } = useSelector(state => state.music)
+    const { dataSearch, curSongId } = useSelector(state => state.music)
+    const { isPlaying } = useSelector(state => state.play)
     const dispatch = useDispatch()
     const navigate = useNavigate()
-
-    console.log(dataSearch)
-
-    function handleChooseSong(item, index) {
-        dispatch(actions.setCurSongId(item.encodeId, index))
-        dispatch(actions.play(true))
-        dispatch(actions.setRecentPlaylist(item))
-    }
 
     function handleLink(link) {
         const newLink = link.split('.')[0]
         navigate(newLink)
+    }
+
+    function handleChooseSong(data) {
+        dispatch(actions.setCurSongId(data.encodeId))
+        dispatch(actions.play(true))
+        dispatch(actions.setRecentPlaylist(data))
+        
+        if (data.encodeId === curSongId && isPlaying) dispatch(actions.play(false))
     }
 
     return (
@@ -40,9 +42,9 @@ function SearchAll() {
                 {dataSearch?.data?.data?.top?.objectType === 'song' && 
                     <div 
                         className={clsx(styles.wrapInfor)}
-                        onClick={() => handleLink(dataSearch?.data?.data?.top?.link)}
+                        onClick={() => handleChooseSong(dataSearch?.data?.data?.top)}
                     > 
-                        <InforSong item={dataSearch?.data?.data?.top} song sizeXL/>
+                        <InforSong item={dataSearch?.data?.data?.top} song sizeXL play={!isPlaying} playing={isPlaying && curSongId === dataSearch?.data?.data?.top?.encodeId}/>
                     </div>
                 }
 
@@ -73,28 +75,8 @@ function SearchAll() {
                     <LinkAll path={`/${path.SEARCH}${path.SONG}`}/>
                 </div>
 
-                <div className={clsx(styles.wrapSongs)}>
-                    <div className={styles.wrapItemSong}>
-                        {dataSearch?.data?.data?.songs?.filter((item, index) => index < 3).map((item, index) => (
-                            <div 
-                                onClick={() => handleChooseSong(item, index)}
-                                key={item.encodeId}
-                            >
-                                <SongItem item={item}/>
-                            </div>
-                        ))}
-                    </div>
-
-                    <div className={styles.wrapItemSong}>
-                        {dataSearch?.data?.data?.songs?.filter((item, index) => index >=3 && index < 6).map((item, index) => (
-                            <div 
-                                onClick={() => handleChooseSong(item, index)}
-                                key={item.encodeId}
-                            >
-                                <SongItem item={item}/>
-                            </div>
-                        ))}
-                    </div>
+                <div className={styles.wrapSongs}>
+                    <Songs data={dataSearch?.data?.data?.songs}/>
                 </div>
             </div>
 
@@ -117,21 +99,12 @@ function SearchAll() {
 
             <div className={clsx(styles.artists)}>
                 <div className={clsx(styles.wrapTitle)}>
-                    <h2 className={clsx(styles.titleName)}>PlayList/Album</h2>
+                    <h2 className={clsx(styles.titleName)}>Nghệ sĩ/OA</h2>
 
                     <LinkAll path={`/${path.SEARCH}${path.ARTIST}`}/>
                 </div>
 
-                <div className={clsx(styles.wrapArtists)}>
-                    {dataSearch?.data?.data?.artists?.filter((item, index) => index < 5).map(item => (
-                        <div 
-                            className={clsx(styles.wrapArtist)}
-                            key={item.id}
-                        >
-                            <ItemArtist item={item}/>
-                        </div>
-                    ))}
-                </div>
+                <Artists data={dataSearch?.data?.data?.artists}/>
             </div>
         </div>
     )

@@ -59,3 +59,18 @@ export function search(value) {
         }
     })
 }
+
+export function getArtist(name) {
+    return new Promise(async (resolve, reject) => {
+        try {
+            const response = await axios ({
+                url: '/artist',
+                method: 'get',
+                params: {name}
+            })
+            resolve(response)
+        } catch(error) {
+            reject(error)
+        }
+    })
+}

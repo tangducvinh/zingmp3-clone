@@ -20,6 +20,11 @@
     }
 }
 
+.wrapImgSizeS {
+    width: 151px;
+    height: 151px;
+}
+
 .img {
     width: 100%;
     height: 100%;
@@ -33,6 +38,10 @@
     display: none;
     align-items: center;
     z-index: 2;
+}
+
+.optionSizeS {
+    gap: 14px;
 }
 
 .btnLove,

@@ -6,7 +6,7 @@ import moment from 'moment'
 import { InforSong } from '../InforSong'
 import icons from '../../ultis/icon'
 
-function SongItem({item, icon}) {
+function SongItem({item, icon, nameSizeS, playing}) {
     const { LuMusic } = icons
     return (
         <div className={clsx(styles.container)}>
@@ -15,14 +15,18 @@ function SongItem({item, icon}) {
                 <InforSong 
                     item={item}
                     sizeM
+                    nameSizeS={nameSizeS}
+                    playing={playing}
                 />
             </div>
 
-            <a href='' className={clsx(styles.name)}> 
-                {item?.album?.title.length > 30 ? 
-                `${item?.album?.title.slice(0, 30)}...` : 
-                item?.album?.title} 
-            </a> 
+            {!nameSizeS && 
+                <a href='' className={clsx(styles.name)}> 
+                    {item?.album?.title.length > 30 ? 
+                    `${item?.album?.title.slice(0, 30)}...` : 
+                    item?.album?.title} 
+                </a>
+            } 
                 
             <span className={clsx(styles.duration)}>{moment(item.duration * 1000).format('mm:ss')}</span>
         </div>
