@@ -74,3 +74,18 @@ export function getArtist(name) {
         }
     })
 }
+
+export function getArtistSong(id) {
+    return new Promise(async (resolve, reject) => {
+        try {
+            const response = await axios ({
+                url: '/artistsong',
+                method: 'get',
+                params: {id, page: 1, count: 30}
+            })
+            resolve(response)
+        } catch(error) {
+            reject(error)
+        }
+    })
+}

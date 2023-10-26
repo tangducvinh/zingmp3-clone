@@ -10,7 +10,7 @@ import * as apis from '../../apis'
 import * as actions from '../../store/action'
 import path from '../../ultis/path'
 
-const { HiOutlineArrowLeft, HiOutlineArrowRight, TfiSearch } = icons
+const { HiOutlineArrowLeft, HiOutlineArrowRight, TfiSearch, MdOutlineClear } = icons
 
 function Header() {
     const [ keyword, setKeyword ] = useState('')
@@ -51,6 +51,11 @@ function Header() {
                         onKeyUp={handleSearch}
                     >
                     </input>
+
+                    <span 
+                        className={clsx(styles.clearIcon, {[styles.active]: keyword})}
+                        onClick={() => setKeyword('')}
+                    > <MdOutlineClear size={20}/> </span>
                 </div>
             </div>
 

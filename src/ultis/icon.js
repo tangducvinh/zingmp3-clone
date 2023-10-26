@@ -1,6 +1,6 @@
 import { RiCompassDiscoverLine, RiRepeatFill} from 'react-icons/ri'
 import { HiTrendingUp, HiOutlineArrowLeft, HiOutlineArrowRight, HiOutlineChevronRight} from 'react-icons/hi'
-import { MdLibraryMusic, MdFavoriteBorder, MdPlayCircleOutline, MdMusicVideo } from 'react-icons/md'
+import { MdLibraryMusic, MdFavoriteBorder, MdPlayCircleOutline, MdMusicVideo, MdOutlineClear } from 'react-icons/md'
 import { PiMusicNotesPlus } from 'react-icons/pi'
 import { BsMenuButtonWide, BsPlayCircle, BsPauseCircle, BsFillPlayFill, BsDot, BsFillPauseFill, BsPlayCircleFill } from 'react-icons/bs'
 import { AiOutlineStar, AiOutlineSetting, AiOutlineHeart, AiFillHeart } from 'react-icons/ai'
@@ -66,6 +66,7 @@ const icons = {
     IoMdTime,
     SlUserFollow,
     HiPlay,
+    MdOutlineClear,
 }
 
 export default icons

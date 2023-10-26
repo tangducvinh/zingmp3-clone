@@ -21,10 +21,6 @@
     color: rgba(255, 255, 255, 0.6);
 }
 
-// .btnRight {
-//     color: rgba(255, 255, 255, 0.6);
-// }
-
 .formSeach {
     width: 430px;
     height: 40px;
@@ -33,6 +29,7 @@
     background-color: hsla(0,0%,100%,0.1);
     padding-left: 12px;
     border-radius: 50px;
+    position: relative;
 }
 
 .iconSearch {
@@ -58,6 +55,19 @@
 
 .inputSearch::placeholder {
     color: var(--sidebar-text);
+}
+
+.clearIcon {
+    color: var(--gray-text);
+    margin-right: 10px;
+    width: 20px;
+    height: 20px;
+    display: none;
+}
+
+.active {
+    display: block;
+    cursor: pointer;
 }
 
 .user {

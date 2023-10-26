@@ -90,10 +90,10 @@ function Artist() {
                                 <span className={clsx(styles.text)}>Người quan tâm</span>
                             </div>
 
-                            {data?.awards?.lengt > 0 && 
+                            {data?.awards?.length > 0 && 
                                 <div className={clsx(styles.inforAdd)}>
                                     <span className={clsx(styles.number)}>{data?.awards?.length}</span>
-                                    <span className={clsx(styles.text)}>Người quan tâm</span>
+                                    <span className={clsx(styles.text)}>Giải thưởng</span>
                                 </div>
                             }
                         </div>

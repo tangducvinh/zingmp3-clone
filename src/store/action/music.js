@@ -1,5 +1,7 @@
 import actionTypes from './actionTypes'
 
+import * as apis from '../../apis'
+
 export function setCurSongId(sid, index) {
     return {
         type: actionTypes.SET_CUR_SONG_ID,
@@ -75,5 +77,27 @@ export function setDataSearch(data) {
     return {
         type: actionTypes.SET_DATA_SEARCH,
         data,
+    }
+}
+
+export function getSearchSong(id) {
+    return async function(dispatch) {
+        const response = await apis.getArtistSong(id)
+        if (response.data.err === 0) {
+            dispatch({type: actionTypes.SET_SEARCH_SONG, data: response.data.data.items})
+        } else {
+            dispatch({type: actionTypes.SET_SEARCH_SONG, data: null})
+        }
+    }
+}
+
+export function getSearchPlaylist(alias) {
+    return async function(dispatch) {
+        const response = await apis.getArtist(alias)
+        if (response.data.err === 0) {
+            dispatch({type: actionTypes.SET_SEARCH_PLAYLIST, data: response.data.data.sections[1].items})
+        } else {
+            dispatch({type: actionTypes.SET_SEARCH_PLAYLIST, data: null})
+        }
     }
 }
