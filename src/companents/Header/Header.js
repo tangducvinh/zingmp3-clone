@@ -33,11 +33,17 @@ function Header() {
     return (
         <div className={clsx(styles.container)}>
             <div className={clsx(styles.search)}>
-                <button className={clsx(styles.btnLeft)}>
+                <button 
+                    className={clsx(styles.btnLeft)}
+                    onClick={() => navigate(-1)}
+                >
                     <HiOutlineArrowLeft size={21}/>
                 </button>
 
-                <button className={clsx(styles.btnRight)}>
+                <button 
+                    className={clsx(styles.btnRight)}
+                    onClick={() => navigate(1)}
+                >
                     <HiOutlineArrowRight size={21}/>
                 </button>
 

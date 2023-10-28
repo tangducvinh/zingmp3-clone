@@ -13,10 +13,9 @@ import moment from 'moment'
 import * as apis from '../../../apis'
 
 function Control({ sourse, duration, audioEl }) {
-    const { pid } = useParams()
     const dispatch = useDispatch()
     const { isPlaying, isRandom , isVip, isLoad} = useSelector(state => state.play)
-    var { indexSong } = useSelector(state => state.music)
+    var { indexSong, curPlaylistId } = useSelector(state => state.music)
     const interval = useRef()
     const currentDurationEl = useRef()
     const totalDurationEl = useRef()
@@ -74,11 +73,11 @@ function Control({ sourse, duration, audioEl }) {
     const [ dataPlaylist, setDataPlayList ] = useState(null)
     useEffect(() => {
         async function getDataPlaylist() {
-            const response = await apis.getDetailtPlaylist(pid)
+            const response = await apis.getDetailtPlaylist(curPlaylistId)
             setDataPlayList(response?.data?.data?.song)
         }
 
-        if(pid === undefined) {
+        if(curPlaylistId === undefined) {
             btnPreviousElement.current.style.opacity = '0.5'
             btnNextElement.current.style.opacity = '0.5'
         } else {
@@ -88,7 +87,7 @@ function Control({ sourse, duration, audioEl }) {
         }
 
         getDataPlaylist()
-    }, [pid])
+    }, [curPlaylistId])
 
     // handle random song
     useEffect(() => {
@@ -111,7 +110,7 @@ function Control({ sourse, duration, audioEl }) {
 
     //handle previous song
     useEffect(() => {
-        if(indexSong === 0 || pid === undefined) btnPreviousElement.current.style.opacity = '0.5'  
+        if(indexSong === 0 || curPlaylistId === undefined) btnPreviousElement.current.style.opacity = '0.5'  
         else btnPreviousElement.current.style.opacity = '1'
     }, [indexSong])
 
@@ -179,8 +178,9 @@ function Control({ sourse, duration, audioEl }) {
     // handle ended song
     useEffect(() => {
         function handleEndSong() {
-            if(pid) handleNextSong()
-            if(isRepeat === repeatMode[2]) audioEl.current.play()
+            if(curPlaylistId && isRepeat === repeatMode[1]) handleNextSong()
+            else if(isRepeat === repeatMode[2]) audioEl.current.play()
+            else dispatch(action.play(false))
         }
 
         audioEl.current.addEventListener('ended', handleEndSong)

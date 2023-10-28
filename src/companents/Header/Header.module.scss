@@ -5,6 +5,7 @@
     align-items: center;
     height: 100%;
     background-color: var(--primary-bg);
+    padding: 0 59px;
 }
 
 .search {
@@ -18,7 +19,6 @@
     margin-right: 20px;
     color: var(--sidebar-text);
     cursor: pointer;
-    color: rgba(255, 255, 255, 0.6);
 }
 
 .formSeach {

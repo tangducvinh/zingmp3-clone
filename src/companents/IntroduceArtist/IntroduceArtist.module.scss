@@ -38,6 +38,11 @@
     align-items: center;
     justify-content: center;
     border-radius: 50%;
+    
+    &:hover {
+        cursor: pointer;
+        opacity: 0.8;
+    }
 }
 
 .wrapBottom {
@@ -49,6 +54,7 @@
 .care {
     color: #ffff;
     font-size: 14px;
+    font-weight: 500;
 }
 
 .careBtn {

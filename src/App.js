@@ -30,6 +30,7 @@ function App() {
       <Routes>
         <Route path={path.PUBLIC} element={ <Public /> }>
           <Route path={path.PROFILE_ARTIST} element={ <Artist /> }/>
+          <Route path={path.ARTIST_NAME} element={ <Artist /> }/>
           <Route path={path.WEEKCHART} element={ <WeekChart /> } />
           <Route path={path.NEW_RELEASE} element={ <NewRelease />} />
           <Route path={path.PLAYLIST_TITLE_PID} element={ <Album /> }/>

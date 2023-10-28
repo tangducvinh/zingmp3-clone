@@ -1,5 +1,5 @@
 import clsx from 'clsx'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import { useParams } from 'react-router-dom'
 
 import styles from './Artist.module.scss'
@@ -17,6 +17,7 @@ function Artist() {
     const [ songs, setSongs ] = useState(null)
     const [ playlists, setPlaylist ] = useState(null)
     const [ artists, setActists] = useState(null)
+    const ref = useRef()
 
     useEffect(() => {
         async function fetchArtist() {
@@ -31,9 +32,13 @@ function Artist() {
         fetchArtist()
     }, [name])
 
+    useEffect(() => {
+        ref.current.scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest"})
+    }, [name])
+
     return (
         <div className={clsx(styles.container)}>
-            <div className={clsx(styles.introduce)}>
+            <div className={clsx(styles.introduce)} ref={ref}>
                 <IntroduceArtist data={data}/>
             </div>
             
@@ -82,11 +87,11 @@ function Artist() {
                     <img src={data?.thumbnailM} className={clsx(styles.artistImg)}></img>
 
                     <div className={clsx(styles.content)}>
-                        <span className={clsx(styles.description)}>{data?.biography}</span>
+                        <p className={clsx(styles.description)} dangerouslySetInnerHTML={{ __html: data?.biography}}></p>
 
                         <div className={clsx(styles.statistic)}>
                             <div className={clsx(styles.inforAdd)}>
-                                <span className={clsx(styles.number)}>{data?.totalFollow}</span>
+                                <span className={clsx(styles.number)}>{Number(data?.totalFollow.toFixed(1)).toLocaleString()}</span>
                                 <span className={clsx(styles.text)}>Người quan tâm</span>
                             </div>
 

@@ -14,7 +14,7 @@ import { SlOptions, SlUserFollow } from 'react-icons/sl'
 import { FaRandom } from 'react-icons/fa'
 import { IoPlaySkipBackSharp, IoPlaySkipForwardSharp, IoRepeatOutline, IoShuffle } from 'react-icons/io5'
 import { PiMicrophoneStage } from 'react-icons/pi'
-import { HiOutlineSpeakerWave, HiOutlineSpeakerXMark, HiPlay} from 'react-icons/hi2'
+import { HiOutlineSpeakerWave, HiOutlineSpeakerXMark, HiPlay, HiPause} from 'react-icons/hi2'
 import { RxCaretSort } from 'react-icons/rx'
 import { TbRepeatOnce, TbPlayerPlayFilled } from 'react-icons/tb'
 import { IoMdTime } from 'react-icons/io'
@@ -67,6 +67,7 @@ const icons = {
     SlUserFollow,
     HiPlay,
     MdOutlineClear,
+    HiPause,
 }
 
 export default icons

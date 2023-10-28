@@ -18,6 +18,7 @@ const path = {
     VIDEO: 'video',
 
     // artist
+    ARTIST_NAME: 'nghe-si/:name',
 }
 
 export default path

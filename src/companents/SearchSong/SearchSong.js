@@ -11,8 +11,7 @@ function SearchSong() {
     const { dataSearch, dataArtistSong } = useSelector(state => state.music)
 
     useEffect(() => {
-        const id = dataSearch?.data?.data?.artists[0].id
-        dispatch(actions.getSearchSong(id))
+        dispatch(actions.getSearchSong(dataSearch?.data?.data?.artists[0]?.id))
     }, [dataSearch])
 
     function handleChooseSong(item, index) {

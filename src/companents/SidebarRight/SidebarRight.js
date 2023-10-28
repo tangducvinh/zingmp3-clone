@@ -87,7 +87,7 @@ function SidebarRight() {
                         <span className={clsx(styles.nextText)}>Tiếp theo</span>
                         <p className={clsx(styles.wrapSourseText)}>
                             <span className={clsx(styles.fromText)}>Từ playlist </span>
-                            <span className={clsx(styles.sourseText)}>{playlistData?.title}</span>
+                            <span className={clsx(styles.sourseText)}>{playlistData?.title.length < 40 ? playlistData?.title : `${playlistData?.title.slice(0,40)}...`}</span>
                         </p>
                     </div>
 

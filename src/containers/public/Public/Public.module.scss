@@ -29,14 +29,15 @@
     height: 70px;
     position: fixed;
     top: 0;
-    right: 59px;
-    left: 296px;
+    right: 0px;
+    left: 237px;
     z-index: 5;
 }
 
 .outlet {
     margin-top: 70px;
     width: 100%;
+    min-height: 91vh;
 }
 
 .sidebarRight {
