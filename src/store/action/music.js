@@ -101,3 +101,20 @@ export function getSearchPlaylist(alias) {
         }
     }
 }
+
+export function getDataZingchart() {
+    return async function(dispatch) {
+        const response = await apis.getZingchart()
+        if (response.data.err === 0) {
+            dispatch({
+                type: actionTypes.GET_ZINGCHART,
+                data: response.data.data,
+            })
+        } else {
+            dispatch({
+                type: actionTypes.GET_ZINGCHART,
+                data: null,
+            })
+        }
+    }
+}

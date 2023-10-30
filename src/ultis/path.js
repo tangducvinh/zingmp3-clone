@@ -2,6 +2,9 @@
 const path = {
     PUBLIC: '/',
     HOME: '',
+    ZINGCHART: 'zing-chart',
+    ZINGCHART_WEEK: 'zing-chart-tuan/:country/:id',
+
     PLAYLIST_TITLE_PID: 'playlist/:title/:pid',
     LOGIN: 'login',
     ALBUM_TITLE_ID: 'album/:title/:pid',

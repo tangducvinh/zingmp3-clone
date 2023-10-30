@@ -7,7 +7,6 @@ export function getHome() {
                 url: '/home',
                 method: 'get',
             })
-            console.log(response)
             resolve(response)
         } catch (error) {
             reject(error)

@@ -1,0 +1,79 @@
+
+.wrapTitle {
+    padding-top: 30px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.nameTitle {
+    font-size: 40px;
+    color: #fff;
+}
+
+.wrapIconPlay {
+    width: 36px;
+    height: 36px;
+    background-color: #ffff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.chart {
+    position: relative;
+    height: 300px;
+    margin-top: 40px;
+}
+
+.playlist {
+    margin-top: 12px;
+}
+
+.wrapBtn {
+    margin-top: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding-bottom: 40px;
+}
+
+.btnAdd {
+    width: 135px;
+    height: 37px;
+    border: solid 1px #ffff;
+    border-radius: 20px;
+    
+    &:hover {
+        cursor: pointer;
+        background-color: #2C2537;
+    }
+}
+
+.active {
+    display: none;
+}
+
+.rank {
+    padding: 30px 0;
+}
+
+.rankTitle {
+    font-size: 40px;
+    color: #ffff;
+    font-weight: 500;
+}
+
+.content {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    margin-top: 20px;
+}
+
+.countrySong {
+    width: 33.3333%;
+}
+
+

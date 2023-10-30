@@ -13,7 +13,7 @@ const actionTypes = {
     SET_DATA_SEARCH: "SET_DATA_SEARCH",
     SET_SEARCH_SONG: "SET_SEARCH_SONG",
     SET_SEARCH_PLAYLIST: "SET_SEARCH_PLAYLIST",
-    
+    GET_ZINGCHART: "GET_ZINGCHART",
 }
 
 export default actionTypes

@@ -89,3 +89,17 @@ export function getArtistSong(id) {
         }
     })
 }
+
+export function getZingchart() {
+    return new Promise( async (resolve, reject) => {
+        try {
+            const response = await axios({
+                url: '/charthome',
+                method: 'get',
+            })
+            resolve(response)
+        } catch(error) {
+            reject(error)
+        }
+    })
+}

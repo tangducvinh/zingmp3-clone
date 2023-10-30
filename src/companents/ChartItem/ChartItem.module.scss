@@ -1,0 +1,21 @@
+.wrapChart {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+}
+
+.toolTip {
+    background-color: #765989;
+    padding: 5px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+}
+
+.tooltipPercent {
+    font-size: 16px;
+    font-weight: 500;
+    color: #ffff;
+}

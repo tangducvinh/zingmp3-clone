@@ -23,6 +23,34 @@
     justify-content: start;
 }
 
+.inforItemZingchartM {
+    flex: 7;
+}
+
+.topSong {
+    font-size: 32px;
+    color: var(--gray-text);
+    font-weight: 500;
+    width: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.topSongZingchartM {
+    width: 40px;
+}
+
+.suggest {
+    font-size: 14px;
+    color: var(--gray-text);
+}
+
+.lineIcon {
+    color: var(--gray-text);
+    margin-right: 10px;
+}
+
 .name {
     color: var(--gray-text);
     font-size: 12px;
