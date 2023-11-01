@@ -1,0 +1,48 @@
+
+.wrapTitle {
+    display: flex;
+    gap: 8px;
+    padding-top: 40px;
+}
+
+.titleName {
+    color: #ffff;
+    font-size: 40px;
+    font-weight: 700;
+}
+
+.wrapBtnPlay {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background-color: var(--purple-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffff;
+}
+
+.wrapOption {
+    margin-top: 40px;
+    display: flex;
+    gap: 40px;
+}
+
+.optionName {
+    padding-bottom: 15px;
+    color: #DADADA;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.optionNameActive {
+    padding-bottom: 15px;
+    color: #ffff;
+    font-size: 24px;
+    border-bottom: 2.5px solid var(--purple-primary);
+    font-weight: 500;
+}
+
+.outlet {
+    margin-top: 10px;
+}

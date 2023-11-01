@@ -1,6 +1,6 @@
 import clsx from 'clsx'
 import { useDispatch, useSelector } from 'react-redux'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 
 import styles from './Zingchart.module.scss'
 import icons from '../../../ultis/icon'
@@ -16,9 +16,11 @@ function Zingchart() {
     const { dataZingchart } = useSelector(state => state.music)
     const [ dataPlaylist, setDataPlaylist ] = useState(dataZingchart.newRelease)
     const [ status, setStatus ] = useState(false)
+    const ref = useRef()
 
     useEffect(() => {
         dispatch(actions.getDataZingchart())
+        ref.current.scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" })
     }, [])
 
     function handleShowPlaylist() {
@@ -34,7 +36,7 @@ function Zingchart() {
 
     return (
         <div className={clsx(styles.container)}>
-            <div className={clsx(styles.wrapTitle)}>
+            <div className={clsx(styles.wrapTitle)} ref={ref}>
                 <h1 className={clsx(styles.nameTitle)}>#zingchart</h1>
                 <span 
                     className={clsx(styles.wrapIconPlay)}

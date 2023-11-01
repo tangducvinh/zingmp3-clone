@@ -1,5 +1,6 @@
 import clsx from 'clsx'
 import { useNavigate } from 'react-router-dom'
+import { useRef, useEffect } from 'react'
 
 import styles from './Home.module.scss'
 import { Slider } from '../../../companents/Slider'
@@ -12,15 +13,20 @@ import { SongChart } from '../../../companents/SongChart'
 function Home() {
     const { theme, weekChart } = useSelector(state => state.app)
     const navigate = useNavigate()
+    const ref = useRef()
 
     function handleChoseChart(link) {
         const path = link.split('.')[0]
         navigate(path)
     }
 
+    useEffect(() => {
+        ref.current.scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" })
+    }, [])
+
     return (
         <div className={clsx(styles.container)}>
-            <div className={clsx(styles.slider)}>
+            <div className={clsx(styles.slider)} ref={ref}>
                 <Slider />
             </div> 
 

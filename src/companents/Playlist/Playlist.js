@@ -1,5 +1,5 @@
 import clsx from 'clsx'
-import { memo } from 'react'
+import { memo, useRef, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import moment from 'moment'
 
@@ -11,6 +11,8 @@ import * as action from '../../store/action'
 function Playlist({ item, duration, total }) {
     const { RxCaretSort, BsDot } = icons
     const dispatch = useDispatch()
+    const ref = useRef()
+    const { curSongId } = useSelector(state => state.music)
 
     function handleChosseSong(item, index) {
         dispatch(action.setCurSongId(item.encodeId, index))
@@ -20,9 +22,13 @@ function Playlist({ item, duration, total }) {
         dispatch(action.setRecentPlaylist(item))
     }
 
+    useEffect(() => {
+        ref.current?.scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" });
+    }, [curSongId])
+
     return (
         <div className={clsx(styles.container)}>
-            <div className={clsx(styles.category)}>
+            <div className={clsx(styles.category)} ref={ref}>
                 <span className={clsx(styles.songText)}>
                     <span className={clsx(styles.icon)}><RxCaretSort size={20}/></span>
                     <span>BÀI HÁT</span>

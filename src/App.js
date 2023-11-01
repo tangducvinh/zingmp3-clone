@@ -18,6 +18,7 @@ import { SearchArtist } from './companents/SearchArtist'
 import { SearchMV } from './companents/SearchMV'
 import { Artist } from './containers/public/Artist'
 import { Zingchart } from './containers/public/Zingchart'
+import { ZingchartSongs } from './companents/ZingchartSongs'
 
 function App() {
   const dispatch = useDispatch()
@@ -32,7 +33,11 @@ function App() {
         <Route path={path.PUBLIC} element={ <Public /> }>
           <Route path={path.PROFILE_ARTIST} element={ <Artist /> }/>
           <Route path={path.ZINGCHART} element={ <Zingchart /> }/>
-          <Route path={path.ZINGCHART_WEEK} element={ <WeekChart /> }/>
+          <Route path={path.ZINGCHART_WEEK} element={ <WeekChart /> }>
+            <Route path={path.ZINGCHART_WEEK_VN} element={ <ZingchartSongs />}></Route>
+            <Route path={path.ZINGCHART_WEEK_USUK} element={ <ZingchartSongs />}></Route>
+            <Route path={path.ZINGCHART_WEEK_KPOP} element={ <ZingchartSongs />}></Route>
+          </Route>
           <Route path={path.ARTIST_NAME} element={ <Artist /> }/>
           <Route path={path.WEEKCHART} element={ <WeekChart /> } />
           <Route path={path.NEW_RELEASE} element={ <NewRelease />} />

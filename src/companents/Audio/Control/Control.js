@@ -27,6 +27,7 @@ function Control({ sourse, duration, audioEl }) {
     const repeatMode = ['off', 'on', 'one']
     const [isRepeat, setIsRepeat] = useState(repeatMode[0])
     const [repeatIcon, setRepeatIcon] = useState(controlBtn.repeat)
+    const { pid } = useParams()
 
     // handle play song
     useEffect(() => {
@@ -129,6 +130,8 @@ function Control({ sourse, duration, audioEl }) {
 
     //hanlde next song
     function handleNextSong() {
+        if (pid === undefined) dispatch(action.random(true))
+
         if (indexSong === dataPlaylist?.total - 2) {
             indexSong = 0
         } else if (isRepeat === repeatMode[2]) {
