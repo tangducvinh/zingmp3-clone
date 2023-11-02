@@ -28,7 +28,7 @@ export const menuSidebar = [
         play: <MdPlayCircleOutline size={20}/>,
     },
     {
-        path: 'library',
+        path: 'mymusic/song',
         text: 'Thư Viện',
         icon: <MdLibraryMusic size={24}/>,
         play: <MdPlayCircleOutline size={20}/>,

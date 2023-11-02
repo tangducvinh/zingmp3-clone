@@ -64,19 +64,6 @@ function SongChart() {
                 <div className={styles.chart}>
                     <ChartItem dataChart={songChart}/>
                 </div>
-                
-
-                {/* <div className={clsx(styles.wrapChart)}>
-                    {data && <Line data={data} options={options} />}
-                    <div 
-                        className={clsx(styles.toolTip)} 
-                        style={{top: tooltipState.top, left: tooltipState.left, display: tooltipState.display, position: 'absolute'}}
-                    >
-                        <InforSong item={songChart?.items?.find(item => item.encodeId === tooltipState.encodeId)} sizeSM sizeM/>
-                        <span className={clsx(styles.tooltipPercent)}>
-                            {`${Math.round(songChart?.items?.find(item => item.encodeId === tooltipState.encodeId)?.score / songChart?.chart?.totalScore * 100)}%`}</span>
-                    </div>
-                </div> */}
             </div>
         </div>
     )

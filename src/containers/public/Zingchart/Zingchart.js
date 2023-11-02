@@ -14,7 +14,7 @@ function Zingchart() {
     const { HiPlay } = icons
     const dispatch = useDispatch()
     const { dataZingchart } = useSelector(state => state.music)
-    const [ dataPlaylist, setDataPlaylist ] = useState(dataZingchart.newRelease)
+    const [ dataPlaylist, setDataPlaylist ] = useState(dataZingchart?.newRelease)
     const [ status, setStatus ] = useState(false)
     const ref = useRef()
 
@@ -46,7 +46,7 @@ function Zingchart() {
             </div>
 
             <div className={clsx(styles.chart)}>
-                <ChartItem dataChart={dataZingchart.RTChart} />
+                <ChartItem dataChart={dataZingchart?.RTChart} />
             </div> 
 
             <div className={clsx(styles.playlist)}>
@@ -54,6 +54,7 @@ function Zingchart() {
                     <div 
                         className={clsx(styles.song)}
                         onClick={() => handleChooseSong(item, index)}
+                        key={index}
                     >
                         <SongItem item={item} index={index} zingchart/>
                     </div>

@@ -1,4 +1,4 @@
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { Routes, Route } from 'react-router-dom'
 import { useEffect } from 'react'
 
@@ -19,6 +19,9 @@ import { SearchMV } from './companents/SearchMV'
 import { Artist } from './containers/public/Artist'
 import { Zingchart } from './containers/public/Zingchart'
 import { ZingchartSongs } from './companents/ZingchartSongs'
+import { Library } from './containers/public/Library'
+import { LibrarySong } from './companents/LibrarySong'
+import { LibraryAlbum } from './companents/LibraryAlbum'
 
 function App() {
   const dispatch = useDispatch()
@@ -51,6 +54,10 @@ function App() {
             <Route path={path.PLAYLIST_ALBUM} element={ <SearchPlaylist />}/>
             <Route path={path.ARTIST} element={ <SearchArtist />}/>
             <Route path={path.VIDEO} element={ <SearchMV />}/>
+          </Route>
+          <Route path={path.MYMUSIC} element={ <Library />}>
+              <Route path={path.MYMUSIC_SONG} element={ <LibrarySong />} />
+              <Route path={path.MYMUSIC_ALBUM} element={ <LibraryAlbum />} />
           </Route>
         </Route>
       </Routes>

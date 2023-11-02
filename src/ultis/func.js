@@ -13,6 +13,15 @@ export function handleSlider(array, size) {
     return array
 }
 
+export function handleBackSlice(a, end) {
+    for (let i = 0; i < a.length; i++) {
+        if (a[i] === 0) a[i] = end;
+        else a[i] -= 1;
+    }
+
+    return a;
+}
+
 export function handleSliderRank(array) {
     if (array[0] !== 6) {
         for (var i = 0; i <= 2; i++) {

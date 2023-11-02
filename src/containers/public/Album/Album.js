@@ -1,6 +1,6 @@
 import clsx from 'clsx'
 import { useParams, useLocation } from 'react-router-dom'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import moment from 'moment'
 import { useSelector, useDispatch } from 'react-redux'
 
@@ -24,6 +24,7 @@ function Album() {
     const { isPlaying } = useSelector(state => state.play)
     const dispatch = useDispatch()
     const location = useLocation()
+    const ref = useRef()
 
     useEffect(() => {
         async function fetchDetailPlaylist() {
@@ -53,6 +54,10 @@ function Album() {
 
         return () => clearTimeout(set)
     }, [data])
+
+    useEffect(() => {
+        ref.current.scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" })
+    }, [])
 
     function handlePlaySong() {
        dispatch(actions.play(!isPlaying))
@@ -115,7 +120,7 @@ function Album() {
                     </div>
                 </div>
         
-                <div className={clsx(styles.wrrapList)}>
+                <div className={clsx(styles.wrrapList)} ref={ref}>
                     <p className={clsx(styles.title)}>
                         <span className={clsx(styles.header)}>Lời tựa </span>
                         <span className={clsx(styles.singerName)}>{data.sortDescription}</span>

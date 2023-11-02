@@ -16,10 +16,10 @@ function CountrySong({ data }) {
     const dispatch = useDispatch()
 
     useEffect(() => {
-        if (data.country === 'vn') {
+        if (data?.country === 'vn') {
             setCountry('Việt Nam')
         }
-        else if (data.country === 'us') {
+        else if (data?.country === 'us') {
             setCountry("US_UK")
         }
         else setCountry("K-POP")
@@ -56,7 +56,10 @@ function CountrySong({ data }) {
 
             <div className={clsx(styles.playlist)}>
                 {data?.items?.filter((item, index) => index < 5).map((item, index) => (
-                    <div onClick={() => handleChooseSong(item, index)}>
+                    <div 
+                        onClick={() => handleChooseSong(item, index)}
+                        key={index}
+                    >
                         <SongItem item={item} zingchart index={index} nameSizeS zingchartM/>
                     </div>
                 ))}

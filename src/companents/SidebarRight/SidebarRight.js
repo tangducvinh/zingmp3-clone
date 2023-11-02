@@ -24,6 +24,16 @@ function SidebarRight() {
             const response = await apis.getDetailtPlaylist(curPlaylistId)
             setPlaylistData(response?.data?.data)
         }
+        
+        fecthPlaylist()
+
+    }, [])
+
+    useEffect(() => {
+        async function fecthPlaylist() {
+            const response = await apis.getDetailtPlaylist(curPlaylistId)
+            setPlaylistData(response?.data?.data)
+        }
 
         if (isChangePlaylist && curPlaylistId) fecthPlaylist()
 
@@ -87,7 +97,7 @@ function SidebarRight() {
                         <span className={clsx(styles.nextText)}>Tiếp theo</span>
                         <p className={clsx(styles.wrapSourseText)}>
                             <span className={clsx(styles.fromText)}>Từ playlist </span>
-                            <span className={clsx(styles.sourseText)}>{playlistData?.title.length < 40 ? playlistData?.title : `${playlistData?.title.slice(0,40)}...`}</span>
+                            <span className={clsx(styles.sourseText)}>{playlistData?.title.length < 30 ? playlistData?.title : `${playlistData?.title.slice(0,30)}...`}</span>
                         </p>
                     </div>
 

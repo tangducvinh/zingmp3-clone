@@ -24,6 +24,11 @@ const path = {
 
     // artist
     ARTIST_NAME: 'nghe-si/:name',
+
+    // mymusic
+    MYMUSIC: 'mymusic',
+    MYMUSIC_SONG: 'song',
+    MYMUSIC_ALBUM: 'album',
 }
 
 export default path

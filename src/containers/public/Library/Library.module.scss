@@ -1,0 +1,49 @@
+
+
+.wrapTitle {
+    padding-top: 40px;
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.titleName {
+    color: #ffff;
+    font-size: 40px;
+    font-weight: 600;
+}
+
+.wrapIconPlay {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: #ffff;
+    color: var(--primary-bg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.option {
+    margin-top: 40px;
+    display: flex;
+    gap: 25px;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.optionName {
+    font-size: 14px;
+    color: #ffff;
+    padding: 15px 0px;
+    font-weight: 500;
+    border-bottom: 2px solid transparent;
+}
+
+.optionNameActive {
+    font-size: 14px;
+    color: #ffff;
+    padding: 15px 0px;
+    font-weight: 500;
+    border-bottom: 2px solid var(--purple-primary);
+}

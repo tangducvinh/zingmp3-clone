@@ -3,7 +3,7 @@ import { HiTrendingUp, HiOutlineArrowLeft, HiOutlineArrowRight, HiOutlineChevron
 import { MdLibraryMusic, MdFavoriteBorder, MdPlayCircleOutline, MdMusicVideo, MdOutlineClear } from 'react-icons/md'
 import { PiMusicNotesPlus } from 'react-icons/pi'
 import { BsMenuButtonWide, BsPlayCircle, BsPauseCircle, BsFillPlayFill, BsDot, BsFillPauseFill, BsPlayCircleFill } from 'react-icons/bs'
-import { AiOutlineStar, AiOutlineSetting, AiOutlineHeart, AiFillHeart, AiOutlineLine } from 'react-icons/ai'
+import { AiOutlineStar, AiOutlineSetting, AiOutlineHeart, AiFillHeart, AiOutlineLine, AiOutlineLeft, AiOutlineRight } from 'react-icons/ai'
 import { LuHistory, LuMusic} from 'react-icons/lu'
 import { BiSolidPlaylist, BiWindows} from 'react-icons/bi'
 import { CgAlbum } from 'react-icons/cg'
@@ -69,6 +69,8 @@ const icons = {
     MdOutlineClear,
     HiPause,
     AiOutlineLine,
+    AiOutlineLeft,
+    AiOutlineRight,
 }
 
 export default icons

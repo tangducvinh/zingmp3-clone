@@ -45,7 +45,7 @@ function ChartItem({ dataChart }) {
                     }
 
                     const currentCounter = tooltip.body[0].lines[0].replace(',', '')
-                    const encodeId = counterArray.find(item => (item.data.some(item => item == currentCounter)) == true).songId
+                    const encodeId = counterArray.find(item => (item.data.some(item => item === currentCounter)) === true).songId
                     
                     const newTooltipData = {
                         display: 'flex',
@@ -65,11 +65,11 @@ function ChartItem({ dataChart }) {
     }
 
     useEffect(() => {
-        const labels = dataChart?.chart?.times?.filter(item => item.hour % 2 == 0).map(item => `${item.hour}:00`)
+        const labels = dataChart?.chart?.times?.filter(item => item.hour % 2 === 0).map(item => `${item.hour}:00`)
         const datasets = []
         for (let i = 0; i <= 2; i++) {
             datasets.push({
-                data: dataChart?.chart?.items[Object.keys(dataChart?.chart?.items)[i]]?.filter(item => item.hour % 2 == 0)?.map(item => item.counter),
+                data: dataChart?.chart?.items[Object.keys(dataChart?.chart?.items)[i]]?.filter(item => item.hour % 2 === 0)?.map(item => item.counter),
                 borderColor: i === 0 ? '#4A7ED0' : i === 1 ? '#27BD9C' : '#E35050',
                 tension: 0.2,
                 borderWidth: 2,
@@ -81,7 +81,7 @@ function ChartItem({ dataChart }) {
         }
 
         setData({labels, datasets})
-    }, [dataChart.chart])
+    }, [dataChart?.chart])
 
     return (
         <div className={clsx(styles.wrapChart)}>
