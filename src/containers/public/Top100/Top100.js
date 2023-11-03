@@ -10,9 +10,9 @@ function Top100() {
     const { dataTop100 } = useSelector(state => state.music) 
     const dispatch = useDispatch()
 
-    // useEffect(() => {
-    //     dispatch(actions.getDataTop100())
-    // }, [])
+    useEffect(() => {
+        dispatch(actions.getDataTop100())
+    }, [])
     
     return (
         <div className={clsx(styles.container)}>
