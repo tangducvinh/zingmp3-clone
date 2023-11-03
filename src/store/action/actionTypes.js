@@ -14,6 +14,7 @@ const actionTypes = {
     SET_SEARCH_SONG: "SET_SEARCH_SONG",
     SET_SEARCH_PLAYLIST: "SET_SEARCH_PLAYLIST",
     GET_ZINGCHART: "GET_ZINGCHART",
+    SET_DATA_TOP100: "SET_DATA_TOP100",
 }
 
 export default actionTypes

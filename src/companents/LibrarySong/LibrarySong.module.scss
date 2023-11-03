@@ -1,0 +1,22 @@
+
+
+.empty {
+    gap: 20px;
+    align-items: center;
+    height: 220px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.textAnnouncement {
+    font-size: 16px;
+    color: var(--gray-text);
+}
+
+.btnDiscover {
+    width: 167px;
+    height: 37px;
+    border-radius: 20px;
+    background-color: var(--purple-primary);
+}

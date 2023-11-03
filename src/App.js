@@ -22,6 +22,9 @@ import { ZingchartSongs } from './companents/ZingchartSongs'
 import { Library } from './containers/public/Library'
 import { LibrarySong } from './companents/LibrarySong'
 import { LibraryAlbum } from './companents/LibraryAlbum'
+import { NewRank } from './containers/public/NewRank'
+import { ThemeGenre } from './containers/public/ThemeGenre'
+import { Top100 } from './containers/public/Top100' 
 
 function App() {
   const dispatch = useDispatch()
@@ -59,6 +62,9 @@ function App() {
               <Route path={path.MYMUSIC_SONG} element={ <LibrarySong />} />
               <Route path={path.MYMUSIC_ALBUM} element={ <LibraryAlbum />} />
           </Route>
+          <Route path={path.NEW_RANK} element={ <NewRank />}/>
+          <Route path={path.THEME} element={ <ThemeGenre />}/>
+          <Route path={path.TOP_100} element={ <Top100 />}/>
         </Route>
       </Routes>
     </div>

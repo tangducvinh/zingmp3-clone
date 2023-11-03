@@ -6,9 +6,9 @@ import styles from './Zingchart.module.scss'
 import icons from '../../../ultis/icon'
 import * as actions from '../../../store/action'
 import { ChartItem } from '../../../companents/ChartItem'
-import { SongItem } from '../../../companents/SongItem'
 import { Button } from '../../../companents/Button'
 import { CountrySong } from '../../../companents/CountrySong'
+import { RankSongPlaylist } from '../../../companents/RankSongPlaylist'
 
 function Zingchart() {
     const { HiPlay } = icons
@@ -28,12 +28,6 @@ function Zingchart() {
         setStatus(true)
     }
 
-    function handleChooseSong(item, index) {
-        dispatch(actions.setCurSongId(item.encodeId, index))
-        dispatch(actions.play(true))
-        dispatch(actions.setRecentPlaylist(item))
-    }
-
     return (
         <div className={clsx(styles.container)}>
             <div className={clsx(styles.wrapTitle)} ref={ref}>
@@ -50,6 +44,10 @@ function Zingchart() {
             </div> 
 
             <div className={clsx(styles.playlist)}>
+                <RankSongPlaylist data={dataPlaylist}/>
+            </div>
+
+            {/* <div className={clsx(styles.playlist)}>
                 {dataPlaylist?.map((item, index) => 
                     <div 
                         className={clsx(styles.song)}
@@ -59,7 +57,7 @@ function Zingchart() {
                         <SongItem item={item} index={index} zingchart/>
                     </div>
                 )}
-            </div>
+            </div> */}
 
             <div className={clsx(styles.wrapBtn, {[styles.active]: status})}>
                 <div 

@@ -1,0 +1,29 @@
+
+
+.wrapTitle {
+    padding-top: 40px;
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.title {
+    font-size: 40px;
+    color: #ffff;
+    font-weight: 700;
+}
+
+.btnPlay {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background-color: #ffff;
+    color: var(--primary-bg);
+}
+
+.playlist {
+    margin-top: 30px;
+}

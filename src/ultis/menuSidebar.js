@@ -1,4 +1,5 @@
 import icons from './icon'
+import path from './path'
 
 const { 
     RiCompassDiscoverLine, 
@@ -37,13 +38,13 @@ export const menuSidebar = [
 
 export const menuSidebarRank = [
     {
-        path: 'moi-phat-hanh',
+        path: path.NEW_RANK,
         text: 'BXH Nhạc Mới',
         icon: <PiMusicNotesPlus size={23}/>,
         play: <MdPlayCircleOutline size={20}/>,
     },
     {
-        path: 'hub',
+        path: path.THEME,
         text: 'Chủ Đề & Thể Loại',
         icon: <BsMenuButtonWide size={21}/>,
     },

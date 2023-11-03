@@ -29,6 +29,9 @@ const path = {
     MYMUSIC: 'mymusic',
     MYMUSIC_SONG: 'song',
     MYMUSIC_ALBUM: 'album',
+    NEW_RANK: 'moi-phat-hanh',
+    THEME: 'hub',
+    TOP_100: 'top100',
 }
 
 export default path

@@ -9,6 +9,7 @@ const initState = {
     dataArtistSong: null,
     dataSearchPlaylist: null,
     dataZingchart: null,
+    dataTop100: null,
 }
 
 const musicReducer = (state = initState, action) => {
@@ -58,6 +59,11 @@ const musicReducer = (state = initState, action) => {
             return {
                 ...state,
                 dataZingchart: action.data,
+            }
+        case actionTypes.SET_DATA_TOP100:
+            return {
+                ...state,
+                dataTop100: action.data,
             }
         default: 
             return state

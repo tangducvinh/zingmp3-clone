@@ -118,3 +118,20 @@ export function getDataZingchart() {
         }
     }
 }
+
+export function getDataTop100() {
+    return async function(dispatch) {
+        const response = await apis.getTop100()
+        if (response.data.err === 0) {
+            dispatch({
+                type: actionTypes.SET_DATA_TOP100,
+                data: response.data.data,
+            })
+        } else {
+            dispatch({
+                type: actionTypes.SET_DATA_TOP100,
+                data: null,
+            })
+        }
+    }
+}
