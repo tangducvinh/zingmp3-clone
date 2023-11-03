@@ -31,6 +31,7 @@ function App() {
 
   useEffect(() => {
     dispatch(actions.getHome())
+    dispatch(actions.getDataTop100())
   }, [])
 
   return ( 
