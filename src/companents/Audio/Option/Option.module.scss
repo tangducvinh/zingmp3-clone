@@ -53,10 +53,27 @@
     align-items: center;
 }
 
+.line {
+    width: 70px;
+    height: 3px;
+    background-color: #737070;
+    position: relative;
+    border-radius: 20px;
+}
+
+.childrenLine {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #fff;
+}
+
 .volumeInput {
     width: 70px;
     height: 3px;
-    color: #fff;
+    color: #ffff;
     cursor: pointer;
 }
 

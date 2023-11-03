@@ -102,9 +102,9 @@ function Control({ sourse, duration, audioEl }) {
     }
 
     function handleRandomSong() {
-        let random = Math.round(Math.random() * (dataPlaylist.total - 1))
+        let random = Math.round(Math.random() * (dataPlaylist?.total - 1))
         while(indexSong === random) {
-            random = Math.round(Math.random() * (dataPlaylist.total - 1))
+            random = Math.round(Math.random() * (dataPlaylist?.total - 1))
         }
         return random
     }

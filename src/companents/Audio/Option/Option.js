@@ -13,6 +13,7 @@ function Option({ audioEl }) {
     const dispatch = useDispatch()
     const { sidebarRight } = useSelector(state => state.play)
     const [ volume, setVolume ] = useState(70)
+    const [ statusValume, setStatusValume ] = useState(false)
 
     function handleStatusSidebarRight() {
         dispatch(actions.sidebarRight(!sidebarRight))
@@ -60,15 +61,28 @@ function Option({ audioEl }) {
                         }
                     </div>
 
-                    <input 
-                        type='range' 
-                        step={1} min={0} 
-                        max={100} 
-                        value={volume}
-                        onChange={handleChangeVolume}
-                        className={clsx(styles.volumeInput)}
-                    >
-                    </input>
+                    {statusValume ? 
+                        <input 
+                            type='range' 
+                            step={1} min={0} 
+                            max={100} 
+                            value={volume}
+                            onChange={handleChangeVolume}
+                            className={clsx(styles.volumeInput)}
+                            onMouseLeave={() => setStatusValume(false)}
+                        >
+                        </input> : 
+                        <div 
+                            className={clsx(styles.line)}
+                            onMouseEnter={() => setStatusValume(true)}
+                        >
+                            <span 
+                                className={clsx(styles.childrenLine)}
+                                style={{width: `${volume}%`}}
+                            >
+                            </span>
+                        </div>
+                    }
                 </div>
 
                 <div className={clsx(styles.row)}></div>
