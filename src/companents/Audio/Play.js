@@ -26,7 +26,7 @@ function Play() {
             ])
 
             if (res1.data.err === 0) {
-                if(res2.data.err === 0) {
+                if (res2.data.err === 0) {
                     setInfor(res1.data.data)
                 }
             }

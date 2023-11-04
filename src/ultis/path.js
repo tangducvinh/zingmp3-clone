@@ -32,6 +32,7 @@ const path = {
     NEW_RANK: 'moi-phat-hanh',
     THEME: 'hub',
     TOP_100: 'top100',
+    HISTORY: 'history',
 }
 
 export default path

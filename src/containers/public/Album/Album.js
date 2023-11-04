@@ -77,7 +77,7 @@ function Album() {
                         className={clsx(styles.wrrapImg)}
                         onClick={handlePlaySong}
                     >
-                        <img className={clsx(styles.imgAlbum)} src={data.thumbnailM}></img>
+                        <img className={clsx(styles.imgAlbum)} src={data?.thumbnailM}></img>
 
                         {isPlaying ? 
                             <span className={clsx(styles.audioSpinner)}>
@@ -89,18 +89,18 @@ function Album() {
                         }
                     </div>
 
-                    <h3 className={clsx(styles.name)}>{data.title}</h3>
+                    <h3 className={clsx(styles.name)}>{data?.title}</h3>
 
                     <p>
                         <span>Cập nhật: </span>
-                        <span>{moment.unix(data.contentLastUpdate).format("DD/MM/YYYY")}</span>
+                        <span>{moment.unix(data?.contentLastUpdate).format("DD/MM/YYYY")}</span>
                     </p>
 
                     <p>
-                        <span className={clsx(styles.singer)}>{data.artistsNames}</span>
+                        <span className={clsx(styles.singer)}>{data?.artistsNames}</span>
                     </p>
 
-                    <p> {`${Math.round(data.like / 1000)}K người yêu thích`}</p>
+                    <p> {`${Math.round(data?.like / 1000)}K người yêu thích`}</p>
 
                     <div 
                         className={clsx(styles.play)}
@@ -123,7 +123,7 @@ function Album() {
                 <div className={clsx(styles.wrrapList)} ref={ref}>
                     <p className={clsx(styles.title)}>
                         <span className={clsx(styles.header)}>Lời tựa </span>
-                        <span className={clsx(styles.singerName)}>{data.sortDescription}</span>
+                        <span className={clsx(styles.singerName)}>{data?.sortDescription}</span>
                     </p>
 
                     <div className={clsx(styles.playlist)}>

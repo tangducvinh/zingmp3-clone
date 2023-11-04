@@ -5,7 +5,7 @@ import styles from './Theme.module.scss'
 import { LinkAll } from '../LinkAll'
 import { ItemTheme } from '../ItemTheme'
 
-function Theme({ data }) {
+function Theme({ data, full }) {
     return (
         <div className={clsx(styles.container)}>
             <div className={clsx(styles.wrapTitle)}>
@@ -15,14 +15,25 @@ function Theme({ data }) {
             </div>
 
             <div className={clsx(styles.content)}>
-                {data?.items?.filter((item, index) => index < 5).map(item => (
-                    <div 
-                        className={clsx(styles.wrapItem)}
-                        key={item.encodeId}
-                    > 
-                        <ItemTheme item={item}></ItemTheme>
-                    </div>
-                ))}
+                {full ? 
+                    data?.items?.map(item => (
+                        <div 
+                            className={clsx(styles.wrapItem)}
+                            key={item.encodeId}
+                        > 
+                            <ItemTheme item={item}></ItemTheme>
+                        </div>
+                    )) 
+                    : 
+                    data?.items?.filter((item, index) => index < 5).map(item => (
+                        <div 
+                            className={clsx(styles.wrapItem)}
+                            key={item.encodeId}
+                        > 
+                            <ItemTheme item={item}></ItemTheme>
+                        </div>
+                    ))
+                }
             </div>
         </div>
     )

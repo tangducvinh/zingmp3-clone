@@ -10,6 +10,7 @@ import styles from './Public.module.scss'
 
 function Public() {
     const { sidebarRight } = useSelector(state => state.play)
+    const { curSongId } = useSelector(state => state.music)
     
     return (
         <div className={clsx(styles.container)}>
@@ -26,6 +27,8 @@ function Public() {
                     <div className={clsx(styles.outlet)}>
                         <Outlet />
                     </div>
+
+                    {curSongId && <div className={clsx(styles.bottom)}></div>}
                 </div>
 
                 <div className={clsx(styles.sidebarRight)}>
@@ -33,9 +36,11 @@ function Public() {
                 </div>
             </div>
 
-            <div className={clsx(styles.audio)}>
-                <Audio />
-            </div>
+            {curSongId && 
+                <div className={clsx(styles.audio)}>
+                    <Audio />
+                </div>
+            }
         </div>
     )
 }

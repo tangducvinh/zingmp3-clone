@@ -1,4 +1,4 @@
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { Routes, Route } from 'react-router-dom'
 import { useEffect } from 'react'
 
@@ -25,13 +25,15 @@ import { LibraryAlbum } from './companents/LibraryAlbum'
 import { NewRank } from './containers/public/NewRank'
 import { ThemeGenre } from './containers/public/ThemeGenre'
 import { Top100 } from './containers/public/Top100' 
+import { History } from './containers/public/History'
 
 function App() {
   const dispatch = useDispatch()
+  const { dataArtistSong, recentPlaylist } = useSelector(state => state.music)
 
   useEffect(() => {
     dispatch(actions.getHome())
-    // dispatch(actions.getDataTop100())
+    dispatch(actions.getDataTop100())
   }, [])
 
   return ( 
@@ -54,7 +56,7 @@ function App() {
           <Route path={path.LOGIN} element={ <Login /> }/>
           <Route path={path.SEARCH} element={ <Search />}>
             <Route path={path.ALL} element={ <SearchAll />}/>
-            <Route path={path.SONG} element={ <SearchSong />}/>
+            <Route path={path.SONG} element={ <SearchSong data={dataArtistSong}/>}/>
             <Route path={path.PLAYLIST_ALBUM} element={ <SearchPlaylist />}/>
             <Route path={path.ARTIST} element={ <SearchArtist />}/>
             <Route path={path.VIDEO} element={ <SearchMV />}/>
@@ -66,6 +68,9 @@ function App() {
           <Route path={path.NEW_RANK} element={ <NewRank />}/>
           <Route path={path.THEME} element={ <ThemeGenre />}/>
           <Route path={path.TOP_100} element={ <Top100 />}/>
+          <Route path={path.HISTORY} element={ <History />}>
+            <Route path={path.MYMUSIC_SONG} element={ <SearchSong data={recentPlaylist} hide/>}></Route>
+          </Route>
         </Route>
       </Routes>
     </div>

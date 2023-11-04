@@ -1,12 +1,15 @@
 import clsx from 'clsx'
 import { NavLink, Link } from 'react-router-dom'
 import { AiOutlinePlus } from 'react-icons/ai'
+import { useSelector } from 'react-redux'
 
 import styles from './SidebarLeft.module.scss'
 import logo from '../../asets/img/logo.svg'
 import { menuSidebar, menuSidebarRank, menuSidebarMymusic } from '../../ultis/menuSidebar'
 
 function SidebarLeft() {
+    const { curSongId } = useSelector(state => state.music)
+
     return (
         <div className={clsx(styles.container)}>
             <div className={clsx(styles.logo)}>
@@ -58,12 +61,16 @@ function SidebarLeft() {
                         </Link>
                     )}
                 </div>
+
+                {curSongId && <div className={clsx(styles.fakeCreatPlaylist)}></div>}
             </div>
 
-            <div className={clsx(styles.creatPlaylist)}>
+            <div className={clsx(styles.creatPlaylist, {[styles.creatPlaylistBottom]: curSongId})}>
                 <i className={clsx(styles.iconPlus)}><AiOutlinePlus /></i>
                 <span>Tạo playlist mới</span>
             </div>
+
+            {curSongId && <div className={clsx(styles.fakeAudio)}></div>}
         </div>
     )
 }

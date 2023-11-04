@@ -5,10 +5,11 @@ import { useEffect } from 'react'
 import styles from './SearchSong.module.scss'
 import { SongItem } from '../SongItem'
 import * as actions from '../../store/action'
+import { LibrarySongEmpty } from '../LibrarySongEmpty' 
 
-function SearchSong() {
+function SearchSong({data, hide}) {
     const dispatch = useDispatch()
-    const { dataSearch, dataArtistSong } = useSelector(state => state.music)
+    const { dataSearch } = useSelector(state => state.music)
 
     useEffect(() => {
         dispatch(actions.getSearchSong(dataSearch?.data?.data?.artists[0]?.id))
@@ -22,18 +23,22 @@ function SearchSong() {
 
     return (
         <div className={clsx(styles.container)}>
-            <h1 className={clsx(styles.titleName)}>Bài Hát</h1>
+            {!hide && <h1 className={clsx(styles.titleName)}>Bài Hát</h1>}
 
-            <div className={clsx(styles.wrapSongs)}>
-                {dataArtistSong?.map((item, index) => (
-                    <div 
-                        onClick={() => handleChooseSong(item, index)}
-                        key={item.encodeId}
-                    >
-                        <SongItem item={item}/>
-                    </div>
-                ))}
-            </div>
+            {data.length >= 1 ?
+                <div className={clsx(styles.wrapSongs)}>
+                    {data?.map((item, index) => (
+                        <div 
+                            onClick={() => handleChooseSong(item, index)}
+                            key={item.encodeId}
+                        >
+                            <SongItem item={item}/>
+                        </div>
+                    ))}
+                </div> 
+                :
+                <LibrarySongEmpty />
+            }
         </div>
     )
 }

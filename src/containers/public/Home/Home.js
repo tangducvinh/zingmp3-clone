@@ -9,6 +9,7 @@ import { Theme } from '../../../companents/Theme'
 import { SongRank } from '../../../companents/SongRank'
 import { useSelector } from 'react-redux'
 import { SongChart } from '../../../companents/SongChart'
+import { Mutating } from '../../../companents/Spinner'
 
 function Home() {
     const { theme, weekChart } = useSelector(state => state.app)
@@ -26,6 +27,8 @@ function Home() {
 
     return (
         <div className={clsx(styles.container)}>
+            {!theme && <div className={clsx(styles.loading)}><Mutating /></div>}
+
             <div className={clsx(styles.slider)} ref={ref}>
                 <Slider />
             </div> 

@@ -28,7 +28,7 @@ const musicReducer = (state = initState, action) => {
         case actionTypes.SET_RECENT_PLAYLIST:
             let songPlaylist
 
-            state.recentPlaylist = state.recentPlaylist.filter(item => item.encodeId !== action.data.encodeId)
+            state.recentPlaylist = state.recentPlaylist?.filter(item => item.encodeId !== action.data.encodeId)
 
             if(state.recentPlaylist.length < 30) songPlaylist = [action.data, ...state.recentPlaylist]
             else {

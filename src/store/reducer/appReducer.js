@@ -3,7 +3,7 @@ import actionTypes from '../action/actionTypes'
 const initState = {
     banner: [],
     newRelease: {},
-    theme: [],
+    theme: null,
     weekChart: [],
     rankSong: {},
     songChart: {},

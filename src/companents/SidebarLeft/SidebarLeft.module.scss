@@ -79,7 +79,6 @@
     flex: 1;
     overflow-y: scroll;
     padding-top: 15px;
-    margin-bottom: 144px;
 } 
 
 .rank {
@@ -122,13 +121,25 @@
     border-top: 1px solid rgba(255, 255, 255, 0.1);
     font-size: 15px;
     position: fixed;
-    bottom: 90px;
     background-color: var(--sidebar-bg);
     width: 237px;
+    bottom: 0;
+}
+
+.creatPlaylistBottom {
+    bottom: 90px;
 }
 
 .iconPlus {
     margin-left: 24px;
+}
+
+.fakeCreatPlaylist {
+    height: 54px;
+}
+
+.fakeAudio {
+    height: 91px;
 }
 
 

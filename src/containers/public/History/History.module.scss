@@ -1,0 +1,36 @@
+
+.wrapTitle {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.title {
+    font-size: 24px;
+    font-weight: 600;
+    padding-right: 20px;
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    color: #fff;
+}
+
+.wrapOption {
+    display: flex;
+    gap: 30px;
+    margin-left: 20px;
+}
+
+.optionName {
+    padding: 15px 0;
+    color: var(--gray-text);
+    font-size: 14px;
+    border-bottom: 2px solid transparent;
+    font-weight: 500;
+}
+
+.optionNameActive {
+    padding: 15px 0;
+    color: #ffff;
+    font-size: 14px;
+    border-bottom: 2px solid var(--purple-primary);
+    font-weight: 500;
+}

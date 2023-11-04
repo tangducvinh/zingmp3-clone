@@ -10,9 +10,7 @@ function Top100() {
     const { dataTop100 } = useSelector(state => state.music) 
     const dispatch = useDispatch()
 
-    useEffect(() => {
-        dispatch(actions.getDataTop100())
-    }, [])
+    console.log(dataTop100)
     
     return (
         <div className={clsx(styles.container)}>
@@ -20,6 +18,22 @@ function Top100() {
                 <>
                     <div className={clsx(styles.prominent)}>
                         <Theme data={dataTop100[0]} />
+                    </div>
+
+                    <div className={clsx(styles.prominent)}>
+                        <Theme data={dataTop100[1]} full/>
+                    </div>
+
+                    <div className={clsx(styles.prominent)}>
+                        <Theme data={dataTop100[2]} />
+                    </div>
+
+                    <div className={clsx(styles.prominent)}>
+                        <Theme data={dataTop100[3]} full/>
+                    </div>
+
+                    <div className={clsx(styles.prominent)}>
+                        <Theme data={dataTop100[4]} full/>
                     </div>
                 </>
             }

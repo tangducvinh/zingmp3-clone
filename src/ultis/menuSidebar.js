@@ -57,7 +57,7 @@ export const menuSidebarRank = [
 
 export const menuSidebarMymusic = [
     {
-        path: 'mymusic/hitory',
+        path: `${path.HISTORY}/${path.MYMUSIC_SONG}`,
         text: 'Nghe gần đây',
         icon: <LuHistory size={24}/>,
     },
