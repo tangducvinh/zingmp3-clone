@@ -6,7 +6,6 @@ import styles from './NewRelease.module.scss'
 import { Button } from '../Button'
 import { InforSong } from '../InforSong'
 import * as actions from '../../store/action'
-import { LinkAll } from '../LinkAll'
 
 function NewRelease() {
     const { newRelease } = useSelector(state => state.app)
@@ -55,8 +54,6 @@ function NewRelease() {
                         <Button item={{text: "Quốc Tế"}}></Button>
                     </div>
                 </div>
-
-                <LinkAll path={newRelease.link}></LinkAll>
             </div>
 
             <div className={clsx(styles.content)}>

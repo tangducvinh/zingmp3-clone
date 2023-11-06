@@ -9,14 +9,15 @@ import icons from '../../ultis/icon'
 import * as apis from '../../apis'
 import { InforSong } from '../InforSong'
 import * as actions from '../../store/action'
+import { Mutating } from '../Spinner'
 
 function SidebarRight() {
     const { IoMdTime, SlOptions } = icons
     const [ isActive, setIsActive ] = useState(1)
-    const [ playlistData, setPlaylistData ] = useState()
+    const [ playlistData, setPlaylistData ] = useState(null)
     const { curSongId, curPlaylistId, recentPlaylist } = useSelector(state => state.music)
     const { isPlaying, sidebarRight, isChangePlaylist} = useSelector(state => state.play)
-    const [ curSongData, setCurSongData ]  = useState()
+    const [ curSongData, setCurSongData ]  = useState(null)
     const dispatch = useDispatch()
 
     useEffect(() => {
@@ -84,11 +85,18 @@ function SidebarRight() {
 
             {isActive === 1 && 
                 <div className={clsx(styles.wrapPlaylist)}>
-                    <div className={clsx(styles.wrapInforSong, styles.activeCurSong)}> 
+                    {(playlistData === null || curSongData === null) && 
+                        <div className={clsx(styles.loading)}><Mutating /></div>
+                    }
+
+                    <div 
+                        className={clsx(styles.wrapInforSong, styles.activeCurSong)}
+                        onClick={() => dispatch(actions.play(!isPlaying))}
+                    > 
                         <InforSong 
                             item={curSongData} 
                             sizeM 
-                            play 
+                            play={!isPlaying} 
                             playing={isPlaying}
                         />
                     </div>

@@ -135,3 +135,10 @@ export function getDataTop100() {
         }
     }
 }
+
+export function setDataHistoryAlbums(data) {
+    return {
+        type: actionTypes.SET_HISTORY_ALBUMS,
+        data,
+    }
+}

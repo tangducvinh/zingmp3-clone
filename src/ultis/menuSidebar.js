@@ -62,24 +62,24 @@ export const menuSidebarMymusic = [
         icon: <LuHistory size={24}/>,
     },
     {
-        path: 'mymusic/favorite',
+        path: 'mymusic/song',
         text: 'Bài hát yêu thích',
         icon: <MdFavoriteBorder size={24}/>,
         play: <MdPlayCircleOutline size={20}/>,
     },
     {
-        path: 'mymusic/playlist',
+        path: 'mymusic/album',
         text: 'Playlist',
         icon: <BiSolidPlaylist size={24}/>,
     },
-    {
-        path: 'mymusic/album',
-        text: 'Album',
-        icon: <CgAlbum size={24}/>,
-    },
-    {
-        path: 'mymusic/upload',
-        text: 'Đã tải lên',
-        icon: <FiUpload size={24}/>,
-    },
+    // {
+    //     path: 'mymusic/album',
+    //     text: 'Album',
+    //     icon: <CgAlbum size={24}/>,
+    // },
+    // {
+    //     path: 'mymusic/upload',
+    //     text: 'Đã tải lên',
+    //     icon: <FiUpload size={24}/>,
+    // },
 ]

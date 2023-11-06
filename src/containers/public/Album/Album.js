@@ -34,6 +34,7 @@ function Album() {
 
             if(response.data.err === 0) {
                 setData(response.data?.data)
+                dispatch(actions.setDataHistoryAlbums(response.data.data))
             }
         }
         fetchDetailPlaylist(pid)

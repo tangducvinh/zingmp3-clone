@@ -1,22 +1,23 @@
 import clsx from 'clsx'
 import { useSelector, useDispatch } from 'react-redux'
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 
 import styles from './Top100.module.scss'
 import { Theme } from '../../../companents/Theme'
-import * as actions from '../../../store/action'
 
 function Top100() {
     const { dataTop100 } = useSelector(state => state.music) 
-    const dispatch = useDispatch()
+    const ref = useRef()
 
-    console.log(dataTop100)
+    useEffect(() => {
+        ref.current.scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" })
+    }, [])
     
     return (
         <div className={clsx(styles.container)}>
             {dataTop100 && 
                 <>
-                    <div className={clsx(styles.prominent)}>
+                    <div className={clsx(styles.prominent)} ref={ref}>
                         <Theme data={dataTop100[0]} />
                     </div>
 

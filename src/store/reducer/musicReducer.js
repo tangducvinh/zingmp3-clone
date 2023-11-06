@@ -10,6 +10,7 @@ const initState = {
     dataSearchPlaylist: null,
     dataZingchart: null,
     dataTop100: null,
+    dataHistoryAlbums: [],
 }
 
 const musicReducer = (state = initState, action) => {
@@ -64,6 +65,17 @@ const musicReducer = (state = initState, action) => {
             return {
                 ...state,
                 dataTop100: action.data,
+            }
+        case actionTypes.SET_HISTORY_ALBUMS:
+            let newArray = state.dataHistoryAlbums.filter(item => item.encodeId !== action.data.encodeId)
+            if(newArray.length > 10) {
+                newArray.pop()
+            }
+            newArray = [action.data, ...newArray]
+
+            return {
+                ...state,
+                dataHistoryAlbums: newArray,
             }
         default: 
             return state

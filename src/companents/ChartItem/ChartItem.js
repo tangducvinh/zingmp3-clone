@@ -45,7 +45,7 @@ function ChartItem({ dataChart }) {
                     }
 
                     const currentCounter = tooltip.body[0].lines[0].replace(',', '')
-                    const encodeId = counterArray.find(item => (item.data.some(item => item === currentCounter)) === true).songId
+                    const encodeId = counterArray.find(item => (item.data.some((item) => item == currentCounter)) === true)?.songId
                     
                     const newTooltipData = {
                         display: 'flex',
@@ -92,7 +92,8 @@ function ChartItem({ dataChart }) {
             >
                 <InforSong item={dataChart?.items?.find(item => item.encodeId === tooltipState.encodeId)} sizeSM sizeM/>
                 <span className={clsx(styles.tooltipPercent)}>
-                    {`${Math.round(dataChart?.items?.find(item => item.encodeId === tooltipState.encodeId)?.score / dataChart?.chart?.totalScore * 100)}%`}</span>
+                    {`${Math.round(dataChart?.items?.find(item => item.encodeId === tooltipState.encodeId)?.score / dataChart?.chart?.totalScore * 100)}%`}
+                </span>
             </div>
         </div>
     )
