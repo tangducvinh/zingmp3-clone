@@ -1,8 +1,21 @@
 .container {
+    --spacing: 28px;
+    --columns: 5;
     display: flex;
-    gap: 30px;
+    margin-left: calc(-1 * var(--spacing));
 }
 
 .wrapArtist {
-    width: 20%;
+    width: calc(calc(100% / var(--columns)) - var(--spacing));
+    margin-left: var(--spacing);
+}
+
+@media (max-width: 1278px) {
+    .hidden {
+        display: none;
+    }
+
+    .container {
+        --columns: 4;
+    }
 }

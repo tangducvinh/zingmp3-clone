@@ -142,3 +142,10 @@ export function setDataHistoryAlbums(data) {
         data,
     }
 }
+
+export function setLoadingSearch(flag) {
+    return {
+        type: actionTypes.SET_LOADING_SEARCH,
+        flag,
+    }
+}

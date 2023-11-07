@@ -1,6 +1,7 @@
 .container {
+    --spacing: 28px;
+    --columns: 5;
     margin-top: 40px;
-    min-height: 67vh;
 }
 
 .titleName {
@@ -11,10 +12,18 @@
 .wrapArtists {
     display: flex;
     flex-wrap: wrap;
-    gap: 30px;
     margin-top: 10px;
+    margin-left: calc(-1 * var(--spacing));
 }
 
 .wrapItem {
-    width: 17.9%;
+    width: calc(calc(100% / var(--columns)) - var(--spacing));
+    margin-left: var(--spacing);
+    margin-bottom: var(--spacing);
+}
+
+@media (max-width: 1278px) {
+    .container {
+        --columns: 4;
+    }
 }

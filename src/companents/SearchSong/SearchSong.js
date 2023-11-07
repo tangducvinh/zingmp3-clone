@@ -25,7 +25,7 @@ function SearchSong({data, hide}) {
         <div className={clsx(styles.container)}>
             {!hide && <h1 className={clsx(styles.titleName)}>Bài Hát</h1>}
 
-            {data.length >= 1 ?
+            {data?.length >= 1 ?
                 <div className={clsx(styles.wrapSongs)}>
                     {data?.map((item, index) => (
                         <div 

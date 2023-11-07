@@ -13,7 +13,8 @@ function SidebarLeft() {
     return (
         <div className={clsx(styles.container)}>
             <div className={clsx(styles.logo)}>
-                <img className={clsx(styles.logoIcon)} src={logo} alt='logo'></img>
+                <img className={clsx(styles.logoIcon, styles.hidden)} src={logo} alt='logo'></img>
+                <img className={clsx(styles.iconSmall)} src='https://zjs.zmdcdn.me/zmp3-desktop/releases/v1.9.92/static/media/icon_zing_mp3_60.f6b51045.svg'></img>
             </div>
 
             <div className={clsx(styles.menu)}>
@@ -25,7 +26,7 @@ function SidebarLeft() {
                         href='/' 
                     >
                         {item.icon}
-                        <span>{item.text}</span>
+                        <span className={clsx(styles.hidden)}>{item.text}</span>
                         <span className={clsx(styles.play)}>{item.play}</span>
                     </NavLink>
                 )}
@@ -41,7 +42,7 @@ function SidebarLeft() {
                             href='/' 
                         >
                             {item.icon}
-                            <span>{item.text}</span>
+                            <span className={clsx(styles.hidden)}>{item.text}</span>
                             <span className={clsx(styles.play)}>{item.play}</span>
                         </NavLink>
                     )}
@@ -56,7 +57,7 @@ function SidebarLeft() {
                             href='/' 
                         >
                             {item.icon}
-                            <span>{item.text}</span>
+                            <span className={clsx(styles.hidden)}>{item.text}</span>
                             <span className={clsx(styles.play)}>{item.play}</span>
                         </Link>
                     )}
@@ -67,7 +68,7 @@ function SidebarLeft() {
 
             <div className={clsx(styles.creatPlaylist, {[styles.creatPlaylistBottom]: curSongId})}>
                 <i className={clsx(styles.iconPlus)}><AiOutlinePlus /></i>
-                <span>Tạo playlist mới</span>
+                <span className={clsx(styles.hidden)}>Tạo playlist mới</span>
             </div>
 
             {curSongId && <div className={clsx(styles.fakeAudio)}></div>}

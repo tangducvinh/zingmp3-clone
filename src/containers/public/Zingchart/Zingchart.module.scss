@@ -76,4 +76,16 @@
     width: 33.3333%;
 }
 
+@media (max-width: 1278px) {
+    .content {
+        flex-direction: column;
+        width: 100%;
+        align-items: unset;
+    }
+
+    .countrySong {
+        width: unset;
+    }
+}
+
 

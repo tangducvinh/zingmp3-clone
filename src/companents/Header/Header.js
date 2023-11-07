@@ -1,5 +1,5 @@
 import clsx from 'clsx'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { useDispatch} from 'react-redux'
 import { useNavigate, createSearchParams } from 'react-router-dom'
 
@@ -19,14 +19,16 @@ function Header() {
 
     async function handleSearch(e) {
         if (e.keyCode === 13) {
-            const response = await apis.search(keyword)
-            dispatch(actions.setDataSearch(response))
             navigate({
                 pathname: `/${path.SEARCH}${path.ALL}`,
                 search: createSearchParams({
                     q: keyword
                 }).toString()
             })
+            dispatch(actions.setLoadingSearch(true))
+            const response = await apis.search(keyword)
+            dispatch(actions.setLoadingSearch(false))
+            dispatch(actions.setDataSearch(response))
         }
     }
 

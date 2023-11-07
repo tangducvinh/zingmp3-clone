@@ -4,6 +4,7 @@
     align-items: center;
     padding: 0 20px;
     justify-content: space-between;
+    gap: 30px;
 }
 
 .infor {
@@ -11,7 +12,7 @@
 }
 
 .control {
-    flex: 2;
+    flex: 1.5;
     display: flex;
     justify-content: center;
 }

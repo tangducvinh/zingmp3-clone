@@ -92,3 +92,17 @@
     text-shadow: 1px 1px 0 #C7525E, -1px 1px 0 #C7525E, -1px -1px 0 #C7525E, 1px -1px 0 #C7525E;
 }
 
+@media (max-width: 1224px) {
+    .flexColumn {
+        flex-direction: column-reverse;
+    }
+
+    .wrapInforSong {
+        padding-top: 430px;
+    }
+
+    .chart {
+        flex: 1;
+    }
+}
+

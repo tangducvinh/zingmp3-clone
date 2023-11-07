@@ -142,6 +142,37 @@
     height: 91px;
 }
 
+.iconSmall {
+    display: none;
+}
+
+@media (max-width: 1132px) {
+    .hidden {
+        display: none;
+    }
+
+    .container {
+        width: 70px;
+    }
+
+    .iconSmall {
+        display: block;
+        width: 46px;
+        height: 46px;
+    }
+
+    .logo {
+        padding: unset;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .play {
+        display: none;
+    }
+}
+
 
 
 

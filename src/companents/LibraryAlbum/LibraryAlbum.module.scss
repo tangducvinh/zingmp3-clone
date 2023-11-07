@@ -1,4 +1,7 @@
-
+.container {
+    --spacing: 28px;
+    --columns: 5;
+}
 
 .empty {
     padding-top: 50px;
@@ -16,10 +19,18 @@
 .content {
     margin-top: 40px;
     display: flex;
-    gap: 26px;
     flex-wrap: wrap;
+    margin-left: calc(-1 * var(--spacing));
 }
 
 .item {
-    width: 18.2%;
+    width: calc(calc(100% / var(--columns)) - var(--spacing));
+    margin-left: var(--spacing);
+    margin-bottom: var(--spacing);
+}
+
+@media (max-width: 1278px) {
+    .container {
+        --columns: 4;
+    }
 }

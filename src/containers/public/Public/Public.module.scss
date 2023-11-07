@@ -64,3 +64,18 @@
 .bottom {
     height: 90px;
 }
+
+@media (max-width: 1132px) {
+    .sidebarLeft {
+        width: 70px;
+    }
+
+    .content {
+        margin-left: 70px;
+    }
+
+    .header {
+        left: 70px;
+    }
+}
+

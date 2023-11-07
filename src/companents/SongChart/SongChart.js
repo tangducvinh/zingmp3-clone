@@ -29,7 +29,7 @@ function SongChart() {
                 </span>
             </div>
 
-            <div className={clsx(styles.content)}>
+            <div className={clsx(styles.content, styles.flexColumn)}>
                 <div className={clsx(styles.wrapInforSong)}>
                     {songChart?.items?.filter((item, index) => index <= 2).map((item, index) => (
                         <div 
@@ -59,7 +59,6 @@ function SongChart() {
                         <Button item={{text: 'Xem thêm'}}/>
                     </Link>
                 </div>
-
                 
                 <div className={styles.chart}>
                     <ChartItem dataChart={songChart}/>

@@ -1,5 +1,7 @@
 
 .container {
+    --spacing: 28px;
+    --columns: 5;
     width: 100%;
 }
 
@@ -17,11 +19,23 @@
 
 .content {
     display: flex;
-    gap: 26px;
-    width: 100%;
+    margin-left: calc(-1 * var(--spacing));
     flex-wrap: wrap;
 }
 
 .wrapItem {
-    width: 18.2%;
+    width: calc(calc(100% / var(--columns)) - var(--spacing));
+    margin-left: var(--spacing);
+    margin-bottom: var(--spacing);
+}
+
+@media (max-width: 1278px) {
+    .hidden {
+        display: none;
+    }
+
+    .container {
+        --spacing: 28px;
+        --columns: 4;
+    }
 }

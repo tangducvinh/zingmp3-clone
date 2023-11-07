@@ -45,14 +45,6 @@ function Search() {
                     >
                         NGHỆ SĨ/OA
                     </NavLink>
-
-                    <NavLink 
-                        className={({isActive}) => isActive ? styles.isActive : styles.link}
-                        to={path.VIDEO}
-                    >
-                        MV
-                    </NavLink>
-                    
                 </div>
             </div>
 

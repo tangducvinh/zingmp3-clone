@@ -2,6 +2,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 100%;
 }
 
 .directional {
@@ -39,10 +40,11 @@
     margin-top: 7px;
     display: flex;
     align-items: center;
+    width: 100%;
 }
 
 .totalDuration {
-    width: 485px;
+    flex: 1;
     background-color: #5A5560;
     height: 2.5px;
     position: relative;

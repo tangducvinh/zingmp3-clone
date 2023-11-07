@@ -16,6 +16,7 @@ const actionTypes = {
     GET_ZINGCHART: "GET_ZINGCHART",
     SET_DATA_TOP100: "SET_DATA_TOP100",
     SET_HISTORY_ALBUMS: "SET_HISTORY_ALBUMS",
+    SET_LOADING_SEARCH: "SET_LOADING_SEARCH",
 }
 
 export default actionTypes

@@ -5,6 +5,7 @@ import {useEffect } from 'react'
 import styles from './SearchPlaylist.module.scss'
 import { ItemTheme } from '../ItemTheme'
 import * as actions from '../../store/action'
+import { LibrarySongEmpty } from '../LibrarySongEmpty'
 
 function SearchPlaylist() {
     const { dataSearch, dataSearchPlaylist } = useSelector(state => state.music)
@@ -17,18 +18,24 @@ function SearchPlaylist() {
 
     return (
         <div className={clsx(styles.container)}>
-            <h1 className={clsx(styles.titleName)}>Playlist/Album</h1>
+            {dataSearchPlaylist?.length > 0 ? 
+                    <>
+                        <h1 className={clsx(styles.titleName)}>Playlist/Album</h1>
 
-            <div className={clsx(styles.wrapPlaylist)}>
-                {dataSearchPlaylist?.map(item => (
-                    <div 
-                        className={clsx(styles.wrapItem)}
-                        key={item.encodeId}
-                    >
-                        <ItemTheme item={item} />
-                    </div>
-                ))}
-            </div>
+                        <div className={clsx(styles.wrapPlaylist)}>
+                            {dataSearchPlaylist?.map(item => (
+                                <div 
+                                    className={clsx(styles.wrapItem)}
+                                    key={item.encodeId}
+                                >
+                                    <ItemTheme item={item} />
+                                </div>
+                            ))}
+                        </div>   
+                    </> 
+                : 
+                    <LibrarySongEmpty />
+            }  
         </div>
     )
 }

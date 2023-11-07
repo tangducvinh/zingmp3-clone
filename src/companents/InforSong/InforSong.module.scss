@@ -89,3 +89,11 @@
     font-size: 12px;
     color: var(--gray-text);
 }
+
+@media (max-width: 1278px) {
+    
+
+    .infor {
+        min-width: 120px;
+    }
+}

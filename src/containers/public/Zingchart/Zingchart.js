@@ -47,18 +47,6 @@ function Zingchart() {
                 <RankSongPlaylist data={dataPlaylist}/>
             </div>
 
-            {/* <div className={clsx(styles.playlist)}>
-                {dataPlaylist?.map((item, index) => 
-                    <div 
-                        className={clsx(styles.song)}
-                        onClick={() => handleChooseSong(item, index)}
-                        key={index}
-                    >
-                        <SongItem item={item} index={index} zingchart/>
-                    </div>
-                )}
-            </div> */}
-
             <div className={clsx(styles.wrapBtn, {[styles.active]: status})}>
                 <div 
                     className={clsx(styles.btnAdd)}

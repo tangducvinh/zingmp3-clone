@@ -7,6 +7,7 @@ const initState = {
     isLoad: false,
     sidebarRight: false,
     isChangePlaylist: true,
+    loadingSearch: false,
 }
 
 function playReducer(state = initState, action) {
@@ -37,10 +38,15 @@ function playReducer(state = initState, action) {
                 sidebarRight: action.flag,
             }
         case actionTypes.SET_CHANGE_PLAYLIST:
-                return {
-                    ...state,
-                    isChangePlaylist: action.flag,
-                }
+            return {
+                ...state,
+                isChangePlaylist: action.flag,
+            }
+        case actionTypes.SET_LOADING_SEARCH:
+            return {
+                ...state,
+                loadingSearch: action.flag,
+            }
         default:
             return state
     }

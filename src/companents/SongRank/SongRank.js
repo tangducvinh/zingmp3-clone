@@ -80,14 +80,6 @@ function SongRank() {
                             </div>
                         </div>
                     </div> 
-                    // <div className={clsx(styles.wrapEmpty)}> 
-                    //     <Link 
-                    //         className={clsx(styles.textEmpty)}
-                    //         to={rankSong.link}
-                    //     >
-                    //         XEM TẤT CẢ
-                    //     </Link>
-                    // </div>
                 ))}
             </div>
         </div>
