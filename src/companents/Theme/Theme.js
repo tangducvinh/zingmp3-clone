@@ -11,7 +11,7 @@ function Theme({ data, full }) {
             <div className={clsx(styles.wrapTitle)}>
                 <h1 className={clsx(styles.title)}>{data?.title}</h1>
 
-                {data?.link && <LinkAll path={data.link} />}
+                {/* {data?.link && <LinkAll path={data.link} />} */}
             </div>
 
             <div className={clsx(styles.content)}>

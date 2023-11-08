@@ -1,6 +1,6 @@
 import clsx from 'clsx'
 import { useSelector, useDispatch } from 'react-redux'
-import { useEffect } from 'react'
+import { useEffect, memo } from 'react'
 
 import styles from './SearchSong.module.scss'
 import { SongItem } from '../SongItem'
@@ -43,4 +43,4 @@ function SearchSong({data, hide}) {
     )
 }
 
-export default SearchSong
+export default memo(SearchSong)

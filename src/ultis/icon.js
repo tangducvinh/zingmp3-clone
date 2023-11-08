@@ -5,7 +5,7 @@ import { PiMusicNotesPlus } from 'react-icons/pi'
 import { BsMenuButtonWide, BsPlayCircle, BsPauseCircle, BsFillPlayFill, BsDot, BsFillPauseFill, BsPlayCircleFill } from 'react-icons/bs'
 import { AiOutlineStar, AiOutlineSetting, AiOutlineHeart, AiFillHeart, AiOutlineLine, AiOutlineLeft, AiOutlineRight } from 'react-icons/ai'
 import { LuHistory, LuMusic} from 'react-icons/lu'
-import { BiSolidPlaylist, BiWindows} from 'react-icons/bi'
+import { BiSolidPlaylist, BiWindows, BiHistory } from 'react-icons/bi'
 import { CgAlbum } from 'react-icons/cg'
 import { FiUpload } from 'react-icons/fi'
 import { TfiSearch } from 'react-icons/tfi'
@@ -73,6 +73,7 @@ const icons = {
     AiOutlineRight,
     SiMusicbrainz,
     MdFeaturedPlayList,
+    BiHistory,
 }
 
 export default icons

@@ -21,3 +21,10 @@ export function getHome() {
         }
     }
 }
+
+export function setHistoryKeyword(keyword) {
+    return {
+        type: actionTypes.SET_HISTORY_KEYWORD,
+        keyword,
+    }
+}

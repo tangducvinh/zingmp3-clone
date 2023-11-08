@@ -21,6 +21,13 @@
     cursor: pointer;
 }
 
+.searchInfor {
+    background-color: var(--search-infor-bg);
+    width: 442px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
 .formSeach {
     width: 430px;
     height: 40px;
@@ -28,8 +35,17 @@
     align-items: center;
     background-color: hsla(0,0%,100%,0.1);
     padding-left: 12px;
-    border-radius: 50px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
     position: relative;
+}
+
+.formSearchActive {
+    background-color: var(--search-infor-bg);
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
 }
 
 .iconSearch {
