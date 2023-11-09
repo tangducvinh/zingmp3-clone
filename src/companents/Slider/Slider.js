@@ -89,7 +89,7 @@ function Slider() {
     function handleClickBanner(item) {
         if (item.type === 1) {
             dispatch(action.setCurSongId(item.encodeId))
-            dispatch(action.play(true))
+            dispatch(action.setSkip(false))
         } else if (item.type === 4) {
             const playlistPatch = item.link.split('.')[0]
             navigate(playlistPatch)

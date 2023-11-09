@@ -26,8 +26,8 @@ function SearchAll() {
 
     function handleChooseSong(data) {
         dispatch(actions.setCurSongId(data.encodeId))
-        dispatch(actions.play(true))
         dispatch(actions.setRecentPlaylist(data))
+        dispatch(actions.setSkip(false))
         
         if (data.encodeId === curSongId && isPlaying) dispatch(actions.play(false))
     }

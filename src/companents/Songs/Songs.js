@@ -13,7 +13,7 @@ function Songs({data}) {
 
     function handleChooseSong(data) {
         dispatch(actions.setCurSongId(data.encodeId))
-        dispatch(actions.play(true))
+        dispatch(actions.setSkip(false))
         dispatch(actions.setRecentPlaylist(data))
         
         if (data.encodeId === curSongId && isPlaying) dispatch(actions.play(false))

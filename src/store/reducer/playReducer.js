@@ -8,6 +8,9 @@ const initState = {
     sidebarRight: false,
     isChangePlaylist: true,
     loadingSearch: false,
+    isShowVip: false,
+    isRepeat: false,
+    isSkip: true,
 }
 
 function playReducer(state = initState, action) {
@@ -46,6 +49,21 @@ function playReducer(state = initState, action) {
             return {
                 ...state,
                 loadingSearch: action.flag,
+            }
+        case actionTypes.SET_SHOW_VIP:
+            return {
+                ...state,
+                isShowVip: action.flag
+            }
+        case actionTypes.SET_REPEAT:
+            return {
+                ...state,
+                isRepeat: action.flag,
+            }
+        case actionTypes.SET_SKIP:
+            return {
+                ...state,
+                isSkip: action.flag
             }
         default:
             return state

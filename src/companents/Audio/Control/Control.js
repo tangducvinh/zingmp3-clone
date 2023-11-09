@@ -14,7 +14,7 @@ import * as apis from '../../../apis'
 
 function Control({ sourse, duration, audioEl }) {
     const dispatch = useDispatch()
-    const { isPlaying, isRandom , isVip, isLoad} = useSelector(state => state.play)
+    const { isPlaying, isRandom , isVip, isLoad, isSkip} = useSelector(state => state.play)
     var { indexSong, curPlaylistId } = useSelector(state => state.music)
     const interval = useRef()
     const currentDurationEl = useRef()
@@ -31,12 +31,12 @@ function Control({ sourse, duration, audioEl }) {
 
     // handle play song
     useEffect(() => {
-        audioEl.current.pause()
-        audioEl.current.src = sourse
-        audioEl.current.load()
-        if(isPlaying) audioEl.current.play()
-
-    }, [sourse])
+        if(sourse && !isSkip) {
+            dispatch(action.play(true))
+            audioEl.current.src = sourse
+            if(isPlaying) audioEl.current.play()
+        }
+    }, [sourse, isSkip])
 
     function handlePlayMusic() {
         if (isPlaying) {
@@ -60,6 +60,8 @@ function Control({ sourse, duration, audioEl }) {
             audioEl.current.pause()
             interval.current && clearInterval(interval.current)
         }
+
+        if(isPlaying && isSkip) dispatch(action.setSkip(false))
     }, [isPlaying])
 
     // handle progresbar
@@ -78,7 +80,7 @@ function Control({ sourse, duration, audioEl }) {
             setDataPlayList(response?.data?.data?.song)
         }
 
-        if(curPlaylistId === undefined) {
+        if(curPlaylistId === null) {
             btnPreviousElement.current.style.opacity = '0.5'
             btnNextElement.current.style.opacity = '0.5'
         } else {
@@ -111,7 +113,7 @@ function Control({ sourse, duration, audioEl }) {
 
     //handle previous song
     useEffect(() => {
-        if(indexSong === 0 || curPlaylistId === undefined) btnPreviousElement.current.style.opacity = '0.5'  
+        if(indexSong === 0 || curPlaylistId === null) btnPreviousElement.current.style.opacity = '0.5'  
         else btnPreviousElement.current.style.opacity = '1'
     }, [indexSong])
 
@@ -130,25 +132,27 @@ function Control({ sourse, duration, audioEl }) {
 
     //hanlde next song
     function handleNextSong() {
-        if (pid === undefined) dispatch(action.random(true))
+        if (curPlaylistId) {
+            if (pid === undefined) dispatch(action.random(true))
 
-        if (indexSong === dataPlaylist?.total - 2) {
-            indexSong = 0
-        } else if (isRepeat === repeatMode[2]) {
-            return
-        } else if(isRandom) {
-            indexSong = handleRandomSong()
-        } else {
-            indexSong++
+            if (indexSong === dataPlaylist?.total - 2) {
+                indexSong = 0
+            } else if (isRepeat === repeatMode[2]) {
+                return
+            } else if(isRandom) {
+                indexSong = handleRandomSong()
+            } else {
+                indexSong++
+            }
+    
+            const songId = dataPlaylist?.items[indexSong]?.encodeId
+            dispatch(action.setCurSongId(songId, indexSong))
+            dispatch(action.play(true))
         }
- 
-        const songId = dataPlaylist?.items[indexSong]?.encodeId
-        dispatch(action.setCurSongId(songId, indexSong))
-        dispatch(action.play(true))
     }
 
     useEffect(() => {
-        if(isVip) {
+        if(isVip && isRepeat === repeatMode[1]) {
             dispatch(action.checkVip(false))
             handleNextSong()
         }
@@ -159,10 +163,13 @@ function Control({ sourse, duration, audioEl }) {
         if(isRepeat === repeatMode[0]) {
             btnRepeatElement.current.style.opacity = '0.5'
             setRepeatIcon(controlBtn.repeat)
+            dispatch(action.setRepeat(false))
         } else if (isRepeat === repeatMode[1]) {
             btnRepeatElement.current.style.opacity = '1'
             setRepeatIcon(controlBtn.repeatOn)
+            dispatch(action.setRepeat(true))
         } else {
+            dispatch(action.setRepeat(false))
             setRepeatIcon(controlBtn.repeatOnly)
         }
     }, [isRepeat])

@@ -1,0 +1,31 @@
+
+.container {
+    height: 100%;
+}
+
+.btnCancel {
+    padding: 5px;
+    float: right;
+    color: #ffff;
+    cursor: pointer;
+}
+
+.wrapNotice {
+    margin-left: 45px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.logoIcon {
+    width: 150px;
+}
+
+.textVip {
+    margin-top: 20px;
+    font-size: 20px;
+    color: #ffff;
+    font-weight: 600;
+}

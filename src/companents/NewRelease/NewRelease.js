@@ -25,7 +25,7 @@ function NewRelease() {
 
     function handleChooseSong(item, index) {
         dispatch(actions.setCurSongId(item.encodeId, index))
-        dispatch(actions.play(true))
+        dispatch(actions.setSkip(false))
         dispatch(actions.setRecentPlaylist(item))
     }
 

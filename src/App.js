@@ -8,7 +8,6 @@ import { Login } from './containers/public/Login'
 import { Public } from './containers/public/Public'
 import { Album } from './containers/public/Album'  
 import * as actions from './store/action'
-import { NewRelease } from './containers/public/NewRelease'
 import { WeekChart } from './containers/public/WeekChart'
 import { Search } from './containers/public/Search'
 import { SearchAll } from './companents/SearchAll'
@@ -49,7 +48,6 @@ function App() {
           </Route>
           <Route path={path.ARTIST_NAME} element={ <Artist /> }/>
           <Route path={path.WEEKCHART} element={ <WeekChart /> } />
-          <Route path={path.NEW_RELEASE} element={ <NewRelease />} />
           <Route path={path.PLAYLIST_TITLE_PID} element={ <Album /> }/>
           <Route path={path.ALBUM_TITLE_ID} element={ <Album /> }/>
           <Route path={path.HOME} element={ <Home /> }/>

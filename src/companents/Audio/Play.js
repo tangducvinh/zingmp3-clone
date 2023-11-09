@@ -12,6 +12,7 @@ import * as actions from '../../store/action'
 
 function Play() {
     const { curSongId } = useSelector(state => state.music)
+    const { isRepeat } = useSelector(state => state.play)
     const [infor, setInfor] = useState({})
     const [sourse, setSourse] = useState(null)
     const audioEl = useRef(new Audio())
@@ -36,7 +37,7 @@ function Play() {
                 dispatch(actions.checkVip(false))
                 dispatch(actions.load(false))
             } else {
-                console.log('baivip')
+                if (isRepeat === false) dispatch(actions.setShowVip(true))
                 dispatch(actions.checkVip(true))
                 dispatch(actions.load(false))
             }

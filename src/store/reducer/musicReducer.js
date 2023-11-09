@@ -31,7 +31,7 @@ const musicReducer = (state = initState, action) => {
 
             state.recentPlaylist = state.recentPlaylist?.filter(item => item.encodeId !== action.data.encodeId)
 
-            if(state.recentPlaylist.length < 30) songPlaylist = [action.data, ...state.recentPlaylist]
+            if(state.recentPlaylist.length < 20) songPlaylist = [action.data, ...state.recentPlaylist]
             else {
                 state.recentPlaylist.pop()
                 songPlaylist = [action.data, ...state.recentPlaylist]
@@ -68,7 +68,7 @@ const musicReducer = (state = initState, action) => {
             }
         case actionTypes.SET_HISTORY_ALBUMS:
             let newArray = state.dataHistoryAlbums.filter(item => item.encodeId !== action.data.encodeId)
-            if(newArray.length > 10) {
+            if(newArray.length > 7) {
                 newArray.pop()
             }
             newArray = [action.data, ...newArray]

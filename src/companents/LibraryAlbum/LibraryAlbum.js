@@ -18,8 +18,8 @@ function LibraryAlbum({ dataAlbums = [] }) {
                 </div>
                 :
                 <div className={clsx(styles.content)}>
-                    {dataAlbums?.map(item => (
-                        <div className={clsx(styles.item)}>
+                    {dataAlbums?.map((item, index) => (
+                        <div className={clsx(styles.item)} key={index}>
                             <ItemTheme item={item}></ItemTheme>
                         </div>
                     ))}

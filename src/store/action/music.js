@@ -149,3 +149,24 @@ export function setLoadingSearch(flag) {
         flag,
     }
 }
+
+export function setShowVip(flag) {
+    return {
+        type: actionTypes.SET_SHOW_VIP,
+        flag,
+    }
+}
+
+export function setRepeat(flag) {
+    return {
+        type: actionTypes.SET_REPEAT,
+        flag
+    }
+}
+
+export function setSkip(flag) {
+    return {
+        type: actionTypes.SET_SKIP,
+        flag
+    }
+}

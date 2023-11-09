@@ -1,0 +1,1 @@
+export { default as NoticeVip } from './NoticeVip'

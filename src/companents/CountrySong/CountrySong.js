@@ -32,13 +32,13 @@ function CountrySong({ data }) {
 
     function handleChooseSong(item, index) {
         dispatch(actions.setCurSongId(item.encodeId))
-        dispatch(actions.play(true))
+        dispatch(actions.setSkip(false))
         dispatch(actions.setRecentPlaylist(item))
     }
 
     function handlePlaySong() {
         dispatch(actions.setCurSongId(data.items[0].encodeId))
-        dispatch(actions.play(true))
+        dispatch(actions.setSkip(false))
         dispatch(actions.setRecentPlaylist(data.items[0]))
     }
 
