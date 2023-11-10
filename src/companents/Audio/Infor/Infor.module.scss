@@ -13,9 +13,20 @@
     margin-right: 20px;
 }
 
-@media (max-width: 1278px) {
+@media (min-width: 1024px) and (max-width: 1278px) {
+    .inforSong {
+        min-width: 230px;
+        margin-right: unset;
+    }
+}
+
+@media (max-width: 1023px) {
     .inforSong {
         margin-right: unset;
-        min-width: 230px;
+        min-width: 170px;
+    }
+
+    .hidden {
+        display: none;
     }
 }

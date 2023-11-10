@@ -11,6 +11,9 @@ const initState = {
     isShowVip: false,
     isRepeat: false,
     isSkip: true,
+    isLoadingZingchart: false,
+    isLoadingSearchSong: false,
+    isLoadingSearchPlaylist: false,
 }
 
 function playReducer(state = initState, action) {
@@ -65,6 +68,22 @@ function playReducer(state = initState, action) {
                 ...state,
                 isSkip: action.flag
             }
+        case actionTypes.SET_LOADING_ZINGCHART:
+            return {
+                ...state,
+                isLoadingZingchart: action.flag,
+            }
+        case actionTypes.SET_LOADING_SEARCH_SONG:
+            return {
+                ...state,
+                isLoadingSearchSong: action.flag
+            }
+        case actionTypes.SET_LOADING_SEARCH_PLAYLIST:
+            return {
+                ...state,
+                isLoadingSearchPlaylist: action.flag,
+            }
+      
         default:
             return state
     }

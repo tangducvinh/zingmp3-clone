@@ -6,13 +6,15 @@ import styles from './SearchSong.module.scss'
 import { SongItem } from '../SongItem'
 import * as actions from '../../store/action'
 import { LibrarySongEmpty } from '../LibrarySongEmpty' 
+import { Mutating } from '../../companents/Spinner'
 
-function SearchSong({data, hide}) {
+function SearchSong({data, hide, loading}) {
     const dispatch = useDispatch()
     const { dataSearch } = useSelector(state => state.music)
+    const { isLoadingSearchSong } = useSelector(state => state.play)
 
     useEffect(() => {
-        dispatch(actions.getSearchSong(dataSearch?.data?.data?.artists[0]?.id))
+        if (dataSearch) dispatch(actions.getSearchSong(dataSearch?.data?.data?.artists[0]?.id))
     }, [dataSearch])
 
     function handleChooseSong(item, index) {
@@ -22,24 +24,52 @@ function SearchSong({data, hide}) {
     }
 
     return (
-        <div className={clsx(styles.container)}>
-            {!hide && <h1 className={clsx(styles.titleName)}>Bài Hát</h1>}
+        <>
+            {loading ? 
+               <>
+                    {isLoadingSearchSong ? 
+                        <div className={clsx(styles.loading)}><Mutating /></div>
+                    :
+                        <div className={clsx(styles.container)}>
+                            {!hide && <h1 className={clsx(styles.titleName)}>Bài Hát</h1>}
 
-            {data?.length >= 1 ?
-                <div className={clsx(styles.wrapSongs)}>
-                    {data?.map((item, index) => (
-                        <div 
-                            onClick={() => handleChooseSong(item, index)}
-                            key={item.encodeId}
-                        >
-                            <SongItem item={item}/>
+                            {data?.length >= 1 ?
+                                <div className={clsx(styles.wrapSongs)}>
+                                    {data?.map((item, index) => (
+                                        <div 
+                                            onClick={() => handleChooseSong(item, index)}
+                                            key={item.encodeId}
+                                        >
+                                            <SongItem item={item}/>
+                                        </div>
+                                    ))}
+                                </div> 
+                                :
+                                <LibrarySongEmpty />
+                            }
                         </div>
-                    ))}
-                </div> 
-                :
-                <LibrarySongEmpty />
-            }
-        </div>
+                    }
+               </>
+            :
+                <div className={clsx(styles.container)}>
+                    {!hide && <h1 className={clsx(styles.titleName)}>Bài Hát</h1>}
+
+                    {data?.length >= 1 ?
+                        <div className={clsx(styles.wrapSongs)}>
+                            {data?.map((item, index) => (
+                                <div 
+                                    onClick={() => handleChooseSong(item, index)}
+                                    key={item.encodeId}
+                                >
+                                    <SongItem item={item}/>
+                                </div>
+                            ))}
+                        </div> 
+                        :
+                        <LibrarySongEmpty />
+                    }
+                </div>}
+        </>
     )
 }
 

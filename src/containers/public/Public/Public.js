@@ -16,6 +16,7 @@ function Public() {
     const { sidebarRight, isShowVip } = useSelector(state => state.play)
     const { curSongId } = useSelector(state => state.music)
     const dispatch = useDispatch()
+
     
     return (
         <div className={clsx(styles.container)}>
@@ -34,18 +35,20 @@ function Public() {
                         <Outlet />
                     </div>
 
-                    <Tippy
-                        visible={isShowVip}
-                        interactive
-                        onClickOutside={() => dispatch(actions.setShowVip(false))}
-                        render={attrs => (
-                            <div className={clsx(styles.tippyNotice)} tabIndex="-1" {...attrs}>
-                                <NoticeVip />
-                            </div>
-                        )}
-                    >
-                        <div className={clsx(styles.notice)}></div>
-                    </Tippy>
+                    <div>
+                        <Tippy
+                            visible={isShowVip}
+                            interactive
+                            onClickOutside={() => dispatch(actions.setShowVip(false))}
+                            render={attrs => (
+                                <div className={clsx(styles.tippyNotice)} tabIndex="-1" {...attrs}>
+                                    <NoticeVip />
+                                </div>
+                            )}
+                        >
+                            <div className={clsx(styles.notice)}></div>
+                        </Tippy>
+                    </div>
 
                     {curSongId && <div className={clsx(styles.bottom)}></div>}
                 </div>
@@ -60,6 +63,7 @@ function Public() {
                     <Audio />
                 </div>
             }
+            
         </div>
     )
 }

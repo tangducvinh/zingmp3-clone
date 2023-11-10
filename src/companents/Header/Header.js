@@ -22,7 +22,7 @@ function Header() {
     const [ showInforSearch, setShowInforSearch ] = useState(false)
 
     async function handleSearch(e) {
-        if (e.keyCode === 13) {
+        if (e.keyCode === 13 && keyword.trim()) {
             navigate({
                 pathname: `/${path.SEARCH}${path.ALL}`,
                 search: createSearchParams({

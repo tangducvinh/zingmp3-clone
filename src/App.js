@@ -33,6 +33,7 @@ function App() {
   useEffect(() => {
     dispatch(actions.getHome())
     dispatch(actions.getDataTop100())
+    dispatch(actions.getDataZingchart())
   }, [])
 
   return ( 
@@ -54,7 +55,7 @@ function App() {
           <Route path={path.LOGIN} element={ <Login /> }/>
           <Route path={path.SEARCH} element={ <Search />}>
             <Route path={path.ALL} element={ <SearchAll />}/>
-            <Route path={path.SONG} element={ <SearchSong data={dataArtistSong}/>}/>
+            <Route path={path.SONG} element={ <SearchSong data={dataArtistSong} loading/>}/>
             <Route path={path.PLAYLIST_ALBUM} element={ <SearchPlaylist />}/>
             <Route path={path.ARTIST} element={ <SearchArtist />}/>
             <Route path={path.VIDEO} element={ <SearchMV />}/>

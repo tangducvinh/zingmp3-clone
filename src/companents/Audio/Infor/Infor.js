@@ -30,7 +30,7 @@ function Infor({ item }) {
                 />
             </div>
 
-            <div className={clsx(styles.wrrapBtn)}>
+            <div className={clsx(styles.wrrapBtn, styles.hidden)}>
                 <ButtonAudio
                     item={inforBtn.addBtn}
                 />

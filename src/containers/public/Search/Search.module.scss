@@ -43,3 +43,13 @@
 .footer {
     height: 200px;
 }
+
+@media (max-width: 1200px) {
+    .title {
+        display: none;
+    }
+
+    .wrapLink {
+        padding: unset;
+    }
+}

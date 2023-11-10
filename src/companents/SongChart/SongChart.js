@@ -60,8 +60,10 @@ function SongChart() {
                     </Link>
                 </div>
                 
-                <div className={styles.chart}>
+                <div className={clsx(styles.chart)}>
                     <ChartItem dataChart={songChart}/>
+
+                    <div className={clsx(styles.chartEmpty)}></div>
                 </div>
             </div>
         </div>

@@ -1,9 +1,8 @@
 .container {
-    background-image: linear-gradient(to right, #2F244F, #2C1B45);
-    position: absolute;
     width: 100%;
-    left: -59px;
-    padding: 100px 59px 24px 59px;
+    background-image: linear-gradient(to right, #2F244F, #2C1B45);
+    padding-top: 100px;
+    padding-bottom: 30px;
 }
 
 .wrapIntroduce {
@@ -17,6 +16,7 @@
     height: 140px;
     border-radius: 50%;
     object-fit: cover;
+    margin-left: 20px;
 }
 
 .wrapTop {
@@ -64,4 +64,10 @@
     border: solid 1px #cccc;
     border-radius: 20px;
     cursor: pointer;
+}
+
+@media (max-width: 1024px) {
+    .artistName {
+        font-size: 40px;
+    }
 }

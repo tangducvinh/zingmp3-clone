@@ -29,13 +29,20 @@
     margin-bottom: var(--spacing);
 }
 
-@media (max-width: 1278px) {
+@media (min-width: 774px) and (max-width: 1278px) {
     .hidden {
         display: none;
     }
 
     .container {
         --spacing: 28px;
+        --columns: 4;
+    }
+}
+
+@media (max-width: 774px) {
+    .container {
+        --spacing: 14px;
         --columns: 4;
     }
 }

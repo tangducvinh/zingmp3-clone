@@ -46,6 +46,7 @@ function Home() {
                         <img 
                             className={clsx(styles.imgWeekChart)} src={item.cover}
                             onClick={() => handleChoseChart(item.link)}
+                            alt='banner'
                         ></img>
                     </div>
                 ))}

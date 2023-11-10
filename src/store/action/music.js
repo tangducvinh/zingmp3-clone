@@ -82,7 +82,9 @@ export function setDataSearch(data) {
 
 export function getSearchSong(id) {
     return async function(dispatch) {
+        dispatch({type: actionTypes.SET_LOADING_SEARCH_SONG, flag: true})
         const response = await apis.getArtistSong(id)
+        dispatch({type: actionTypes.SET_LOADING_SEARCH_SONG, flag: false})
         if (response.data.err === 0) {
             dispatch({type: actionTypes.SET_SEARCH_SONG, data: response.data.data.items})
         } else {
@@ -93,7 +95,9 @@ export function getSearchSong(id) {
 
 export function getSearchPlaylist(alias) {
     return async function(dispatch) {
+        dispatch({type: actionTypes.SET_LOADING_SEARCH_PLAYLIST, flag: true})
         const response = await apis.getArtist(alias)
+        dispatch({type: actionTypes.SET_LOADING_SEARCH_PLAYLIST, flag: false})
         if (response.data.err === 0) {
             dispatch({type: actionTypes.SET_SEARCH_PLAYLIST, data: response.data.data.sections[1].items})
         } else {
@@ -104,7 +108,10 @@ export function getSearchPlaylist(alias) {
 
 export function getDataZingchart() {
     return async function(dispatch) {
+        dispatch({type: actionTypes.SET_LOADING_ZINGCHART, flag: true})
         const response = await apis.getZingchart()
+        dispatch({type: actionTypes.SET_LOADING_ZINGCHART, flag: false})
+
         if (response.data.err === 0) {
             dispatch({
                 type: actionTypes.GET_ZINGCHART,

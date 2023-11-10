@@ -50,6 +50,7 @@
     min-height: 91vh;
     padding-bottom: 30px;
     position: relative;
+    overflow-y: hidden;
 }
 
 .tippyNotice {
@@ -105,3 +106,8 @@
     }
 }
 
+@media (max-width: 1024px) {
+    .content {
+        padding: 0 30px;
+    }
+}

@@ -1,7 +1,7 @@
 .container {
     width: 100%;
     display: flex;
-    justify-content: start;
+    justify-content: flex-start;
     align-items: center;
 
     &:hover .iconPlay {
@@ -30,6 +30,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-shrink: 0;
 }
 
 .img {
@@ -48,10 +49,6 @@
     display: none;
     color: #fff;
     font-size: 25px;
-}
-
-.infor {
-    margin-right: 20px;
 }
 
 .inforSM {
@@ -90,10 +87,3 @@
     color: var(--gray-text);
 }
 
-@media (max-width: 1278px) {
-    
-
-    .infor {
-        min-width: 120px;
-    }
-}

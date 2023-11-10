@@ -68,12 +68,13 @@ function Option({ audioEl }) {
                             max={100} 
                             value={volume}
                             onChange={handleChangeVolume}
-                            className={clsx(styles.volumeInput)}
+                            className={clsx(styles.volumeInput, styles.hidden)}
                             onMouseLeave={() => setStatusValume(false)}
                         >
-                        </input> : 
+                        </input> 
+                    : 
                         <div 
-                            className={clsx(styles.line)}
+                            className={clsx(styles.line, styles.hidden)}
                             onMouseEnter={() => setStatusValume(true)}
                         >
                             <span 

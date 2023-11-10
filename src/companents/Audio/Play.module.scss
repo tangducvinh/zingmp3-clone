@@ -20,5 +20,12 @@
 .option {
     flex: 1;
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
+}
+
+@media (max-width: 1024px) {
+    .container {
+        gap: 15px;
+        padding: 0 10px;
+    }
 }

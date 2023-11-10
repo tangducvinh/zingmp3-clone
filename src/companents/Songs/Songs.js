@@ -6,7 +6,7 @@ import styles from './Songs.module.scss'
 import { SongItem } from '../SongItem'
 import * as actions from '../../store/action'
 
-function Songs({data}) {
+function Songs({ data }) {
     const { isPlaying } = useSelector(state => state.play)
     const { curSongId } = useSelector(state => state.music)
     const dispatch = useDispatch()

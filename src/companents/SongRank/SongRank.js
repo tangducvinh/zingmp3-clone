@@ -25,15 +25,15 @@ function SongRank() {
         const itemElement = document.getElementsByClassName(styles.wrapItem)
         const array = [0, 1, 2]
 
-        const set = setInterval(() => {
+        const set = setInterval( async() => {
             var list = handleSliderRank(array)
-            
-            for (var i = 0; i <= itemElement.length; i++) {
+            for (let i = 0; i <= itemElement.length; i++) {
                 if (list?.some(item => item === i)) {
                     itemElement[i]?.classList.remove(styles.unActive)
                     itemElement[i]?.classList.add(styles.slideLeft)
                 } else {
                     itemElement[i]?.classList.add(styles.unActive)
+                    itemElement[i]?.classList.remove(styles.slideLeft)
                 }
             }
         }, 5000)
@@ -52,14 +52,14 @@ function SongRank() {
             <div className={clsx(styles.content)}>
                 {rankSong?.items?.map((item, index) => (
                     <div 
-                        className={clsx(styles.wrapItem, {[styles.unActive]: index > 2})}
+                        className={clsx(styles.wrapItem, {[styles.unActive]: index > 2, [styles.hidden]: index === 2 || index === 5})}
                         key={item.encodeId}
                     >
                         <div 
                             className={clsx(styles.wrapImg)}
                             onClick={() => handlePlaySong(item.encodeId, index)}
                         >
-                            <img className={clsx(styles.img)} src={item.thumbnailM}></img>
+                            <img className={clsx(styles.img)} src={item.thumbnailM} alt='singer'></img>
                             {(isPlaying && item.encodeId === curSongId) ? 
                                 <span className={clsx(styles.audioSpinner)}> <AudioSpinner/> </span> :
                                 <span className={clsx(styles.playIcon)}> <BsPlayCircle size={40}/> </span>
@@ -68,8 +68,8 @@ function SongRank() {
 
                         <div className={clsx(styles.wrapInforSong)}>
                             <div className={clsx(styles.inforSong)}>
-                                <p className={clsx(styles.nameSong)}>{item.title}</p>
-                                <p className={clsx(styles.nameArtist)}>{item.artistsNames}</p>
+                                <p className={clsx(styles.nameSong)}>{item.title.length < 30 ? item.title : `${item.title.slice(0, 30)}...`}</p>
+                                <p className={clsx(styles.nameArtist)}>{item.artistsNames.length < 20 ? item.artistsNames : `${item.artistsNames.slice(0, 20)}...`}</p>
                             </div>
 
                             <div className={clsx(styles.wrapRank)}>

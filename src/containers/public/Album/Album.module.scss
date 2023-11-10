@@ -132,3 +132,19 @@
 .artist {
     height: 500px;
 }
+
+@media (max-width: 1200px) {
+    .album {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .wrrapInfor {
+        position: unset;
+    }
+
+    .wrrapList {
+        padding-top: 30px;
+        margin-left: unset;
+    }
+}

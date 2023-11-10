@@ -12,7 +12,7 @@ import * as actions from '../../store/action'
 
 function Play() {
     const { curSongId } = useSelector(state => state.music)
-    const { isRepeat } = useSelector(state => state.play)
+    const { isRepeat, isShowAudio } = useSelector(state => state.play)
     const [infor, setInfor] = useState({})
     const [sourse, setSourse] = useState(null)
     const audioEl = useRef(new Audio())
@@ -41,7 +41,6 @@ function Play() {
                 dispatch(actions.checkVip(true))
                 dispatch(actions.load(false))
             }
-
         }
         fetchDetailSong()
     }, [curSongId])

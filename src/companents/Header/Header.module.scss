@@ -107,3 +107,17 @@
         opacity: 0.9;
     }
 }
+
+@media (max-width: 1024px) {
+    .container {
+        padding: 0 30px;
+    }
+
+    .formSeach {
+        width: 350px;
+    }
+
+    .searchInfor {
+        width: 362px;
+    }
+}
