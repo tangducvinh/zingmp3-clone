@@ -1,5 +1,5 @@
 import clsx from 'clsx'
-import { useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { memo } from 'react'
 import { useParams } from 'react-router-dom'
@@ -36,6 +36,7 @@ function Control({ sourse, duration, audioEl }) {
             audioEl.current.src = sourse
             if(isPlaying) audioEl.current.play()
         }
+
     }, [sourse, isSkip])
 
     function handlePlayMusic() {
@@ -163,6 +164,7 @@ function Control({ sourse, duration, audioEl }) {
         if(isRepeat === repeatMode[0]) {
             btnRepeatElement.current.style.opacity = '0.5'
             setRepeatIcon(controlBtn.repeat)
+
             dispatch(action.setRepeat(false))
         } else if (isRepeat === repeatMode[1]) {
             btnRepeatElement.current.style.opacity = '1'
