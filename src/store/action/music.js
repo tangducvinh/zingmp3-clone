@@ -177,3 +177,30 @@ export function setSkip(flag) {
         flag
     }
 }
+
+export function setSourse(data) {
+    return {
+        type: actionTypes.SET_SOURSE,
+        data
+    }
+}
+
+export function addHistoryPlaylist (data) {
+    return {
+        type: actionTypes.ADD_HISTORY_PLAYLIST,
+        data,
+    }
+}
+
+export function deleteHistoryPlaylist() {
+    return {
+        type: actionTypes.DELETE_HISTORY_PLAYLIST
+    }
+}
+
+export function setDataNextSong(data) {
+    return {
+        type: actionTypes.SET_DATA_NEXT_SONGS,
+        data
+    }
+}

@@ -7,6 +7,7 @@ import { SongItem } from '../SongItem'
 import * as actions from '../../store/action'
 import { LibrarySongEmpty } from '../LibrarySongEmpty' 
 import { Mutating } from '../../companents/Spinner'
+import * as apis from '../../apis'
 
 function SearchSong({data, hide, loading}) {
     const dispatch = useDispatch()
@@ -17,10 +18,19 @@ function SearchSong({data, hide, loading}) {
         if (dataSearch) dispatch(actions.getSearchSong(dataSearch?.data?.data?.artists[0]?.id))
     }, [dataSearch])
 
-    function handleChooseSong(item, index) {
-        dispatch(actions.setCurSongId(item.encodeId, index))
+    async function handleChooseSong(item, index) {
+        console.log('here')
+        dispatch(actions.load(true))
+        const response = await apis.getSong(item.encodeId)
+        dispatch(actions.load(false))
+
+        if (response.data.err === 0) {
+            dispatch(actions.setCurSongId(item.encodeId, index))
+            dispatch(actions.setSourse(response.data.data['128']))
+        }
+        else dispatch(actions.setShowVip(true))
+
         dispatch(actions.setSkip(false))
-        dispatch(actions.setRecentPlaylist(item))
     }
 
     return (

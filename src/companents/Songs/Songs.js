@@ -5,14 +5,24 @@ import { useSelector, useDispatch } from 'react-redux'
 import styles from './Songs.module.scss'
 import { SongItem } from '../SongItem'
 import * as actions from '../../store/action'
+import * as apis from '../../apis'
 
 function Songs({ data }) {
     const { isPlaying } = useSelector(state => state.play)
     const { curSongId } = useSelector(state => state.music)
     const dispatch = useDispatch()
 
-    function handleChooseSong(data) {
-        dispatch(actions.setCurSongId(data.encodeId))
+    async function handleChooseSong(data) {
+        dispatch(actions.load(true))
+        const response = await apis.getSong(data.encodeId)
+        dispatch(actions.load(false))
+
+        if (response.data.err === 0) {
+            dispatch(actions.setCurSongId(data.encodeId, 0))
+            dispatch(actions.setSourse(response.data.data['128']))
+        }
+        else dispatch(actions.setShowVip(true))
+
         dispatch(actions.setSkip(false))
         dispatch(actions.setRecentPlaylist(data))
         

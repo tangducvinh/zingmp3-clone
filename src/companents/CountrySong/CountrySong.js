@@ -8,6 +8,7 @@ import icons from '../../ultis/icon'
 import { SongItem } from '../SongItem'
 import { Button } from '../Button'
 import * as actions from '../../store/action'
+import * as apis from '../../apis'
 
 function CountrySong({ data }) {
     const { HiPlay } = icons
@@ -30,16 +31,35 @@ function CountrySong({ data }) {
         navigate(path)
     }
 
-    function handleChooseSong(item, index) {
-        dispatch(actions.setCurSongId(item.encodeId))
+    async function handleChooseSong(item, index) {
+        dispatch(actions.load(true))
+        const response = await apis.getSong(item.encodeId)
+        dispatch(actions.load(false))
+
+        if (response.data.err === 0) {
+            dispatch(actions.setCurSongId(item.encodeId, index))
+            dispatch(actions.setSourse(response.data.data['128']))
+        }
+        else dispatch(actions.setShowVip(true))
+
         dispatch(actions.setSkip(false))
-        dispatch(actions.setRecentPlaylist(item))
+        // dispatch(actions.setRecentPlaylist(item))
     }
 
-    function handlePlaySong() {
+    async function handlePlaySong() {
+        dispatch(actions.load(true))
+        const response = await apis.getSong(data.items[0].encodeId)
+        dispatch(actions.load(false))
+
+        if (response.data.err === 0) {
+            dispatch(actions.setCurSongId(data.items[0].encodeId))
+            dispatch(actions.setSourse(response.data.data['128']))
+        }
+        else dispatch(actions.setShowVip(true))
+
         dispatch(actions.setCurSongId(data.items[0].encodeId))
         dispatch(actions.setSkip(false))
-        dispatch(actions.setRecentPlaylist(data.items[0]))
+        // dispatch(actions.setRecentPlaylist(data.items[0]))
     }
 
     return (

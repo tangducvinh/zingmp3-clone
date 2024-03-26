@@ -9,14 +9,26 @@ import { InforSong } from '../InforSong'
 import { Button } from '../Button'
 import  * as actions from '../../store/action'
 import { ChartItem } from '../ChartItem'
+import * as apis from '../../apis'
  
 function SongChart() {
     const { songChart } = useSelector(state => state.app)
     const { BsPlayCircleFill } = icons
     const dispatch = useDispatch() 
 
-    function handlePlaySong(item, index) {
-        dispatch(actions.setCurSongId(item.encodeId, index))
+    async function handlePlaySong(item, index) {
+        // dispatch(actions.setCurSongId(item.encodeId, index))
+
+        dispatch(actions.load(true))
+        const response = await apis.getSong(item.encodeId)
+        dispatch(actions.load(false))
+
+        if (response.data.err === 0) {
+            dispatch(actions.setCurSongId(item.encodeId, index))
+            dispatch(actions.setSourse(response.data.data['128']))
+        }
+        else dispatch(actions.setShowVip(true))
+
         dispatch(actions.setSkip(false))
     }
 

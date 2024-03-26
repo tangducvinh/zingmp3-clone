@@ -8,6 +8,7 @@ import icons from '../../ultis/icon'
 
 function SongItem({item, icon, nameSizeS, playing, index, zingchart, zingchartM}) {
     const { LuMusic, AiOutlineLine } = icons
+
     return (
         <div className={clsx(styles.container)}>
             <div className={clsx(styles.inforItem, {[styles.inforItemZingchartM]: zingchartM})}>

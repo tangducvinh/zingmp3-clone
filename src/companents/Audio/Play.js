@@ -11,37 +11,25 @@ import * as apis from '../../apis/music'
 import * as actions from '../../store/action'
 
 function Play() {
-    const { curSongId } = useSelector(state => state.music)
+    const { curSongId, curSourse } = useSelector(state => state.music)
     const { isRepeat, isShowAudio } = useSelector(state => state.play)
     const [infor, setInfor] = useState({})
-    const [sourse, setSourse] = useState(null)
     const audioEl = useRef(new Audio())
     const dispatch = useDispatch()
 
-    useEffect(() => {
-        async function fetchDetailSong() {
-            dispatch(actions.load(true))
-            const [res1, res2] = await Promise.all([
-                apis.getDetailSong(curSongId),
-                apis.getSong(curSongId)
-            ])
+    async function fetchDetailSong() {
+        const response = await apis.getDetailSong(curSongId)
 
-            if (res1.data.err === 0) {
-                if (res2.data.err === 0) {
-                    setInfor(res1.data.data)
-                }
-            }
+        if (response.data.err === 0) {
+            setInfor(response.data.data)
 
-            if (res2.data.err === 0) {
-                setSourse(res2.data.data['128'])
-                dispatch(actions.checkVip(false))
-                dispatch(actions.load(false))
-            } else {
-                if (isRepeat === false) dispatch(actions.setShowVip(true))
-                dispatch(actions.checkVip(true))
-                dispatch(actions.load(false))
-            }
+
+            dispatch(actions.setRecentPlaylist(response.data.data))
+            dispatch(actions.addHistoryPlaylist(response.data.data))
         }
+    }
+
+    useEffect(() => {
         fetchDetailSong()
     }, [curSongId])
 
@@ -53,7 +41,6 @@ function Play() {
 
             <div className={clsx(styles.control)}>
                 <Control 
-                    sourse={sourse}
                     duration={infor.duration}
                     audioEl={audioEl}
                 />

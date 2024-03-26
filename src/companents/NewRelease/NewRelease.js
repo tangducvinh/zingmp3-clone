@@ -6,6 +6,7 @@ import styles from './NewRelease.module.scss'
 import { Button } from '../Button'
 import { InforSong } from '../InforSong'
 import * as actions from '../../store/action'
+import * as apis from '../../apis'
 
 function NewRelease() {
     const { newRelease } = useSelector(state => state.app)
@@ -23,10 +24,17 @@ function NewRelease() {
         } 
     }, [active, newRelease])
 
-    function handleChooseSong(item, index) {
-        dispatch(actions.setCurSongId(item.encodeId, index))
+    async function handleChooseSong(item, index) {
+        dispatch(actions.load(true))
+        const response = await apis.getSong(item.encodeId)
+        dispatch(actions.load(false))
+
+        if (response.data.err === 0) {
+            dispatch(actions.setCurSongId(item.encodeId, index))
+            dispatch(actions.setSourse(response.data.data['128']))
+        }
+        else dispatch(actions.setShowVip(true))
         dispatch(actions.setSkip(false))
-        dispatch(actions.setRecentPlaylist(item))
     }
 
     return (

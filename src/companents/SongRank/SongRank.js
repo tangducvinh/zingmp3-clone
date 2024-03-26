@@ -8,6 +8,7 @@ import icons from '../../ultis/icon'
 import * as actions from '../../store/action'
 import { AudioSpinner } from '../Spinner'
 import { handleSliderRank } from '../../ultis/func'
+import * as apis from '../../apis'
 
 function SongRank() {
     const { BsPlayCircle } = icons
@@ -16,8 +17,18 @@ function SongRank() {
     const { curSongId } = useSelector(state => state.music)
     const dispatch = useDispatch()
 
-    function handlePlaySong(id, index) {
-        dispatch(actions.setCurSongId(id, index))
+    async function handlePlaySong(id, index) {
+        // dispatch(actions.setCurSongId(id, index))
+        dispatch(actions.load(true))
+        const response = await apis.getSong(id)
+        dispatch(actions.load(false))
+
+        if (response.data.err === 0) {
+            dispatch(actions.setCurSongId(id, index))
+            dispatch(actions.setSourse(response.data.data['128']))
+        }
+        else dispatch(actions.setShowVip(true))
+
         dispatch(actions.play(true))
     }
 

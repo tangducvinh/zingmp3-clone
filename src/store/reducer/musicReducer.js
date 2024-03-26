@@ -2,15 +2,18 @@ import actionTypes from '../action/actionTypes'
 
 const initState = {
     curSongId: null,
+    curSourse: null,
     indexSong: null,
     curPlaylistId: null,
     recentPlaylist: [],
+    historyPlaylist: [],
     dataSearch: null,
     dataArtistSong: null,
     dataSearchPlaylist: null,
     dataZingchart: null,
     dataTop100: null,
     dataHistoryAlbums: [],
+    dataNextSong: [],
 }
 
 const musicReducer = (state = initState, action) => {
@@ -19,7 +22,6 @@ const musicReducer = (state = initState, action) => {
             return {
                 ...state,
                 curSongId: action.sid || null,
-                indexSong: action.index,
             }
         case actionTypes.SET_CUR_PLAYLIST_ID:
             return {
@@ -76,6 +78,39 @@ const musicReducer = (state = initState, action) => {
             return {
                 ...state,
                 dataHistoryAlbums: newArray,
+            }
+        case actionTypes.SET_SOURSE:
+            return {
+                ...state,
+                curSourse: action.data
+            }
+        case actionTypes.ADD_HISTORY_PLAYLIST:
+
+            const newData = [...state.historyPlaylist]
+
+            if (state.historyPlaylist >= 20) {
+                newData.pop();
+            }
+
+            newData.push(action.data)
+
+            return {
+                ...state,
+                historyPlaylist: newData
+            }
+        case actionTypes.DELETE_HISTORY_PLAYLIST: 
+            const copyData = [...state.historyPlaylist]
+            copyData.pop()
+            copyData.pop()
+
+            return {
+                ...state,
+                historyPlaylist: copyData,
+            }
+        case actionTypes.SET_DATA_NEXT_SONGS:
+            return {
+                ...state,
+                dataNextSong: action.data
             }
         default: 
             return state

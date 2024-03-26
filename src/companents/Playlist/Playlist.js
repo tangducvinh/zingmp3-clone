@@ -6,19 +6,28 @@ import moment from 'moment'
 import styles from './Playlist.module.scss'
 import { SongItem } from '../SongItem'
 import icons from '../../ultis/icon'
-import * as action from '../../store/action'
+import * as actions from '../../store/action'
+import * as apis from '../../apis'
 
 function Playlist({ item, duration, total }) {
     const { RxCaretSort, BsDot } = icons
     const dispatch = useDispatch()
 
-    function handleChosseSong(item, index) {
-        dispatch(action.setCurSongId(item.encodeId, index))
-        // dispatch(action.play(true))
-        dispatch(action.random(false))
-        dispatch(action.setChangePlaylist(true))
-        dispatch(action.setSkip(false))
-        dispatch(action.setRecentPlaylist(item))
+    async function handleChosseSong(item, index) {
+        dispatch(actions.play(false))
+        dispatch(actions.load(true))
+        const response = await apis.getSong(item.encodeId)
+        dispatch(actions.load(false))
+
+        if (response.data.err === 0) {
+            dispatch(actions.setCurSongId(item.encodeId, index))
+            dispatch(actions.setSourse(response.data.data['128']))
+            dispatch(actions.setChangePlaylist(true))
+        }
+        else dispatch(actions.setShowVip(true))
+
+        dispatch(actions.random(false))
+        dispatch(actions.setSkip(false))
     }
 
     return (
