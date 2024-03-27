@@ -14,7 +14,7 @@ import * as actions from '../../../store/action'
 
 function Public() {
     const { sidebarRight, isShowVip } = useSelector(state => state.play)
-    const { curSongId } = useSelector(state => state.music)
+    const { inforCurrent } = useSelector(state => state.music)
     const dispatch = useDispatch()
 
     
@@ -50,7 +50,7 @@ function Public() {
                         </Tippy>
                     </div>
 
-                    {curSongId && <div className={clsx(styles.bottom)}></div>}
+                    {inforCurrent && <div className={clsx(styles.bottom)}></div>}
                 </div>
 
                 <div className={clsx(styles.sidebarRight)}>
@@ -58,7 +58,7 @@ function Public() {
                 </div>
             </div>
 
-            {curSongId && 
+            {inforCurrent && 
                 <div className={clsx(styles.audio)}>
                     <Audio />
                 </div>

@@ -1,8 +1,7 @@
 import clsx from 'clsx'
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { memo } from 'react'
-import { useParams } from 'react-router-dom'
 
 import styles from './Control.module.scss'
 import { ButtonAudio } from '../../ButtonAudio'
@@ -14,8 +13,8 @@ import * as apis from '../../../apis'
 
 function Control({  duration, audioEl }) {
     const dispatch = useDispatch()
-    const { isPlaying, isRandom , isVip, isLoad, isSkip} = useSelector(state => state.play)
-    var {curPlaylistId, recentPlaylist, curSourse, curSongId, historyPlaylist, dataNextSong, dataZingchart } = useSelector(state => state.music)
+    const { isPlaying, isRandom ,isLoad} = useSelector(state => state.play)
+    var { curSourse, historyPlaylist, dataNextSong, dataZingchart, inforCurrent } = useSelector(state => state.music)
     const interval = useRef()
     const currentDurationEl = useRef()
     const totalDurationEl = useRef()
@@ -27,22 +26,12 @@ function Control({  duration, audioEl }) {
     const repeatMode = ['off', 'on', 'one']
     const [isRepeat, setIsRepeat] = useState(repeatMode[0])
     const [repeatIcon, setRepeatIcon] = useState(controlBtn.repeat)
-    const { pid } = useParams()
-    const [ indexSong, setIndexSong ] = useState(null)
-
-    console.log(curSongId)
 
     // handle play song
     useEffect(() => {
-        const set = setTimeout(() => {
-            console.log('hello')
-            dispatch(action.play(true))
-            audioEl.current.src = curSourse
-            audioEl.current.load()
-            audioEl.current.play()
-        }, [10000])
-
-        return () => clearTimeout(set)
+        audioEl.current.src = curSourse
+        audioEl.current.load()
+        if (isPlaying) audioEl.current.play()
     }, [curSourse])
 
     function handlePlayMusic() {
@@ -60,7 +49,7 @@ function Control({  duration, audioEl }) {
             audioEl?.current.play()
             interval.current = setInterval(() => {
                 let percent = (audioEl.current.currentTime / audioEl.current.duration) * 100
-                if (currentDurationEl.current) currentDurationEl.current.style.width = `${percent}%`
+                currentDurationEl.current.style.width = `${percent}%`
                 currentTimeEl.current.innerText = moment(Math.round(audioEl.current.currentTime) * 1000).format('mm:ss')
             }, 200)
 
@@ -70,7 +59,6 @@ function Control({  duration, audioEl }) {
             interval.current && clearInterval(interval.current)
         }
 
-        if(isPlaying && isSkip) dispatch(action.setSkip(false))
     }, [isPlaying])
 
     // handle progresbar
@@ -93,15 +81,6 @@ function Control({  duration, audioEl }) {
         else dispatch(action.random(true))
     }
 
-    // function handleRandomSong() {
-    //     let random = Math.round(Math.random() * (dataPlaylist?.total - 1))
-    //     while(indexSong === random) {
-    //         random = Math.round(Math.random() * (dataPlaylist?.total - 1))
-    //     }
-    //     return random
-    // }
-
-    //handle previous song
     useEffect(() => {
         if(isRandom || historyPlaylist.length === 0) btnPreviousElement.current.style.opacity = '0.2'  
         else btnPreviousElement.current.style.opacity = '1'
@@ -109,77 +88,74 @@ function Control({  duration, audioEl }) {
 
     async function handlePreviousSong() {
         if(!isRandom && historyPlaylist.length > 0) {
-        
             const songId = historyPlaylist[historyPlaylist.length - 2]?.encodeId
-            console.log(songId)
-
-            dispatch(action.load(true))
-            const response = await apis.getSong(songId)
-            dispatch(action.load(false))
-
-            if (response.data.err === 0) {
-                dispatch(action.setCurSongId(songId))
-                dispatch(action.setSourse(response.data.data['128']))
-            }
-            
+            dispatch(action.setCurrent(songId))
             dispatch(action.deleteHistoryPlaylist())
-            dispatch(action.play(true))
         } else {
             return
         }
     }
 
-    console.log(curSourse)
-
-    // console.log(isRandom)
-    console.log(isPlaying)
 
     //hanlde next song
     async function handleNextSong() {
+        if (isRandom) {
+            const indexRandom = Math.round(Math.random() * (dataNextSong.length - 1))
+            return checkSourseSong(indexRandom)
+        }
 
         let findIndex
         dataNextSong.forEach((item, index) => {
-            if (item.encodeId === curSongId) {
-                
+            if (item.encodeId === inforCurrent.encodeId) {
                 return findIndex = index
             }
         })
 
-        if (findIndex === undefined || findIndex >= dataNextSong.length - 1) {
-            setIndexSong(0)
+        if (findIndex === undefined) {
+            return checkSourseSong(0)
+        }
+
+        if (findIndex >= dataNextSong.length - 1) {
+            if (isRepeat === repeatMode[1]) {
+                return checkSourseSong(0)
+            } else {
+                dispatch(action.setDataNextSong(dataZingchart.RTChart.items))
+                return checkSourseSong(0)
+            }
         } else {
-            setIndexSong(findIndex + 1) 
-        } 
+            return checkSourseSong(findIndex + 1)
+        }
     }
 
     async function checkSourseSong(index) {
         const songId = dataNextSong[index]?.encodeId
-        dispatch(action.play(false))
+
         dispatch(action.load(true))
-        const response = await apis.getSong(songId)
+        const [res1, res2] = await Promise.all([
+            apis.getSong(songId),
+            apis.getDetailSong(songId)
+        ])
         dispatch(action.load(false))
 
-        if (response.data.err === 0) {
-            dispatch(action.setCurSongId(songId, index))
-            dispatch(action.setSourse(response.data.data['128']))
+        if(res1.data.err === 0 && res2.data.err === 0) {
+            dispatch(action.setInforCurrent(res2.data.data))
+            dispatch(action.setSourse(res1.data.data['128']))
             dispatch(action.play(true))
-        }
-        else {
-            if(indexSong >= dataNextSong.length - 1) setIndexSong(0)
-            else setIndexSong(indexSong + 1)
+            dispatch(action.setRecentPlaylist(res2.data.data))
+            dispatch(action.addHistoryPlaylist(res2.data.data))
+        } else {
+            if (index >= dataNextSong.length - 1) {
+                if (isRepeat === repeatMode[1]) {
+                    return checkSourseSong(0)
+                } else {
+                    dispatch(action.setDataNextSong(dataZingchart.RTChart.items))
+                    return checkSourseSong(0)
+                }
+            } else {
+                return checkSourseSong(index + 1)
+            }
         }
     }
-
-    useEffect(() => {
-        if (indexSong !== null) checkSourseSong(indexSong)
-    }, [indexSong])
-
-    // useEffect(() => {
-    //     if(isVip && isRepeat === repeatMode[1]) {
-    //         dispatch(action.checkVip(false))
-    //         handleNextSong()
-    //     }
-    // }, [isVip])
 
     // handle btn repeat
     useEffect(() => {
@@ -212,23 +188,11 @@ function Control({  duration, audioEl }) {
     // handle ended song
     useEffect(() => {
         async function handleEndSong() {
-            if(curPlaylistId && isRepeat === repeatMode[1] && recentPlaylist.length > 1) {
-                dispatch(action.load(true))
-                const response = await apis.getSong(recentPlaylist[recentPlaylist.length - 1].encodeId)
-                dispatch(action.load(false))
-
-                if (response.data.err === 0) {
-                    dispatch(action.setCurSongId(recentPlaylist[recentPlaylist.length - 1].encodeId, recentPlaylist.length - 1))
-                    dispatch(action.setSourse(response.data.data['128']))
-                }
-                else dispatch(action.setShowVip(true))
-            }
-            else if(isRepeat === repeatMode[2]) audioEl.current.play()
+            if(isRepeat === repeatMode[2]) audioEl.current.play()
             else handleNextSong()
         }
-
+        
         audioEl.current.addEventListener('ended', handleEndSong)
-
         return () => {
             audioEl.current.removeEventListener('ended', handleEndSong)
         }

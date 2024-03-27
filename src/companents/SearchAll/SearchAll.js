@@ -12,10 +12,9 @@ import { InforArtist } from '../InforArtist'
 import { Songs } from '../Songs'
 import { Artists } from '../Artists'
 import { Mutating } from '../Spinner'
-import * as apis from '../../apis'
 
 function SearchAll() {
-    const { dataSearch, curSongId } = useSelector(state => state.music)
+    const { dataSearch, inforCurrent } = useSelector(state => state.music)
     const { isPlaying, loadingSearch } = useSelector(state => state.play)
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -26,19 +25,9 @@ function SearchAll() {
     }
 
     async function handleChooseSong(data) {
-        dispatch(actions.load(true))
-        const response = await apis.getSong(data.encodeId)
-        dispatch(actions.load(false))
-
-        if (response.data.err === 0) {
-            dispatch(actions.setCurSongId(data.encodeId, 0))
-            dispatch(actions.setSourse(response.data.data['128']))
-        }
-        else dispatch(actions.setShowVip(true))
-
-        dispatch(actions.setSkip(false))
+        dispatch(actions.setCurrent(data.encodeId))
         
-        if (data.encodeId === curSongId && isPlaying) dispatch(actions.play(false))
+        if (data.encodeId === inforCurrent.encodeId && isPlaying) dispatch(actions.play(false))
     }
 
     return (
@@ -58,7 +47,7 @@ function SearchAll() {
                                     className={clsx(styles.wrapInfor)}
                                     onClick={() => handleChooseSong(dataSearch?.data?.data?.top)}
                                 > 
-                                    <InforSong item={dataSearch?.data?.data?.top} song sizeXL play={!isPlaying} playing={isPlaying && curSongId === dataSearch?.data?.data?.top?.encodeId}/>
+                                    <InforSong item={dataSearch?.data?.data?.top} song sizeXL play={!isPlaying} playing={isPlaying && inforCurrent.encodeId === dataSearch?.data?.data?.top?.encodeId}/>
                                 </div>
                             }
 

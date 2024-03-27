@@ -24,10 +24,8 @@ function ZingchartSongs() {
         ref.current.scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" });
     }, [])
 
-    function handleChooseSong(item, index) {
-        dispatch(actions.setCurSongId(item.encodeId, index))
-        dispatch(actions.play(true))
-        dispatch(actions.setRecentPlaylist(item))
+    function handleChooseSong(item) {
+        dispatch(actions.setCurrent(item.encodeId))
     }
 
     return (
@@ -37,7 +35,7 @@ function ZingchartSongs() {
             >
                 {dataPlaylist?.map((item, index) => (
                     <div
-                        onClick={() => handleChooseSong(item, index)}
+                        onClick={() => handleChooseSong(item)}
                         key={index}
                     >
                         <SongItem item={item} index={index} zingchart/>

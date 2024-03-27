@@ -204,3 +204,61 @@ export function setDataNextSong(data) {
         data
     }
 }
+
+export function setInforCurrent(data) {
+    return {
+        type: actionTypes.SET_INFOR_CURRENT,
+        data
+    }
+}
+
+export function setCurrent(encodeId, pid) {
+    return async function(dispatch) {
+        dispatch({type: actionTypes.LOAD, flag: true})
+        const [res1, res2, res3] = await Promise.all([
+            apis.getSong(encodeId),
+            apis.getDetailSong(encodeId),
+            apis.getDetailtPlaylist(pid)
+        ])
+        dispatch({type: actionTypes.LOAD, flag: false})
+
+        if(res1.data.err === 0 && res2.data.err === 0) {
+            if (pid) {
+                dispatch({
+                    type: actionTypes.SET_DATA_NEXT_SONGS,
+                    data: res3.data.data.song.items
+                })
+            }
+
+            dispatch({
+                type: actionTypes.SET_INFOR_CURRENT,
+                data: res2.data.data
+            })
+
+            dispatch({
+                type: actionTypes.SET_SOURSE,
+                data: res1.data.data['128']
+            })
+
+            dispatch({
+                type: actionTypes.ADD_HISTORY_PLAYLIST,
+                data: res2.data.data
+            })
+
+            dispatch({
+                type: actionTypes.SET_RECENT_PLAYLIST,
+                data: res2.data.data
+            })
+
+            dispatch({
+                type: actionTypes.PLAY,
+                flag: true
+            })
+        } else {
+            dispatch({
+                type: actionTypes.SET_SHOW_VIP,
+                flag: true,
+            })
+        }
+    }
+}

@@ -2,6 +2,7 @@ import clsx from 'clsx'
 import { memo } from 'react'
 import { useDispatch } from 'react-redux'
 import moment from 'moment'
+import { useParams } from 'react-router-dom'
 
 import styles from './Playlist.module.scss'
 import { SongItem } from '../SongItem'
@@ -12,22 +13,10 @@ import * as apis from '../../apis'
 function Playlist({ item, duration, total }) {
     const { RxCaretSort, BsDot } = icons
     const dispatch = useDispatch()
+    const { pid } = useParams()
 
     async function handleChosseSong(item, index) {
-        dispatch(actions.play(false))
-        dispatch(actions.load(true))
-        const response = await apis.getSong(item.encodeId)
-        dispatch(actions.load(false))
-
-        if (response.data.err === 0) {
-            dispatch(actions.setCurSongId(item.encodeId, index))
-            dispatch(actions.setSourse(response.data.data['128']))
-            dispatch(actions.setChangePlaylist(true))
-        }
-        else dispatch(actions.setShowVip(true))
-
-        dispatch(actions.random(false))
-        dispatch(actions.setSkip(false))
+        dispatch(actions.setCurrent(item.encodeId, pid))
     }
 
     return (

@@ -3,14 +3,12 @@ import actionTypes from '../action/actionTypes'
 const initState = {
     isPlaying: false,
     isRandom: false,
-    isVip: false,
     isLoad: false,
     sidebarRight: false,
     isChangePlaylist: true,
     loadingSearch: false,
     isShowVip: false,
     isRepeat: false,
-    isSkip: true,
     isLoadingZingchart: false,
     isLoadingSearchSong: false,
     isLoadingSearchPlaylist: false,
@@ -27,11 +25,6 @@ function playReducer(state = initState, action) {
             return {
                 ...state,
                 isRandom: action.flag,
-            }
-        case actionTypes.CHECKVIP:
-            return {
-                ...state,
-                isVip: action.flag,
             }
         case actionTypes.LOAD:
             return {
@@ -63,11 +56,7 @@ function playReducer(state = initState, action) {
                 ...state,
                 isRepeat: action.flag,
             }
-        case actionTypes.SET_SKIP:
-            return {
-                ...state,
-                isSkip: action.flag
-            }
+      
         case actionTypes.SET_LOADING_ZINGCHART:
             return {
                 ...state,

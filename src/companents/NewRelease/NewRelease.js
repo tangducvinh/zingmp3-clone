@@ -6,7 +6,6 @@ import styles from './NewRelease.module.scss'
 import { Button } from '../Button'
 import { InforSong } from '../InforSong'
 import * as actions from '../../store/action'
-import * as apis from '../../apis'
 
 function NewRelease() {
     const { newRelease } = useSelector(state => state.app)
@@ -24,17 +23,8 @@ function NewRelease() {
         } 
     }, [active, newRelease])
 
-    async function handleChooseSong(item, index) {
-        dispatch(actions.load(true))
-        const response = await apis.getSong(item.encodeId)
-        dispatch(actions.load(false))
-
-        if (response.data.err === 0) {
-            dispatch(actions.setCurSongId(item.encodeId, index))
-            dispatch(actions.setSourse(response.data.data['128']))
-        }
-        else dispatch(actions.setShowVip(true))
-        dispatch(actions.setSkip(false))
+    async function handleChooseSong(item) {
+        dispatch(actions.setCurrent(item.encodeId))
     }
 
     return (
@@ -71,7 +61,7 @@ function NewRelease() {
                             <div 
                                 key={item.encodeId}
                                 className={clsx(styles.inforSong)}
-                                onClick={() => handleChooseSong(item, index)}
+                                onClick={() => handleChooseSong(item)}
                             >
                                 <InforSong sizeL item={item} time play></InforSong>
                             </div>

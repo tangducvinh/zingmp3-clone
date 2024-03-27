@@ -2,7 +2,6 @@ import clsx from 'clsx'
 import { memo } from 'react'
 
 import styles from './Theme.module.scss'
-import { LinkAll } from '../LinkAll'
 import { ItemTheme } from '../ItemTheme'
 
 function Theme({ data, full }) {

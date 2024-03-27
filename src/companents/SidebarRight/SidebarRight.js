@@ -14,52 +14,30 @@ import { Mutating } from '../Spinner'
 function SidebarRight() {
     const { IoMdTime, SlOptions } = icons
     const [ isActive, setIsActive ] = useState(1)
-    const [ playlistData, setPlaylistData ] = useState(null)
-    const { curSongId, curPlaylistId, recentPlaylist, dataZingchart } = useSelector(state => state.music)
+    const { curSongId, curPlaylistId, recentPlaylist, dataZingchart, inforCurrent, dataNextSong } = useSelector(state => state.music)
     const { isPlaying, sidebarRight, isChangePlaylist} = useSelector(state => state.play)
-    const [ curSongData, setCurSongData ]  = useState(null)
     const [ titlePlaylist, setTiltePlaylist ] = useState('')
     const dispatch = useDispatch()
 
-    async function fetchDataPlaylist() {
-        const response = await apis.getDetailtPlaylist(curPlaylistId)
-        setPlaylistData(response.data.data.song.items)
-        dispatch(actions.setDataNextSong(response.data.data.song.items))
-        setTiltePlaylist(response.data.data.title)
+    async function featchDataRankSong() {
+        const response = await apis.getZingchart()
+        dispatch(actions.setDataNextSong(response.data.data.RTChart.items))
     }
 
     useEffect(() => {
-        if (curPlaylistId) {
-            fetchDataPlaylist()
-        } else {
-            setPlaylistData(dataZingchart.RTChart.items)
-            dispatch(actions.setDataNextSong(dataZingchart.RTChart.items))
+        if (dataNextSong.length === 0) {
+            featchDataRankSong()
         }
-    }, [dataZingchart, curPlaylistId])
+    }, [dataNextSong])
 
     useEffect(() => {
-        async function fecthDetailSong() {
-            const response = await apis.getDetailSong(curSongId)
-            setCurSongData(response?.data?.data)
-            setIsActive(1)
-        }
+        setIsActive(1)
+    }, [inforCurrent]) 
 
-        fecthDetailSong()
-    }, [curSongId]) 
+    async function handleChoseSong(item) {
+        dispatch(actions.setCurrent(item.encodeId))
 
-    async function handleChoseSong(item, index) {
-        dispatch(actions.load(true))
-        const response = await apis.getSong(item.encodeId)
-        dispatch(actions.load(false))
-
-        if (response.data.err === 0) {
-            dispatch(actions.setCurSongId(item.encodeId, index))
-            dispatch(actions.setSourse(response.data.data['128']))
-        }
-        else dispatch(actions.setShowVip(true))
-
-        dispatch(actions.setSkip(false))
-        // dispatch(actions.setRecentPlaylist(item))
+        // dispatch(actions.setSkip(false))
     }
 
     return (
@@ -91,7 +69,7 @@ function SidebarRight() {
 
             {isActive === 1 && 
                 <div className={clsx(styles.wrapPlaylist)}>
-                    {(playlistData === null || curSongData === null) && 
+                    {(dataNextSong === null || inforCurrent === null) && 
                         <div className={clsx(styles.loading)}><Mutating /></div>
                     }
 
@@ -100,7 +78,7 @@ function SidebarRight() {
                         onClick={() => dispatch(actions.play(!isPlaying))}
                     > 
                         <InforSong 
-                            item={curSongData} 
+                            item={inforCurrent} 
                             sizeM 
                             play={!isPlaying} 
                             playing={isPlaying}
@@ -128,11 +106,11 @@ function SidebarRight() {
                     </div>
 
                     <div className={clsx(styles.playListContent)}>
-                        {playlistData?.map((item, index) => (
+                        {dataNextSong?.map((item, index) => (
                             <div 
                                 className={clsx(styles.wrapInforSong)}
                                 key={item.encodeId}
-                                onClick={() => handleChoseSong(item, index)}
+                                onClick={() => handleChoseSong(item)}
                             > 
                                 <InforSong item={item} sizeM play/>
                             </div>
@@ -148,7 +126,7 @@ function SidebarRight() {
                             <div 
                                 className={clsx(styles.wrapInforSong)}
                                 key={item.encodeId}
-                                onClick={() => handleChoseSong(item, index)}
+                                onClick={() => handleChoseSong(item)}
                             > 
                                 <InforSong item={item} sizeM play/>
                             </div>

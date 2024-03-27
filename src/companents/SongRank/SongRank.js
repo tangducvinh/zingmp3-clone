@@ -17,19 +17,9 @@ function SongRank() {
     const { curSongId } = useSelector(state => state.music)
     const dispatch = useDispatch()
 
-    async function handlePlaySong(id, index) {
+    async function handlePlaySong(id) {
         // dispatch(actions.setCurSongId(id, index))
-        dispatch(actions.load(true))
-        const response = await apis.getSong(id)
-        dispatch(actions.load(false))
-
-        if (response.data.err === 0) {
-            dispatch(actions.setCurSongId(id, index))
-            dispatch(actions.setSourse(response.data.data['128']))
-        }
-        else dispatch(actions.setShowVip(true))
-
-        dispatch(actions.play(true))
+        dispatch(actions.setCurrent(id))
     }
 
     useEffect(() => {
@@ -68,7 +58,7 @@ function SongRank() {
                     >
                         <div 
                             className={clsx(styles.wrapImg)}
-                            onClick={() => handlePlaySong(item.encodeId, index)}
+                            onClick={() => handlePlaySong(item.encodeId)}
                         >
                             <img className={clsx(styles.img)} src={item.thumbnailM} alt='singer'></img>
                             {(isPlaying && item.encodeId === curSongId) ? 

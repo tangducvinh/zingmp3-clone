@@ -1,10 +1,11 @@
 import actionTypes from '../action/actionTypes'
 
 const initState = {
+    inforCurrent: null,
     curSongId: null,
     curSourse: null,
-    indexSong: null,
-    curPlaylistId: null,
+    // indexSong: null,
+    // curPlaylistId: null,
     recentPlaylist: [],
     historyPlaylist: [],
     dataSearch: null,
@@ -18,16 +19,8 @@ const initState = {
 
 const musicReducer = (state = initState, action) => {
     switch(action.type) {
-        case actionTypes.SET_CUR_SONG_ID:
-            return {
-                ...state,
-                curSongId: action.sid || null,
-            }
-        case actionTypes.SET_CUR_PLAYLIST_ID:
-            return {
-                ...state,
-                curPlaylistId: action.pid || null,
-            }
+  
+       
         case actionTypes.SET_RECENT_PLAYLIST:
             let songPlaylist
 
@@ -111,6 +104,11 @@ const musicReducer = (state = initState, action) => {
             return {
                 ...state,
                 dataNextSong: action.data
+            }
+        case actionTypes.SET_INFOR_CURRENT:
+            return {
+                ...state,
+                inforCurrent: action.data
             }
         default: 
             return state

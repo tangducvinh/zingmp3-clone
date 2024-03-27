@@ -16,20 +16,10 @@ function SongChart() {
     const { BsPlayCircleFill } = icons
     const dispatch = useDispatch() 
 
-    async function handlePlaySong(item, index) {
-        // dispatch(actions.setCurSongId(item.encodeId, index))
+    async function handlePlaySong(item) {
+        dispatch(actions.setCurrent(item.encodeId))
 
-        dispatch(actions.load(true))
-        const response = await apis.getSong(item.encodeId)
-        dispatch(actions.load(false))
-
-        if (response.data.err === 0) {
-            dispatch(actions.setCurSongId(item.encodeId, index))
-            dispatch(actions.setSourse(response.data.data['128']))
-        }
-        else dispatch(actions.setShowVip(true))
-
-        dispatch(actions.setSkip(false))
+        // dispatch(actions.setSkip(false))
     }
 
     return (
@@ -47,7 +37,7 @@ function SongChart() {
                         <div 
                             className={clsx(styles.inforSong)}
                             key={item.encodeId}
-                            onClick={() => handlePlaySong(item, index)}
+                            onClick={() => handlePlaySong(item)}
                         >
                             <span 
                                 className={clsx(styles.orderIndex, {
