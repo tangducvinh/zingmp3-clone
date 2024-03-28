@@ -262,3 +262,32 @@ export function setCurrent(encodeId, pid) {
         }
     }
 }
+
+export function addFavoritePlaylist(data) {
+    return {
+        type: actionTypes.ADD_FAVORITE_PLAYLIST,
+        data
+    }
+}
+
+export function deleteFavoritePlaylist(encodeId) {
+    return {
+        type: actionTypes.DELETE_FAVORTITE_PLAYLIST,
+        encodeId
+    }
+}
+
+/// here
+export function addFavoriteAlbum(data) {
+    return {
+        type: actionTypes.ADD_FAVORITE_ALBUM,
+        data,
+    }
+}
+
+export function deleteFavoriteAlbum(encodeId) {
+    return {
+        type: actionTypes.DELETE_FAVORITE_ALBUM,
+        encodeId
+    }
+}

@@ -1,10 +1,12 @@
 import clsx from 'clsx'
 import { memo } from 'react'
+import { useSelector } from 'react-redux'
 
 import styles from './Theme.module.scss'
 import { ItemTheme } from '../ItemTheme'
 
 function Theme({ data, full }) {
+    const { dataFavoriteAlbum } = useSelector(state => state.music)
     return (
         <div className={clsx(styles.container)}>
             <div className={clsx(styles.wrapTitle)}>
@@ -20,7 +22,7 @@ function Theme({ data, full }) {
                             className={clsx(styles.wrapItem)}
                             key={item.encodeId}
                         > 
-                            <ItemTheme item={item}></ItemTheme>
+                            <ItemTheme item={item} favorite={dataFavoriteAlbum.some(el => el.encodeId === item.encodeId)}></ItemTheme>
                         </div>
                     )) 
                     : 
@@ -30,14 +32,14 @@ function Theme({ data, full }) {
                                 className={clsx(styles.wrapItem)}
                                 key={item.encodeId}
                             > 
-                                <ItemTheme item={item}></ItemTheme>
+                                <ItemTheme item={item} favorite={dataFavoriteAlbum.some(el => el.encodeId === item.encodeId)}></ItemTheme>
                             </div> 
                         : 
                             <div 
                                 className={clsx(styles.wrapItem, styles.hidden)}
                                 key={item.encodeId}
                             > 
-                                <ItemTheme item={item}></ItemTheme>
+                                <ItemTheme item={item} favorite={dataFavoriteAlbum.some(el => el.encodeId === item.encodeId)}></ItemTheme>
                             </div>
                     ))
                 }

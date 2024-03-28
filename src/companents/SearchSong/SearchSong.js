@@ -11,27 +11,13 @@ import * as apis from '../../apis'
 
 function SearchSong({data, hide, loading}) {
     const dispatch = useDispatch()
-    const { dataSearch } = useSelector(state => state.music)
+    const { dataSearch, dataFavoritePlaylist } = useSelector(state => state.music)
     const { isLoadingSearchSong } = useSelector(state => state.play)
 
     useEffect(() => {
         if (dataSearch) dispatch(actions.getSearchSong(dataSearch?.data?.data?.artists[0]?.id))
     }, [dataSearch])
 
-    async function handleChooseSong(item, index) {
-        console.log('here')
-        dispatch(actions.load(true))
-        const response = await apis.getSong(item.encodeId)
-        dispatch(actions.load(false))
-
-        if (response.data.err === 0) {
-            dispatch(actions.setCurSongId(item.encodeId, index))
-            dispatch(actions.setSourse(response.data.data['128']))
-        }
-        else dispatch(actions.setShowVip(true))
-
-        dispatch(actions.setSkip(false))
-    }
 
     return (
         <>
@@ -45,12 +31,11 @@ function SearchSong({data, hide, loading}) {
 
                             {data?.length >= 1 ?
                                 <div className={clsx(styles.wrapSongs)}>
-                                    {data?.map((item, index) => (
+                                    {data?.map((item) => (
                                         <div 
-                                            onClick={() => handleChooseSong(item, index)}
                                             key={item.encodeId}
                                         >
-                                            <SongItem item={item}/>
+                                            <SongItem favorite={dataFavoritePlaylist.some(el => el.encodeId === item.encodeId)} item={item}/>
                                         </div>
                                     ))}
                                 </div> 
@@ -66,12 +51,11 @@ function SearchSong({data, hide, loading}) {
 
                     {data?.length >= 1 ?
                         <div className={clsx(styles.wrapSongs)}>
-                            {data?.map((item, index) => (
+                            {data?.map((item) => (
                                 <div 
-                                    onClick={() => handleChooseSong(item, index)}
                                     key={item.encodeId}
                                 >
-                                    <SongItem item={item}/>
+                                    <SongItem favorite={dataFavoritePlaylist.some(el => el.encodeId === item.encodeId)} item={item}/>
                                 </div>
                             ))}
                         </div> 

@@ -9,7 +9,7 @@ import { Control } from './Control'
 import { Option } from './Option'
 
 function Play() {
-    const { inforCurrent } = useSelector(state => state.music)
+    const { inforCurrent, dataFavoritePlaylist } = useSelector(state => state.music)
     const audioEl = useRef(new Audio())
 
     return (

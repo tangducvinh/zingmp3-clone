@@ -1,14 +1,17 @@
 import clsx from 'clsx'
 import { memo } from 'react'
+import { useSelector } from 'react-redux'
 
 import styles from './NewReleaseArtist.module.scss'
 import { ItemTheme } from '../ItemTheme'
 
+
 function NewReleaseArtist({data}) {
+    const { dataFavoriteAlbum } = useSelector(state => state.music)
     return (
         <div className={clsx(styles.container)}>
             <div className={clsx(styles.wrapImg)}>
-               <ItemTheme item={data} sizeS/>
+               <ItemTheme favorite={dataFavoriteAlbum.some(el => el.encodeId === data.encodeId)} item={data} sizeS/>
             </div>
 
             <div className={clsx(styles.content)}>

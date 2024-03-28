@@ -9,7 +9,7 @@ import { LibrarySongEmpty } from '../LibrarySongEmpty'
 import { Mutating } from '../../companents/Spinner'
 
 function SearchPlaylist() {
-    const { dataSearch, dataSearchPlaylist } = useSelector(state => state.music)
+    const { dataSearch, dataSearchPlaylist, dataFavoriteAlbum } = useSelector(state => state.music)
     const { isLoadingSearchPlaylist } = useSelector(state => state.play)
     const dispatch = useDispatch()
 
@@ -35,7 +35,7 @@ function SearchPlaylist() {
                                             className={clsx(styles.wrapItem)}
                                             key={item.encodeId}
                                         >
-                                            <ItemTheme item={item} />
+                                            <ItemTheme favorite={dataFavoriteAlbum.some(el => el.encodeId === item.encodeId)} item={item} />
                                         </div>
                                     ))}
                                 </div>   

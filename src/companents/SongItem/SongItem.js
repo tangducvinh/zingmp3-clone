@@ -2,15 +2,36 @@ import clsx from 'clsx'
 import styles from './SongItem.module.scss'
 import { memo } from 'react'
 import moment from 'moment'
+import { useDispatch, useSelector } from 'react-redux'
 
 import { InforSong } from '../InforSong'
+import { ButtonAudio } from '../ButtonAudio'
+import { inforBtn } from '../../ultis/buttonAudio'
 import icons from '../../ultis/icon'
+import * as actions from '../../store/action'
 
-function SongItem({item, icon, nameSizeS, playing, index, zingchart, zingchartM}) {
+function SongItem({item, icon, nameSizeS, playing, index, zingchart, zingchartM, cancelClick = false, favorite = false}) {
+    const dispatch = useDispatch()
     const { LuMusic, AiOutlineLine } = icons
+    const { dataFavoritePlaylist } = useSelector(state => state.music)
+
+    function handleHeart(e) {
+        e.stopPropagation()
+        if (favorite) {
+            dispatch(actions.deleteFavoritePlaylist(item.encodeId))
+        } else {
+            dispatch(actions.addFavoritePlaylist(item))
+        }
+    }
+
+    function handleChooseSong() {
+        if (!cancelClick) {
+            dispatch(actions.setCurrent(item.encodeId))
+        }
+    }
 
     return (
-        <div className={clsx(styles.container)}>
+        <div className={clsx(styles.container)} onClick={handleChooseSong}>
             <div className={clsx(styles.inforItem, {[styles.inforItemZingchartM]: zingchartM})}>
                 {icon && <span className={clsx(styles.icon)}><LuMusic size={16}/></span>}
 
@@ -40,7 +61,15 @@ function SongItem({item, icon, nameSizeS, playing, index, zingchart, zingchartM}
                 </a>
             } 
                 
-            <span className={clsx(styles.duration)}>{moment(item.duration * 1000).format('mm:ss')}</span>
+            <span className={clsx(styles.duration)}>
+                <div className={clsx(styles.wrrapBtn)} onClick={handleHeart}>
+                    <ButtonAudio
+                        item={favorite ? inforBtn.loveBtnFill : inforBtn.loveBtnOutline}
+                    />
+                </div>
+
+                <p className={clsx(styles.textDuration)}>{moment(item.duration * 1000).format('mm:ss')}</p>
+            </span>
         </div>
     )
 }

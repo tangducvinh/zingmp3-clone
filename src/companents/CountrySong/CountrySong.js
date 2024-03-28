@@ -1,7 +1,7 @@
 import clsx from 'clsx'
 import { memo, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 import styles from './CountrySong.module.scss'
 import icons from '../../ultis/icon'
@@ -15,6 +15,7 @@ function CountrySong({ data }) {
     const navigate = useNavigate()
     const [ country, setCountry ] = useState('')
     const dispatch = useDispatch()
+    const { dataFavoritePlaylist } = useSelector(state => state.music)
 
     useEffect(() => {
         if (data?.country === 'vn') {
@@ -31,35 +32,11 @@ function CountrySong({ data }) {
         navigate(path)
     }
 
-    async function handleChooseSong(item, index) {
-        dispatch(actions.load(true))
-        const response = await apis.getSong(item.encodeId)
-        dispatch(actions.load(false))
-
-        if (response.data.err === 0) {
-            dispatch(actions.setCurSongId(item.encodeId, index))
-            dispatch(actions.setSourse(response.data.data['128']))
-        }
-        else dispatch(actions.setShowVip(true))
-
-        dispatch(actions.setSkip(false))
-        // dispatch(actions.setRecentPlaylist(item))
-    }
 
     async function handlePlaySong() {
-        dispatch(actions.load(true))
-        const response = await apis.getSong(data.items[0].encodeId)
-        dispatch(actions.load(false))
+   
 
-        if (response.data.err === 0) {
-            dispatch(actions.setCurSongId(data.items[0].encodeId))
-            dispatch(actions.setSourse(response.data.data['128']))
-        }
-        else dispatch(actions.setShowVip(true))
-
-        dispatch(actions.setCurSongId(data.items[0].encodeId))
-        dispatch(actions.setSkip(false))
-        // dispatch(actions.setRecentPlaylist(data.items[0]))
+        dispatch(actions.setCurrent(data.items[0].encodeId))
     }
 
     return (
@@ -77,10 +54,10 @@ function CountrySong({ data }) {
             <div className={clsx(styles.playlist)}>
                 {data?.items?.filter((item, index) => index < 5).map((item, index) => (
                     <div 
-                        onClick={() => handleChooseSong(item, index)}
+                        // onClick={() => handleChooseSong(item, index)}
                         key={index}
                     >
-                        <SongItem item={item} zingchart index={index} nameSizeS zingchartM/>
+                        <SongItem item={item} zingchart index={index} favorite={dataFavoritePlaylist.some(el => el.encodeId === item.encodeId)} nameSizeS zingchartM/>
                     </div>
                 ))}
             </div>

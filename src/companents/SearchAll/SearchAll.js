@@ -14,7 +14,7 @@ import { Artists } from '../Artists'
 import { Mutating } from '../Spinner'
 
 function SearchAll() {
-    const { dataSearch, inforCurrent } = useSelector(state => state.music)
+    const { dataSearch, inforCurrent, dataFavoriteAlbum } = useSelector(state => state.music)
     const { isPlaying, loadingSearch } = useSelector(state => state.play)
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -97,14 +97,16 @@ function SearchAll() {
                                 {dataSearch?.data?.data?.playlists?.filter((item, index) => index < 5).map((item, index) => (
                                     (index < 4) ? 
                                         <div className={clsx(styles.itemCss)} key={index}>
-                                            <ItemTheme 
+                                            <ItemTheme
+                                                favorite={dataFavoriteAlbum.some(el => el.encodeId === item.encodeId)} 
                                                 item={item} 
                                                 key={item.encodeId}
                                             />
                                         </div> 
                                         : 
                                         <div className={clsx(styles.itemCss, styles.hidden)} key={index}>
-                                            <ItemTheme 
+                                            <ItemTheme
+                                                favorite={dataFavoriteAlbum.some(el => el.encodeId === item.encodeId)} 
                                                 item={item} 
                                                 key={item.encodeId}
                                             />

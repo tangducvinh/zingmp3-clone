@@ -1,23 +1,15 @@
 import clsx from 'clsx'
 import { memo } from 'react'
-import { useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
 import moment from 'moment'
-import { useParams } from 'react-router-dom'
 
 import styles from './Playlist.module.scss'
 import { SongItem } from '../SongItem'
 import icons from '../../ultis/icon'
-import * as actions from '../../store/action'
-import * as apis from '../../apis'
 
 function Playlist({ item, duration, total }) {
     const { RxCaretSort, BsDot } = icons
-    const dispatch = useDispatch()
-    const { pid } = useParams()
-
-    async function handleChosseSong(item, index) {
-        dispatch(actions.setCurrent(item.encodeId, pid))
-    }
+    const { dataFavoritePlaylist } = useSelector(state => state.music)
 
     return (
         <div className={clsx(styles.container)}>
@@ -34,10 +26,9 @@ function Playlist({ item, duration, total }) {
                 {item?.map((item, index) => (
                     <div 
                         className={clsx(styles.songItem)}
-                        onClick={() => handleChosseSong(item, index)}
                         key={item?.encodeId}
                     >
-                        <SongItem item={item} icon/>
+                        <SongItem item={item} favorite={dataFavoritePlaylist.some(el => el.encodeId === item.encodeId)} icon/>
                     </div>
                 ))}
             </div>

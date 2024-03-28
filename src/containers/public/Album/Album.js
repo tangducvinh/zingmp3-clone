@@ -22,6 +22,7 @@ function Album() {
     const [ loadingData, setLoadingData ] = useState(false)
     const { BsPlayCircle } = icons
     const { isPlaying } = useSelector(state => state.play)
+    const { dataFavoriteAlbum } = useSelector(state => state.music)
     const dispatch = useDispatch()
     const location = useLocation()
     const ref = useRef()
@@ -38,22 +39,13 @@ function Album() {
             }
         }
         fetchDetailPlaylist(pid)
-        dispatch(actions.setCurPlaylistId(pid))
-        dispatch(actions.setChangePlaylist(false))
     }, [pid])
 
     useEffect(() => {
         if(location.state?.playAlbum) {
             const idSong = data?.song?.items[0].encodeId
-            if(idSong) {
-                dispatch(actions.setCurSongId(idSong, 0))
-                var set = setTimeout(() => {
-                    dispatch(actions.play(true))
-                }, 500)
-            }
+            dispatch(actions.setCurrent(idSong))
         }
-
-        return () => clearTimeout(set)
     }, [data])
 
     useEffect(() => {
@@ -62,6 +54,14 @@ function Album() {
 
     function handlePlaySong() {
        dispatch(actions.play(!isPlaying))
+    }
+
+    function handleHeart() {
+        if(dataFavoriteAlbum.some(el => el?.encodeId === data.encodeId)) {
+            dispatch(actions.deleteFavoriteAlbum(data.encodeId))
+        } else {
+            dispatch(actions.addFavoriteAlbum(data))
+        }
     }
 
     return (
@@ -111,8 +111,10 @@ function Album() {
                     </div>
 
                     <div className={clsx(styles.wrrapOption)}>
-                        <div className={clsx(styles.loveBtn)}>
-                            <ButtonAudio item={inforBtn.loveBtnOutline}/>
+                        <div className={clsx(styles.wrrapBtn)} onClick={handleHeart}>
+                            <ButtonAudio
+                                item={dataFavoriteAlbum.some(el => el?.encodeId === data.encodeId) ? inforBtn.loveBtnFill : inforBtn.loveBtnOutline}
+                            />
                         </div>
 
                         <div className={clsx(styles.addBtn)}>

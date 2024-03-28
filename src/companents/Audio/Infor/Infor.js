@@ -1,19 +1,26 @@
 import clsx from 'clsx'
 import { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 
 import styles from './Infor.module.scss'
 import { ButtonAudio } from '../../ButtonAudio'
 import { inforBtn } from '../../../ultis/buttonAudio'
 import { IoShieldCheckmarkOutline } from 'react-icons/io5'
 import { InforSong } from '../../../companents/InforSong'
+import * as actions from '../../../store/action'
 
 function Infor({ item }) { 
-
-    const [isHeart, setIsHeart] = useState(false)
+    const dispatch = useDispatch()
+    const { dataFavoritePlaylist } = useSelector(state => state.music)
 
     function handleHeart() {
-        setIsHeart(!isHeart)
+        if (dataFavoritePlaylist.some(el => el.encodeId === item.encodeId)) {
+            dispatch(actions.deleteFavoritePlaylist(item.encodeId))
+        } else {
+            dispatch(actions.addFavoritePlaylist(item))
+        }
     }
+
 
     return (
         <div className={clsx(styles.container)}>
@@ -21,12 +28,13 @@ function Infor({ item }) {
                 <InforSong 
                     sizeL
                     item={item}  
+                    cancelClick
                 />
             </div>
 
             <div className={clsx(styles.wrrapBtn)} onClick={handleHeart}>
                 <ButtonAudio
-                    item={isHeart ? inforBtn.loveBtnFill : inforBtn.loveBtnOutline}
+                    item={dataFavoritePlaylist.some(el => el.encodeId === item.encodeId) ? inforBtn.loveBtnFill : inforBtn.loveBtnOutline}
                 />
             </div>
 

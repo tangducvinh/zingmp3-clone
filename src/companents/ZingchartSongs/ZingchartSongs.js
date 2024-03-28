@@ -5,14 +5,12 @@ import { useSelector, useDispatch } from 'react-redux'
 
 import styles from './ZingchartSongs.module.scss'
 import { SongItem } from '../SongItem'
-import * as actions from '../../store/action'
 
 function ZingchartSongs() {
     const { id } = useParams()
-    const { dataZingchart } = useSelector(state => state.music)
+    const { dataZingchart, dataFavoritePlaylist } = useSelector(state => state.music)
     const [ dataPlaylist, setDataPlaylist ] = useState()
     const ref = useRef()
-    const dispatch = useDispatch()
 
     useEffect(() => {
         if (id == 'IWZ9Z08I') setDataPlaylist(dataZingchart?.weekChart?.vn?.items)
@@ -24,10 +22,6 @@ function ZingchartSongs() {
         ref.current.scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" });
     }, [])
 
-    function handleChooseSong(item) {
-        dispatch(actions.setCurrent(item.encodeId))
-    }
-
     return (
         <div className={clsx(styles.container)}>
             <div 
@@ -35,10 +29,9 @@ function ZingchartSongs() {
             >
                 {dataPlaylist?.map((item, index) => (
                     <div
-                        onClick={() => handleChooseSong(item)}
                         key={index}
                     >
-                        <SongItem item={item} index={index} zingchart/>
+                        <SongItem favorite={dataFavoritePlaylist.some(el => el.encodeId === item.encodeId)} item={item} index={index} zingchart/>
                     </div>
                 ))}
             </div>

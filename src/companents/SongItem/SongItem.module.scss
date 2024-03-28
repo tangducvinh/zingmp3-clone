@@ -66,9 +66,20 @@
 
 .duration {
     color: var(--gray-text);
-    font-size: 12px;
     flex: 1;
     display: flex;
     justify-content: flex-end;
     margin-right: 5px;
+    gap: 20px;
+    align-items: center;
 }
+
+.wrrapBtn {
+    width: 30px;
+    height: 30px;
+}
+
+.textDuration {
+    font-size: 12px;
+}
+

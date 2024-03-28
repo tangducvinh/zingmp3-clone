@@ -28,7 +28,7 @@ import { History } from './containers/public/History'
 
 function App() {
   const dispatch = useDispatch()
-  const { dataArtistSong, recentPlaylist, dataHistoryAlbums } = useSelector(state => state.music)
+  const { dataArtistSong, recentPlaylist, dataHistoryAlbums, dataFavoriteAlbum } = useSelector(state => state.music)
 
   useEffect(() => {
     dispatch(actions.getHome())
@@ -62,7 +62,7 @@ function App() {
           </Route>
           <Route path={path.MYMUSIC} element={ <Library />}>
               <Route path={path.MYMUSIC_SONG} element={ <LibrarySong />} />
-              <Route path={path.MYMUSIC_ALBUM} element={ <LibraryAlbum />} />
+              <Route path={path.MYMUSIC_ALBUM} element={ <LibraryAlbum dataAlbums={dataFavoriteAlbum} />} />
           </Route>
           <Route path={path.NEW_RANK} element={ <NewRank />}/>
           <Route path={path.THEME} element={ <ThemeGenre />}/>

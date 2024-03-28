@@ -4,8 +4,6 @@ const initState = {
     inforCurrent: null,
     curSongId: null,
     curSourse: null,
-    // indexSong: null,
-    // curPlaylistId: null,
     recentPlaylist: [],
     historyPlaylist: [],
     dataSearch: null,
@@ -15,12 +13,12 @@ const initState = {
     dataTop100: null,
     dataHistoryAlbums: [],
     dataNextSong: [],
+    dataFavoritePlaylist: [],
+    dataFavoriteAlbum: [],
 }
 
 const musicReducer = (state = initState, action) => {
     switch(action.type) {
-  
-       
         case actionTypes.SET_RECENT_PLAYLIST:
             let songPlaylist
 
@@ -109,6 +107,36 @@ const musicReducer = (state = initState, action) => {
             return {
                 ...state,
                 inforCurrent: action.data
+            }
+        case actionTypes.ADD_FAVORITE_PLAYLIST:
+            let newDataFavoritePlaylist = [...state.dataFavoritePlaylist]
+            newDataFavoritePlaylist.unshift(action.data)
+
+            return {
+                ...state,
+                dataFavoritePlaylist: newDataFavoritePlaylist,
+            }
+        case actionTypes.DELETE_FAVORTITE_PLAYLIST:
+            let copyDataFavoritePlaylist = [...state.dataFavoritePlaylist]
+            copyDataFavoritePlaylist = copyDataFavoritePlaylist.filter(el => el.encodeId !== action.encodeId)
+        
+            return {
+                ...state,
+                dataFavoritePlaylist: copyDataFavoritePlaylist,
+            }
+        case actionTypes.ADD_FAVORITE_ALBUM:
+            let newDataFavoriteAlbum = [...state.dataFavoriteAlbum]
+            newDataFavoriteAlbum.unshift(action.data)
+            return {
+                ...state,
+                dataFavoriteAlbum: newDataFavoriteAlbum,
+            }
+        case actionTypes.DELETE_FAVORITE_ALBUM:
+            let copyDataFavoriteAlbum = [...state.dataFavoriteAlbum]
+            copyDataFavoriteAlbum = copyDataFavoriteAlbum.filter(el => el.encodeId !== action.encodeId)
+            return {
+                ...state,
+                dataFavoriteAlbum: copyDataFavoriteAlbum,
             }
         default: 
             return state

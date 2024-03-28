@@ -1,15 +1,18 @@
 import clsx from 'clsx'
 import { memo, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
 
 import styles from './ItemTheme.module.scss'
 import icons from '../../ultis/icon'
 import { ButtonAudio } from '../ButtonAudio'
 import { inforBtn } from '../../ultis/buttonAudio'
+import * as actions from '../../store/action'
 
-function ItemTheme({ item, sizeS }) {
+function ItemTheme({ item, sizeS, favorite = false }) {
     const { BsPlayCircle } = icons
     const navigate = useNavigate()
+    const dispatch = useDispatch()
     const imgElement = useRef()
 
     function handleChooseAlbum(link) {
@@ -33,6 +36,16 @@ function ItemTheme({ item, sizeS }) {
         navigate(path, {state: {playAlbum: true}})
     }
 
+    function handleHeart(e) {
+        e.stopPropagation()
+        if (favorite) {
+            console.log(item.encodeId)
+            dispatch(actions.deleteFavoriteAlbum(item.encodeId))
+        } else {
+            dispatch(actions.addFavoriteAlbum(item))
+        }
+    }
+
     return (
         <div className={clsx(styles.container)}>
             <div 
@@ -50,9 +63,11 @@ function ItemTheme({ item, sizeS }) {
                 </img>
 
                 <div className={clsx(styles.option, {[styles.optionSizeS]: sizeS})}>
-                    <span className={clsx(styles.btnLove)}> 
-                        <ButtonAudio item={inforBtn.loveBtnOutline}/>
-                    </span>
+                    <div className={clsx(styles.btnLove)} onClick={handleHeart}>
+                        <ButtonAudio
+                            item={favorite ? inforBtn.loveBtnFill : inforBtn.loveBtnOutline}
+                        />
+                    </div>
 
                     <span 
                         className={clsx(styles.btnPlay)}
