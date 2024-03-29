@@ -43,8 +43,8 @@ function Album() {
 
     useEffect(() => {
         if(location.state?.playAlbum) {
-            const idSong = data?.song?.items[0].encodeId
-            dispatch(actions.setCurrent(idSong))
+            const idSong = data?.song?.items[0]?.encodeId
+            if(idSong) dispatch(actions.setCurrent(idSong))
         }
     }, [data])
 

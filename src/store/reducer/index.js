@@ -18,8 +18,14 @@ const musicConfig = {
     whilelist: ['curSongId', 'curPlaylistId', 'recentPlaylist', 'curSourse', 'historyPlaylist'],
 }
 
+const appConfig = {
+    ...commonConfig,
+    key: 'app',
+    whilelist: ['dataHistoryKeyword'],
+}
+
 const rootReducer = combineReducers({
-    app: appReducer,
+    app: persistReducer(appConfig, appReducer),
     music: persistReducer(musicConfig, musicReducer),
     play: playReducer,
 })
