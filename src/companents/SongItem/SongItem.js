@@ -3,6 +3,7 @@ import styles from './SongItem.module.scss'
 import { memo } from 'react'
 import moment from 'moment'
 import { useDispatch, useSelector } from 'react-redux'
+import { useParams } from 'react-router-dom'
 
 import { InforSong } from '../InforSong'
 import { ButtonAudio } from '../ButtonAudio'
@@ -13,7 +14,7 @@ import * as actions from '../../store/action'
 function SongItem({item, icon, nameSizeS, playing, index, zingchart, zingchartM, cancelClick = false, favorite = false}) {
     const dispatch = useDispatch()
     const { LuMusic, AiOutlineLine } = icons
-    const { dataFavoritePlaylist } = useSelector(state => state.music)
+    const { pid } = useParams()
 
     function handleHeart(e) {
         e.stopPropagation()
@@ -26,7 +27,7 @@ function SongItem({item, icon, nameSizeS, playing, index, zingchart, zingchartM,
 
     function handleChooseSong() {
         if (!cancelClick) {
-            dispatch(actions.setCurrent(item.encodeId))
+            dispatch(actions.setCurrent(item.encodeId, pid))
         }
     }
 

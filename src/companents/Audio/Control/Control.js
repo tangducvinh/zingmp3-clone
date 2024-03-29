@@ -26,6 +26,7 @@ function Control({  duration, audioEl }) {
     const repeatMode = ['off', 'on', 'one']
     const [isRepeat, setIsRepeat] = useState(repeatMode[0])
     const [repeatIcon, setRepeatIcon] = useState(controlBtn.repeat)
+    const [ count, setCount ] = useState(0)
 
     // handle play song
     useEffect(() => {
@@ -107,7 +108,8 @@ function Control({  duration, audioEl }) {
         let findIndex
         dataNextSong.forEach((item, index) => {
             if (item.encodeId === inforCurrent.encodeId) {
-                return findIndex = index
+                findIndex = index
+                return
             }
         })
 
@@ -138,6 +140,7 @@ function Control({  duration, audioEl }) {
         dispatch(action.load(false))
 
         if(res1.data.err === 0 && res2.data.err === 0) {
+            setCount(0)
             dispatch(action.setInforCurrent(res2.data.data))
             dispatch(action.setSourse(res1.data.data['128']))
             dispatch(action.play(true))
@@ -152,7 +155,13 @@ function Control({  duration, audioEl }) {
                     return checkSourseSong(0)
                 }
             } else {
-                return checkSourseSong(index + 1)
+                if (count < 4) {
+                    setCount(prev => prev + 1)
+                    return checkSourseSong(index + 1)
+                } else {
+                    dispatch(action.setDataNextSong(dataZingchart.RTChart.items))
+                    return checkSourseSong(0)
+                }
             }
         }
     }
