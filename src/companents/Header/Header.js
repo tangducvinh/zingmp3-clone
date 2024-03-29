@@ -1,8 +1,9 @@
 import clsx from 'clsx'
-import { useState, useRef, useCallback } from 'react'
+import { useState, useRef, useCallback, useEffect } from 'react'
 import { useDispatch} from 'react-redux'
 import { useNavigate, createSearchParams } from 'react-router-dom'
 import Tippy from '@tippyjs/react/headless'
+import { useDebounce } from 'use-debounce'
 
 import styles from './Header.module.scss'
 import icons from '../../ultis/icon'
@@ -11,6 +12,7 @@ import * as apis from '../../apis'
 import * as actions from '../../store/action'
 import path from '../../ultis/path'
 import { SearchInfor } from '../SearchInfor'
+import { BsDatabaseAdd } from 'react-icons/bs'
 
 const { HiOutlineArrowLeft, HiOutlineArrowRight, TfiSearch, MdOutlineClear } = icons
 
@@ -20,21 +22,39 @@ function Header() {
     const navigate = useNavigate()
     const inputElement = useRef()
     const [ showInforSearch, setShowInforSearch ] = useState(false)
+    const [ valueCurrent ] = useDebounce(keyword, 500)
+    const [ dataSongs, setDataSongs ] = useState() 
+
+    async function handleFetchApi(data) {
+        navigate({
+            pathname: `/${path.SEARCH}${path.ALL}`,
+            search: createSearchParams({
+                q: data
+            }).toString()
+        })
+        setShowInforSearch(false)
+        dispatch(actions.setHistoryKeyword(data))
+        dispatch(actions.setLoadingSearch(true))
+        const response = await apis.search(data)
+        dispatch(actions.setLoadingSearch(false))
+        dispatch(actions.setDataSearch(response))
+    }
 
     async function handleSearch(e) {
         if (e.keyCode === 13 && keyword.trim()) {
-            navigate({
-                pathname: `/${path.SEARCH}${path.ALL}`,
-                search: createSearchParams({
-                    q: keyword
-                }).toString()
-            })
-            setShowInforSearch(false)
-            dispatch(actions.setHistoryKeyword(keyword))
-            dispatch(actions.setLoadingSearch(true))
-            const response = await apis.search(keyword)
-            dispatch(actions.setLoadingSearch(false))
-            dispatch(actions.setDataSearch(response))
+            // navigate({
+            //     pathname: `/${path.SEARCH}${path.ALL}`,
+            //     search: createSearchParams({
+            //         q: keyword
+            //     }).toString()
+            // })
+            // setShowInforSearch(false)
+            // dispatch(actions.setHistoryKeyword(keyword))
+            // dispatch(actions.setLoadingSearch(true))
+            // const response = await apis.search(keyword)
+            // dispatch(actions.setLoadingSearch(false))
+            // dispatch(actions.setDataSearch(response))
+            handleFetchApi(keyword)
         }
     }
 
@@ -44,20 +64,32 @@ function Header() {
     }
 
     const handleSetkeyword = useCallback( async(value) => {
-        navigate({
-            pathname: `/${path.SEARCH}${path.ALL}`,
-            search: createSearchParams({
-                q: value
-            }).toString()
-        })
-        setShowInforSearch(false)
+        // navigate({
+        //     pathname: `/${path.SEARCH}${path.ALL}`,
+        //     search: createSearchParams({
+        //         q: value
+        //     }).toString()
+        // })
+        // setShowInforSearch(false)
         setKeyword(value)
-        dispatch(actions.setHistoryKeyword(value))
-        dispatch(actions.setLoadingSearch(true))
-        const response = await apis.search(value)
-        dispatch(actions.setLoadingSearch(false))
-        dispatch(actions.setDataSearch(response))
+        // dispatch(actions.setHistoryKeyword(value))
+        // dispatch(actions.setLoadingSearch(true))
+        // const response = await apis.search(value)
+        // dispatch(actions.setLoadingSearch(false))
+        // dispatch(actions.setDataSearch(response))
+        handleFetchApi(value)
     }, [])
+
+    async function fecthDataSearch() {
+        const response = await apis.search(valueCurrent)
+        if (response.data.err === 0) {
+            setDataSongs(response.data.data.songs)
+        }
+    }
+
+    useEffect(() => {
+        fecthDataSearch()
+    }, [valueCurrent])
 
     return (
         <div className={clsx(styles.container)}>
@@ -82,7 +114,7 @@ function Header() {
                     interactive
                     render={attrs => (
                         <div className={clsx(styles.searchInfor)} tabIndex="-1" {...attrs}>
-                            <SearchInfor onSetData={handleSetkeyword} keywordLive={keyword}/>
+                            <SearchInfor onSetData={handleSetkeyword} dataSongs={dataSongs} keywordLive={keyword}/>
                         </div>
                     )}
                     onClickOutside={() => setShowInforSearch(false)}

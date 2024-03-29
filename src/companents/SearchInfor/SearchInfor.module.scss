@@ -34,3 +34,34 @@
 .textKeyword {
     font-weight: 600;
 }
+
+.wrapInforSong {
+    width: 100%;
+}
+
+.inforSong {
+    border-radius: 4px;
+    cursor: pointer;
+    padding: 10px;
+    position: relative;
+
+    &:hover {
+        background-color: #2F2739;
+    }
+}
+
+.borderTop {
+    margin-top: 10px;
+    border-top: 1px solid #333;
+}
+
+.wrrapBtn {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+}
+

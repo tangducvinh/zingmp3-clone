@@ -12,10 +12,10 @@ function SidebarLeft() {
 
     return (
         <div className={clsx(styles.container)}>
-            <div className={clsx(styles.logo)}>
+            <Link to={'/'} className={clsx(styles.logo)}>
                 <img className={clsx(styles.logoIcon, styles.hidden)} src={logo} alt='logo'></img>
                 <img className={clsx(styles.iconSmall)} src='https://zjs.zmdcdn.me/zmp3-desktop/releases/v1.9.92/static/media/icon_zing_mp3_60.f6b51045.svg'></img>
-            </div>
+            </Link>
 
             <div className={clsx(styles.menu)}>
                 {menuSidebar.map(item => 
