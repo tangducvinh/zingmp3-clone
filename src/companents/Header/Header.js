@@ -12,7 +12,6 @@ import * as apis from '../../apis'
 import * as actions from '../../store/action'
 import path from '../../ultis/path'
 import { SearchInfor } from '../SearchInfor'
-import { BsDatabaseAdd } from 'react-icons/bs'
 
 const { HiOutlineArrowLeft, HiOutlineArrowRight, TfiSearch, MdOutlineClear } = icons
 
@@ -42,18 +41,6 @@ function Header() {
 
     async function handleSearch(e) {
         if (e.keyCode === 13 && keyword.trim()) {
-            // navigate({
-            //     pathname: `/${path.SEARCH}${path.ALL}`,
-            //     search: createSearchParams({
-            //         q: keyword
-            //     }).toString()
-            // })
-            // setShowInforSearch(false)
-            // dispatch(actions.setHistoryKeyword(keyword))
-            // dispatch(actions.setLoadingSearch(true))
-            // const response = await apis.search(keyword)
-            // dispatch(actions.setLoadingSearch(false))
-            // dispatch(actions.setDataSearch(response))
             handleFetchApi(keyword)
         }
     }
@@ -64,26 +51,14 @@ function Header() {
     }
 
     const handleSetkeyword = useCallback( async(value) => {
-        // navigate({
-        //     pathname: `/${path.SEARCH}${path.ALL}`,
-        //     search: createSearchParams({
-        //         q: value
-        //     }).toString()
-        // })
-        // setShowInforSearch(false)
         setKeyword(value)
-        // dispatch(actions.setHistoryKeyword(value))
-        // dispatch(actions.setLoadingSearch(true))
-        // const response = await apis.search(value)
-        // dispatch(actions.setLoadingSearch(false))
-        // dispatch(actions.setDataSearch(response))
         handleFetchApi(value)
     }, [])
 
     async function fecthDataSearch() {
         const response = await apis.search(valueCurrent)
         if (response.data.err === 0) {
-            setDataSongs(response.data.data.songs)
+            setDataSongs(response.data.data)
         }
     }
 
@@ -114,7 +89,7 @@ function Header() {
                     interactive
                     render={attrs => (
                         <div className={clsx(styles.searchInfor)} tabIndex="-1" {...attrs}>
-                            <SearchInfor onSetData={handleSetkeyword} dataSongs={dataSongs} keywordLive={keyword}/>
+                            <SearchInfor onSetData={handleSetkeyword} onSetShowSearch={setShowInforSearch} dataArtist={dataSongs?.artists?.[0]} dataSongs={dataSongs?.songs} keywordLive={keyword}/>
                         </div>
                     )}
                     onClickOutside={() => setShowInforSearch(false)}

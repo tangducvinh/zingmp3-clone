@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux'
 import { memo, useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 
+import { InforArtistSearch } from '../InforArtistSearch'
 import { InforSong } from '../InforSong'
 import styles from './SearchInfor.module.scss'
 import icons from '../../ultis/icon'
@@ -11,7 +12,7 @@ import { ButtonAudio } from '../ButtonAudio'
 import { inforBtn } from '../../ultis/buttonAudio'
 
 
-function SearchInfor({ onSetData, keywordLive, dataSongs }) {
+function SearchInfor({ onSetData, keywordLive, dataSongs, dataArtist, onSetShowSearch }) {
     const { dataHistoryKeyword } = useSelector(state => state.app)
     const { inforCurrent, dataFavoritePlaylist } = useSelector(state => state.music)
     const { isPlaying } = useSelector(state => state.play)
@@ -72,6 +73,8 @@ function SearchInfor({ onSetData, keywordLive, dataSongs }) {
 
                     <div className={clsx(styles.wrapSongs)}>
                         <p className={clsx(styles.title, styles.borderTop)}>Gợi ý kết quả</p>
+
+                        {dataArtist && <InforArtistSearch name={dataArtist?.alias} onSetShowSearch={onSetShowSearch} image={dataArtist?.thumbnailM} total={dataArtist?.totalFollow} role={'Nghệ sĩ'} link={dataArtist?.link}/>}
 
                         <div className={clsx(styles.wrapInforSong)}>
                             {dataSongs?.filter((el, index) => index < 4)?.map((item, index) => 
